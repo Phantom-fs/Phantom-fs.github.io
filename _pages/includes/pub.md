@@ -1,4 +1,4 @@
-# 📝 Selected Publications
+# 📝 Publications
 
 Please find my full list of research papers at my [Google Scholar](https://scholar.google.com/citations?user=ZeKCtQQAAAAJ).
 

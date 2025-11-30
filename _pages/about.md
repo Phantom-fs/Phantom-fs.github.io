@@ -13,7 +13,7 @@ redirect_from:
 
 {% include_relative includes/news.md %}
 
-{% include_relative includes/pub_short.md %}
+{% include_relative includes/pub.md %}
 
 {% include_relative includes/honers.md %}
 
@@ -21,6 +21,4 @@ redirect_from:
 
 # Acknowledgements
 I would thank all my collaborators and advisors.
-<script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=-bc6rf4tG5LFKAMXiVTtUEkleaHFKj0r5wDOTKEBCCc"></script>
-<!--script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=B66x2QoETm-rNLiPfNrv2mAeGKYz5sFIJhRl8zGpbBg&cl=ffffff&w=a"></script -->
-<!-- <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=wezK_VMGs_K-oi1KTL4B-DFRRuq_XpZcmidpdoc9WK0"></script> -->
+<script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=B66x2QoETm-rNLiPfNrv2mAeGKYz5sFIJhRl8zGpbBg&cl=ffffff&w=a"></script>
