@@ -21,4 +21,11 @@ redirect_from:
 
 # Acknowledgements
 I would thank all my collaborators and advisors.
-<script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=B66x2QoETm-rNLiPfNrv2mAeGKYz5sFIJhRl8zGpbBg&cl=ffffff&w=a"></script>
+
+<div style="display:flex; justify-content:center; align-items:center; width:100%;">
+  <div style="transform:scale(0.4); transform-origin: top left;">
+  <script type="text/javascript" id="mapmyvisitors" 
+    src="//mapmyvisitors.com/map.js?d=B66x2QoETm-rNLiPfNrv2mAeGKYz5sFIJhRl8zGpbBg&cl=ffffff&w=a">
+  </script>
+  </div>
+</div>
