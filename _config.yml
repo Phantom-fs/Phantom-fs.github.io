@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Farhan Sheth"
-description              : "Focusing on multimodal and truthworthy AI."
+description              : "Focusing on multimodal and truthworthy AI"
 repository               : "Phantom-fs/Phantom-fs.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -22,7 +22,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 # Site Author
 author:
   name             : "Farhan Sheth"
-  avatar           : "images/IMG_2858.jpg"
+  avatar           : "images/profile-img.jpg"
   bio              : ""
   location         : "Saudi Arabia"
   employer         :
