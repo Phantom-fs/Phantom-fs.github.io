@@ -14,7 +14,7 @@
 {% if seo_description %}
   {% assign seo_description = seo_description | markdownify | strip_html | strip_newlines | escape_once %}
 {% else %}
-  {% assign seo_description = "Farhan Sheth - AI Researcher specializing in multimodal AI, trustworthy AI, and applied AI." %}
+  {% assign seo_description = "Farhan Sheth - AI Researcher specializing in multimodal, trustworthy, and applied AI." %}
 {% endif %}
 
 <meta name="description" content="{{ seo_description }}">

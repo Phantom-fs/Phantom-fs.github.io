@@ -1,7 +1,7 @@
 
 # 📖 Educations
-- *2021.07 - 2025.07* B.Tech. in Computer Science & Engineering \\
-  School of Computer Science & Engineering, Manipal University Jaipur, India
+- *2021.07 - 2025.07*: Bachelor of Technology (**B.Tech.**) in Computer Science & Engineering (**CSE**) \\
+  School of Computer Science & Engineering, **Manipal University Jaipur**, India
 
 # 💻 Experience
 - *2025.01 - Present*: Research Intern, **Nanyang Technological University (NTU)**, Singapore \\
