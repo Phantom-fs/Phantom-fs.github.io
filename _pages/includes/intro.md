@@ -1,15 +1,6 @@
 I am **Farhan Sheth**, a passionate researcher and practitioner in the field of **Artificial Intelligence (AI)**. I am currently working on **multimodal and trustworthy AI** research. I am also interested in exploring applications of AI in healthcare, education, and environmental sustainability. I graduated from [Manipal University Jaipur](https://jaipur.manipal.edu/) with a bachelor's degree in Computer Science and Engineering.
 
-### 🎯 Research Interests
-- Multimodal AI
-- Trustworthy AI
-- Computer Vision
-- Applied AI
-- Machine Learning
-- Deep Learning
-- Natural Language Processing
-- Speech Processing
-- Synthetic Media Detection
+My primary research interests span multimodal and trustworthy AI, with a particular focus on computer vision, applied AI, machine learning, deep learning, natural language processing, speech processing, and the detection of synthetic media.
 
 ### 📊 Academic Impact
 I have published **10+ papers** <a href='https://scholar.google.com/citations?user=ZeKCtQQAAAAJ'><img src="https://img.shields.io/endpoint?logo=Google%20Scholar&url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FPhantom-fs%2FPhantom-fs.github.io@google-scholar-stats%2Fgs_data_shieldsio.json&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at various prestigious journals and conferences, including **IJCNLP-AACL**, **Engineering Applications of AI**, and **Plant Methods**.
