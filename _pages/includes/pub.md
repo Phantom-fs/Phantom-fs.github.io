@@ -1,6 +1,10 @@
 # 📝 Publications
 
-Please find my full list of research papers at my [Google Scholar](https://scholar.google.com/citations?user=ZeKCtQQAAAAJ).
+<div style="text-align: center; margin-bottom: 2em;">
+<a href="https://scholar.google.com/citations?user=ZeKCtQQAAAAJ" class="btn" style="color: white;">📚 View Full Publication List on Google Scholar</a>
+</div>
+
+## Publications by Area
 
 ### 🌍 Applied AI 
 - ``PREPRINT`` [RecruitView: A Multimodal Dataset for Predicting Personality and Interview Performance for Human Resources Applications](link) \\
