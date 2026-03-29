@@ -13,11 +13,11 @@ View my full list of research papers on [**Google Scholar**](https://scholar.goo
  Priya Mathur, Hammad Shaikh, **Farhan Sheth**, et al. **IEEE Access**, 2025.  \| [![Code](https://img.shields.io/github/stars/AI4A-lab/Hybrid-Nanofluid-Density-Prediction-Dataset?style=social&label=Dataset)](https://github.com/AI4A-lab/Hybrid-Nanofluid-Density-Prediction-Dataset) \| [![Code](https://img.shields.io/github/stars/AI4A-lab/Hybrid-ML-DL_Nanofluid-Density-Predictor?style=social)](https://github.com/AI4A-lab/Hybrid-ML-DL_Nanofluid-Density-Predictor)
 
 ### 🗣️ Speech, Audio & Synthetic Media
-- ``EACL`` [Bridging Attribution and Open-Set Detection using Graph-Augmented Instance Learning in Synthetic Speech](https://doi.org/10.48550/arXiv.2601.07064) \\
+- ``EACL`` [Bridging Attribution and Open-Set Detection using Graph-Augmented Instance Learning in Synthetic Speech](https://doi.org/10.18653/v1/2026.eacl-long.250) \\
  Mohd Mujtaba Akhtar\*, Girish\*, **Farhan Sheth**\*, Muskaan Singh. **European Chapter of the Association for Computational Linguistics**, 2026.
-- ``IJCNLP-AACL`` [Curved Worlds, Clear Boundaries: Generalizing Speech Deepfake Detection using Hyperbolic and Spherical Geometry Spaces](https://doi.org/10.48550/arXiv.2511.10793) \\
+- ``IJCNLP-AACL`` [Curved Worlds, Clear Boundaries: Generalizing Speech Deepfake Detection using Hyperbolic and Spherical Geometry Spaces](https://doi.org/10.18653/v1/2025.ijcnlp-long.104) \\
  **Farhan Sheth**\*, Girish\*, Mohd Mujtaba Akhtar\*, Muskaan Singh. **International Joint Conference on Natural Language Processing & Asia-Pacific Chapter of the Association for Computational Linguistics**, 2025.
-- ``IJCNLP-AACL`` [Towards Attribution of Generators and Emotional Manipulation in Cross-Lingual Synthetic Speech using Geometric Learning](https://doi.org/10.48550/arXiv.2511.10790) \\
+- ``IJCNLP-AACL`` [Towards Attribution of Generators and Emotional Manipulation in Cross-Lingual Synthetic Speech using Geometric Learning](https://doi.org/10.18653/v1/2025.findings-ijcnlp.37) \\
  Girish\*, Mohd Mujtaba Akhtar\*, **Farhan Sheth**, Muskaan Singh. **International Joint Conference on Natural Language Processing & Asia-Pacific Chapter of the Association for Computational Linguistics**, 2025.
 
 ### 🌿 AI in Earth Sciences
