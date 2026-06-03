@@ -31,6 +31,8 @@ View my full list of research papers on [**Google Scholar**](https://scholar.goo
  Priya Mathur, **Farhan Sheth**, Dinesh Goyal, Amit Kumar Gupta. **Journal of Interdisciplinary Mathematics**, 2024.
 
 ### 🔒 Privacy & Security
+- ``PREPRINT`` [Selective Token-Level Cryptographic Redaction for Privacy-Preserving Clinical Deployment of Large Language Models](https://doi.org/10.48550/arXiv.2606.03399) \\
+ **Farhan Sheth**\*, Ziyuan Yang\*, Yongying Lan, Si Yong Yeo. **ArXiv**, 2026. \| [![Code](https://img.shields.io/github/stars/Phantom-fs/HERALD?style=social&label=Dataset)](https://github.com/Phantom-fs/HERALD)
 - ``JDMSC`` [Robust cybersecurity through discrete and large language models for effective phishing attack detection](https://doi.org/10.47974/JDMSC-2162) \\
  Dinesh Goyal, Anil Kumar, Priya Mathur, **Farhan Sheth**, Amit Kumar Gupta. **Journal of Discrete Mathematical Sciences and Cryptography**, 2025.
 - ``JDMSC`` [Discrete mathematical models for enhancing cybersecurity: A mathematical and statistical analysis of machine learning approaches in phishing attack detection](https://doi.org/10.47974/JDMSC-1893) \\
