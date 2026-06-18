@@ -13,6 +13,8 @@ View my full list of research papers on [**Google Scholar**](https://scholar.goo
  Priya Mathur, Hammad Shaikh, **Farhan Sheth**, et al. **IEEE Access**, 2025.  \| [![Code](https://img.shields.io/github/stars/AI4A-lab/Hybrid-Nanofluid-Density-Prediction-Dataset?style=social&label=Dataset)](https://github.com/AI4A-lab/Hybrid-Nanofluid-Density-Prediction-Dataset) \| [![Code](https://img.shields.io/github/stars/AI4A-lab/Hybrid-ML-DL_Nanofluid-Density-Predictor?style=social)](https://github.com/AI4A-lab/Hybrid-ML-DL_Nanofluid-Density-Predictor)
 
 ### 🗣️ Speech, Audio & Synthetic Media
+- ``INTERSPEECH`` [Synergizing Zero-Shot Cross-Lingual Alzheimer Detection with Language-Invariant Multimodal Bi-Geometric Adversarial Learning](https://doi.org/10.48550/arXiv.2606.17254) \\
+ Girish\*, Mohd Mujtaba Akhtar\*, **Farhan Sheth**\*, Muskaan Singh, Juliana Gerard, Paula McClean, Kongfatt Wong-Lin. **Interspeech**, 2026.
 - ``EACL`` [Bridging Attribution and Open-Set Detection using Graph-Augmented Instance Learning in Synthetic Speech](https://doi.org/10.18653/v1/2026.eacl-long.250) \\
  Mohd Mujtaba Akhtar\*, Girish\*, **Farhan Sheth**\*, Muskaan Singh. **European Chapter of the Association for Computational Linguistics**, 2026.
 - ``IJCNLP-AACL`` [Curved Worlds, Clear Boundaries: Generalizing Speech Deepfake Detection using Hyperbolic and Spherical Geometry Spaces](https://doi.org/10.18653/v1/2025.ijcnlp-long.104) \\
