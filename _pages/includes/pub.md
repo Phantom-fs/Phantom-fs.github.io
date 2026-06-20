@@ -22,6 +22,12 @@ View my full list of research papers on [**Google Scholar**](https://scholar.goo
 - ``IJCNLP-AACL`` [Towards Attribution of Generators and Emotional Manipulation in Cross-Lingual Synthetic Speech using Geometric Learning](https://doi.org/10.18653/v1/2025.findings-ijcnlp.37) \\
  Girish\*, Mohd Mujtaba Akhtar\*, **Farhan Sheth**, Muskaan Singh. **International Joint Conference on Natural Language Processing & Asia-Pacific Chapter of the Association for Computational Linguistics**, 2025.
 
+### 🏥 AI in Healthcare
+- ``ACM`` [Uc-PrUn: Uncertainty-Calibrated Machine Unlearning using Vision-Language Models for Clinical Decision Support](https://doi.org/10.1145/3820497) \\
+ **Farhan Sheth**, Mohd Mujtaba Akhtar, Girish, Muskaan Singh, Alexander Davey. **ACM Transactions on Computing for Healthcare**, 2026. \| [![Code](https://img.shields.io/github/stars/Phantom-fs/Uc-PrUn?style=social)](https://github.com/Phantom-fs/Uc-PrUn)
+- ``JDMSC`` [A discrete mathematical model and cryptography for secure medical image analysis: Encrypted chest X-ray classification](https://doi.org/10.47974/JDMSC-2146) \\
+ Ajit Noonia, Deepti Thakral, Priya Mathur, **Farhan Sheth**, et al. **Journal of Discrete Mathematical Sciences and Cryptography**, 2025.
+
 ### 🌿 AI in Earth Sciences
 - ``EAAI`` [An advanced artificial intelligence framework integrating ensembled convolutional neural networks and Vision Transformers for precise soil classification with adaptive fuzzy logic-based crop recommendations](https://doi.org/10.1016/j.engappai.2025.111425) \\
  **Farhan Sheth**, Priya Mathur, Amit Kumar Gupta, Sandeep Chaurasia. **Engineering Applications of Artificial Intelligence**, 2025.  \| [![Code](https://img.shields.io/github/stars/Phantom-fs/Soil-Classification-Dataset?style=social&label=Dataset)](https://github.com/Phantom-fs/Soil-Classification-Dataset) \| [![Code](https://img.shields.io/github/stars/Phantom-fs/Agro-Companion-Modules?style=social)](https://github.com/Phantom-fs/Agro-Companion-Modules)
@@ -39,10 +45,6 @@ View my full list of research papers on [**Google Scholar**](https://scholar.goo
  Dinesh Goyal, Anil Kumar, Priya Mathur, **Farhan Sheth**, Amit Kumar Gupta. **Journal of Discrete Mathematical Sciences and Cryptography**, 2025.
 - ``JDMSC`` [Discrete mathematical models for enhancing cybersecurity: A mathematical and statistical analysis of machine learning approaches in phishing attack detection](https://doi.org/10.47974/JDMSC-1893) \\
  Dinesh Goyal, **Farhan Sheth**, Priya Mathur, Amit Kumar Gupta. **Journal of Discrete Mathematical Sciences and Cryptography**, 2024.
-
-### 🏥 AI in Healthcare
-- ``JDMSC`` [A discrete mathematical model and cryptography for secure medical image analysis: Encrypted chest X-ray classification](https://doi.org/10.47974/JDMSC-2146) \\
- Ajit Noonia, Deepti Thakral, Priya Mathur, **Farhan Sheth**, et al. **Journal of Discrete Mathematical Sciences and Cryptography**, 2025.
 
 <!-- More publications coming soon... -->
 <!-- 
