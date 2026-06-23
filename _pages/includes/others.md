@@ -7,9 +7,9 @@
 - *2025.01 - Present*: Research Assistant, **Nanyang Technological University (NTU)**, Singapore \\
   Advisor: [Dr. Yeo Si Yong](https://dr.ntu.edu.sg/entities/person/Yeo-Si-Yong)
 - *2024.06 - Present*: Project Lead, **[AI4A Lab](https://ai4a-lab.github.io/)**, India
-- *2024.06 - 2025.11*: Research Assitant, **Ulster University**, United Kingdom \\
+- *2024.06 - 2025.11*: Research Intern, **Ulster University**, United Kingdom \\
   Advisor: [Dr. Muskaan Singh](https://www.ulster.ac.uk/staff/m-singh)
-- *2024.01 - 2025.10*: Project Team Lead, **Manipal University Jaipur**, India
+- *2024.01 - 2025.10*: Project Lead, **Manipal University Jaipur**, India
 - *2024.06 - 2024.07*: Research Intern, **NIT Jalandhar**, India \\
   Advisor: [Dr. Rajesh Singla](https://departments.nitj.ac.in/dept/ice/Faculty/6430445938bff038a7806479)
 - *2023.12 - 2024.05*: Research Assistant, **Universidad de Las Palmas de Gran Canaria**, Spain \\
