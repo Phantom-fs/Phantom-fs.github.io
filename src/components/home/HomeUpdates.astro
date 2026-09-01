@@ -1,0 +1,68 @@
+---
+const { updates } = Astro.props as {
+  updates: {
+    data: {
+      date: string;
+      paper: string;
+      summary: string;
+      title: string;
+      venue: string;
+    };
+  }[];
+};
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('en', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(`${date}T00:00:00Z`));
+const splitTitleAtVenue = (title: string, venue: string) => {
+  const venueIndex = title.indexOf(venue);
+  if (venueIndex === -1) {
+    throw new Error(`Update title must include its venue: ${title}`);
+  }
+  return {
+    afterVenue: title.slice(venueIndex + venue.length),
+    beforeVenue: title.slice(0, venueIndex)
+  };
+};
+const asContinuation = (value: string) =>
+  value ? `${value[0].toLocaleLowerCase()}${value.slice(1)}` : value;
+---
+
+<section
+  class="home-updates section-band-evidence"
+  data-home-section="updates"
+  aria-labelledby="updates-title"
+>
+  <div class="frame">
+    <div class="home-updates__heading">
+      <h2 class="type-heading-md" id="updates-title">News</h2>
+    </div>
+    <ol class="home-updates__list">
+      {
+        updates.map((entry) => {
+          const { beforeVenue, afterVenue } = splitTitleAtVenue(
+            entry.data.title,
+            entry.data.venue
+          );
+          return (
+            <li>
+              <time class="type-metadata" datetime={entry.data.date}>
+                {formatDate(entry.data.date)}
+              </time>
+              <p>
+                <span class="home-updates__paper" data-home-update-paper>
+                  {entry.data.paper}
+                </span>{' '}
+                {asContinuation(beforeVenue)}
+                <strong>{entry.data.venue}</strong>
+                {afterVenue}
+              </p>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</section>

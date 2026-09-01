@@ -1,0 +1,19 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "noEmit": true,
+    "types": ["vitest/globals", "node"]
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "scripts",
+    "src",
+    "tests",
+    "astro.config.mjs",
+    "vitest.config.ts",
+    "playwright.config.ts",
+    "playwright.visual.config.ts"
+  ]
+}

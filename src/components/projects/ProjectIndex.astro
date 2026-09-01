@@ -1,0 +1,48 @@
+---
+import ProjectCaseStudy from './ProjectCaseStudy.astro';
+
+const { introduction, projects, publications } = Astro.props as {
+  introduction: { body: string; data: { summary: string; title: string } };
+  projects: {
+    body: string;
+    data: {
+      associatedPublicationIds: string[];
+      contribution: string;
+      datasetScale: string[];
+      methodology: string[];
+      outcomes: string[];
+      problem: string;
+      role: string;
+      slug: string;
+      summary: string;
+      technology: string[];
+      title: string;
+    };
+  }[];
+  publications: Map<string, { slug: string; title: string }>;
+};
+---
+
+<section
+  class="projects-introduction section-band-orientation"
+  data-projects-section="introduction"
+>
+  <div class="frame prose">
+    <p class="type-label">Research case studies</p>
+    <h1>{introduction.data.title}</h1>
+    <p class="type-body-lg">{introduction.data.summary}</p>
+    <p>{introduction.body}</p>
+  </div>
+</section>
+<section
+  class="projects-case-studies section-band-evidence"
+  data-projects-section="case-studies"
+>
+  <div class="frame">
+    {
+      projects.map((project) => (
+        <ProjectCaseStudy project={project} publications={publications} />
+      ))
+    }
+  </div>
+</section>

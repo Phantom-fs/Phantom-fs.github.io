@@ -1,0 +1,26 @@
+---
+interface Rank {
+  evidenceUrl: string;
+  evidenceYear: number;
+  system: string;
+  value: string;
+}
+
+const { rank } = Astro.props as { rank?: Rank };
+---
+
+{
+  rank && (
+    <a
+      class="rank-badge"
+      href={rank.evidenceUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>
+        {rank.system} {rank.value}
+      </span>
+      <span>evidence {rank.evidenceYear}</span>
+    </a>
+  )
+}

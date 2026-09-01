@@ -1,0 +1,38 @@
+---
+import { resolve } from 'node:path';
+import ResearchChapter from '../components/research/ResearchChapter.astro';
+import ResearchCta from '../components/research/ResearchCta.astro';
+import ResearchStatement from '../components/research/ResearchStatement.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadValidatedContent } from '../lib/content/query';
+
+const content = await loadValidatedContent(resolve('src/content'));
+const introduction = content.site.find(
+  ({ data }) => data.id === 'research-introduction'
+);
+if (!introduction)
+  throw new Error('Required site content is missing: research-introduction');
+const domains = [...content.research].sort(
+  (left, right) => left.data.order - right.data.order
+);
+const publications = new Map(
+  content.publications.map(({ data }) => [
+    data.id,
+    { slug: data.slug, title: data.title }
+  ])
+);
+---
+
+<BaseLayout
+  title="Research"
+  description={introduction.data.summary}
+  route="research"
+>
+  <ResearchStatement introduction={introduction} />
+  <ResearchChapter
+    domains={domains}
+    introduction={introduction.data}
+    publications={publications}
+  />
+  <ResearchCta />
+</BaseLayout>

@@ -1,0 +1,113 @@
+[
+  {
+    "id": "soil-classification",
+    "title": "An advanced artificial intelligence framework integrating ensembled convolutional neural networks and Vision Transformers for precise soil classification with adaptive fuzzy logic-based crop recommendations",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:UeHWp8X0CEIC",
+    "doi": "10.1016/j.engappai.2025.111425"
+  },
+  {
+    "id": "geological-rock-classification",
+    "title": "Advancing Geological Image Segmentation: Deep Learning Approaches for Rock Type Identification and Classification",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:9yKSN-GCB0IC",
+    "doi": "10.1016/j.acags.2024.100192"
+  },
+  {
+    "id": "herbify",
+    "title": "Herbify: An ensemble deep learning framework integrating convolutional neural networks and vision transformers for precise herb identification",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:Tyk-4Ss8FVUC",
+    "doi": "10.1186/s13007-025-01421-5"
+  },
+  {
+    "id": "nanofluid-density",
+    "title": "A Computational Intelligence Framework Integrating Data Augmentation and Meta-Heuristic Optimization Algorithms for Enhanced Hybrid Nanofluid Density Prediction Through Machine and Deep Learning Paradigms",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:qjMakFHDy7sC",
+    "doi": "10.1109/ACCESS.2025.3543475"
+  },
+  {
+    "id": "phishing-discrete-models",
+    "title": "Discrete mathematical models for enhancing cybersecurity: A mathematical and statistical analysis of machine learning approaches in phishing attack detection",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:u-x6o8ySG0sC",
+    "doi": "10.47974/JDMSC-1893"
+  },
+  {
+    "id": "mango-leaf-disease",
+    "title": "Deep insight: Mathematical modeling and statistical analysis for mango leaf disease classification using advanced deep learning models",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:u5HHmVD_uO8C",
+    "doi": "10.47974/JIM-1830"
+  },
+  {
+    "id": "chest-xray-encryption",
+    "title": "A discrete mathematical model and cryptography for secure medical image analysis: Encrypted chest X-ray classification",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:Zph67rFs4hoC",
+    "doi": "10.47974/JDMSC-2146"
+  },
+  {
+    "id": "curved-worlds",
+    "title": "Curved Worlds, Clear Boundaries: Generalizing Speech Deepfake Detection using Hyperbolic and Spherical Geometry Spaces",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:mVmsd5A6BfQC",
+    "doi": "10.18653/v1/2025.ijcnlp-long.104",
+    "arxivId": "2511.10793"
+  },
+  {
+    "id": "recruitview",
+    "title": "RecruitView: A Multimodal Dataset for Predicting Personality and Interview Performance for Human Resources Applications",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:qxL8FJ1GzNcC",
+    "arxivId": "2512.00450"
+  },
+  {
+    "id": "nanofluid-specific-heat",
+    "title": "Comprehensive framework of machine learning and deep learning architectures with metaheuristic optimization for high-fidelity prediction of nanofluid specific heat capacity",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:aqlVkmm33-oC",
+    "doi": "10.1038/s41598-025-28268-z"
+  },
+  {
+    "id": "phishing-llm",
+    "title": "Robust cybersecurity through discrete and large language models for effective phishing attack detection",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:qUcmZB5y_30C",
+    "doi": "10.47974/JDMSC-2162"
+  },
+  {
+    "id": "signal-eacl-2026",
+    "title": "Bridging Attribution and Open-Set Detection using Graph-Augmented Instance Learning in Synthetic Speech",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:hC7cP41nSMkC",
+    "doi": "10.18653/v1/2026.eacl-long.250",
+    "arxivId": "2601.07064"
+  },
+  {
+    "id": "learning-heat",
+    "title": "Learning heat: High-fidelity experimental and Koo-Kleinstreuer-Li thermal conductivity predictions in nanofluids via advanced data augmentation and metaheuristic search",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:_kc_bZDykSQC",
+    "doi": "10.1016/j.icheatmasstransfer.2025.110022"
+  },
+  {
+    "id": "cross-lingual-generator-attribution",
+    "title": "Towards Attribution of Generators and Emotional Manipulation in Cross-Lingual Synthetic Speech using Geometric Learning",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:YOwf2qJgpHMC",
+    "doi": "10.18653/v1/2025.findings-ijcnlp.37",
+    "arxivId": "2511.10790"
+  },
+  {
+    "id": "data-efficient-neuroimaging",
+    "title": "Data-efficient neuroimaging classification via Wasserstein Autoencoder-based augmentation and hybrid deep learning",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:IWHjjKOFINEC",
+    "doi": "10.1007/s10791-026-10355-y"
+  },
+  {
+    "id": "uc-prun",
+    "title": "Uc-PrUn: Uncertainty-Calibrated Machine Unlearning using Vision-Language Models for Clinical Decision Support",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:L8Ckcad2t8MC",
+    "doi": "10.1145/3820497"
+  },
+  {
+    "id": "alzheimer-detection",
+    "title": "Synergizing Zero-Shot Cross-Lingual Alzheimer Detection with Language-Invariant Multimodal Bi-Geometric Adversarial Learning",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:7PzlFSSx8tAC",
+    "arxivId": "2606.17254"
+  },
+  {
+    "id": "herald",
+    "title": "Selective Token-Level Cryptographic Redaction for Privacy-Preserving Clinical Deployment of Large Language Models",
+    "scholarPublicationId": "ZeKCtQQAAAAJ:9ZlFYXVOiuMC",
+    "arxivId": "2606.03399"
+  }
+]

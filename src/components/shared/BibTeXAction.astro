@@ -1,0 +1,45 @@
+---
+const { citationKey, value } = Astro.props as {
+  citationKey: string;
+  value: string;
+};
+---
+
+<div>
+  <button
+    class="control"
+    type="button"
+    data-bibtex-copy
+    data-bibtex-value={value}
+  >
+    Copy BibTeX
+  </button>
+  <span class="bibtex-status type-body-sm" aria-live="polite" data-bibtex-status
+  ></span>
+</div>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-bibtex-copy]')
+    .forEach((button) => {
+      const status = button.parentElement?.querySelector<HTMLElement>(
+        '[data-bibtex-status]'
+      );
+      button.addEventListener('click', async () => {
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        if (status) status.textContent = 'Copying BibTeX…';
+        try {
+          await navigator.clipboard.writeText(button.dataset.bibtexValue ?? '');
+          if (status) status.textContent = 'BibTeX copied.';
+        } catch {
+          if (status) status.textContent = 'Copy unavailable; copy manually.';
+        } finally {
+          button.disabled = false;
+          button.removeAttribute('aria-busy');
+        }
+      });
+    });
+</script>
+
+<span hidden data-bibtex-key={citationKey}></span>

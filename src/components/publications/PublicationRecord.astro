@@ -1,0 +1,76 @@
+---
+import ArtifactLinks from '../shared/ArtifactLinks.astro';
+import PublicationMetadata from '../shared/PublicationMetadata.astro';
+import SummaryDisclosure from '../shared/SummaryDisclosure.astro';
+import type { CitationMetric as CitationMetricValue } from '../../lib/metrics/contract';
+import type { CatalogPublication } from '../../lib/publications/catalog';
+
+const { metric, publication } = Astro.props as {
+  metric?: CitationMetricValue | null;
+  publication: CatalogPublication;
+};
+const titleHref = publication.detailPage
+  ? `/publications/${publication.slug}/`
+  : publication.links?.paper;
+const searchText = [
+  publication.title,
+  ...publication.authors.map(({ name }) => name),
+  publication.venue,
+  publication.year,
+  publication.tldr,
+  publication.abstract,
+  publication.hashtags.join(' ')
+]
+  .join(' ')
+  .toLocaleLowerCase();
+---
+
+<article
+  class="publication-record"
+  data-publication-record
+  data-category={publication.primaryCategory}
+  data-citations={metric?.value ?? ''}
+  data-publication-id={publication.id}
+  data-publication-search={searchText}
+  data-title={publication.title}
+>
+  <PublicationMetadata
+    authors={publication.authors.map(({ equalContribution, name }) =>
+      equalContribution ? `${name}*` : name
+    )}
+    citationMetric={metric}
+    rank={publication.rank}
+    title={publication.title}
+    titleHref={titleHref}
+    transitionName={publication.detailPage
+      ? `publication-${publication.id}`
+      : undefined}
+    venue={publication.venue}
+  />
+  <div class="publication-record__disclosures">
+    <SummaryDisclosure label="TLDR">
+      <p>{publication.tldr}</p>
+    </SummaryDisclosure>
+    <SummaryDisclosure label="Abstract">
+      <p>{publication.abstract}</p>
+    </SummaryDisclosure>
+  </div>
+  <div class="publication-record__taxonomy">
+    <span class="type-metadata">Tags:</span>
+    {
+      publication.hashtags.map((hashtag) => (
+        <button
+          class="publication-hashtag"
+          data-publication-hashtag={hashtag}
+          type="button"
+        >
+          #{hashtag}
+        </button>
+      ))
+    }
+  </div>
+  <ArtifactLinks
+    links={publication.links}
+    label={`Resources for ${publication.title}`}
+  />
+</article>

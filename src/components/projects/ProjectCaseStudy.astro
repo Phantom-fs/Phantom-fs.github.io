@@ -1,0 +1,126 @@
+---
+import ActionGroup from '../shared/ActionGroup.astro';
+import ArtifactLinks from '../shared/ArtifactLinks.astro';
+import type { ArtifactLinks as ArtifactLinkData } from '../../lib/ui/system';
+
+const { project, publications } = Astro.props as {
+  project: {
+    body: string;
+    data: {
+      associatedPublicationIds: string[];
+      contribution: string;
+      datasetScale: string[];
+      links?: ArtifactLinkData;
+      methodology: string[];
+      outcomes: string[];
+      problem: string;
+      role: string;
+      slug: string;
+      summary: string;
+      technology: string[];
+      title: string;
+    };
+  };
+  publications: Map<string, { slug: string; title: string }>;
+};
+
+const associatedPublications = project.data.associatedPublicationIds.flatMap(
+  (id) => {
+    const publication = publications.get(id);
+    return publication ? [publication] : [];
+  }
+);
+
+if (
+  associatedPublications.length !== project.data.associatedPublicationIds.length
+) {
+  throw new Error(
+    `Project association could not be resolved: ${project.data.slug}`
+  );
+}
+---
+
+<article
+  class="project-case-study"
+  data-project-case-study
+  id={project.data.slug}
+  aria-labelledby={`${project.data.slug}-title`}
+>
+  <header class="project-case-study__header">
+    <p class="type-label">Case study</p>
+    <h2 id={`${project.data.slug}-title`}>{project.data.title}</h2>
+    <p class="type-body-lg">{project.data.summary}</p>
+    <p>{project.body}</p>
+  </header>
+  <div class="project-case-study__evidence">
+    <dl class="project-case-study__fields">
+      <div data-project-field>
+        <dt>Problem</dt>
+        <dd>{project.data.problem}</dd>
+      </div>
+      <div data-project-field>
+        <dt>Role</dt>
+        <dd>{project.data.role}</dd>
+      </div>
+      <div data-project-field>
+        <dt>Research contribution</dt>
+        <dd>{project.data.contribution}</dd>
+      </div>
+      <div data-project-field>
+        <dt>Dataset scale</dt>
+        <dd>
+          <ul>{project.data.datasetScale.map((item) => <li>{item}</li>)}</ul>
+        </dd>
+      </div>
+      <div data-project-field>
+        <dt>Methodology</dt>
+        <dd>
+          <ul>{project.data.methodology.map((item) => <li>{item}</li>)}</ul>
+        </dd>
+      </div>
+      <div data-project-field>
+        <dt>Measured outcomes</dt>
+        <dd><ul>{project.data.outcomes.map((item) => <li>{item}</li>)}</ul></dd>
+      </div>
+      <div data-project-field>
+        <dt>Technology</dt>
+        <dd>
+          <ul>{project.data.technology.map((item) => <li>{item}</li>)}</ul>
+        </dd>
+      </div>
+      <div data-project-field>
+        <dt>Associated publications</dt>
+        <dd>
+          <ul>
+            {
+              associatedPublications.map((publication) => (
+                <li>
+                  <a
+                    class="link-underlined"
+                    href={`/publications/${publication.slug}/`}
+                  >
+                    {publication.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </dd>
+      </div>
+    </dl>
+    <div class="project-case-study__actions">
+      <ActionGroup
+        label={`${project.data.title} primary action`}
+        actions={associatedPublications.map((publication, index) => ({
+          href: `/publications/${publication.slug}/`,
+          kind: index === 0 ? ('primary' as const) : ('utility' as const),
+          label: index === 0 ? 'Read paper' : `Read ${publication.title}`
+        }))}
+      />
+      <ArtifactLinks
+        label={`Resources for ${project.data.title}`}
+        links={project.data.links}
+      />
+    </div>
+  </div>
+</article>

@@ -1,0 +1,49 @@
+---
+import PublicationRecord from './PublicationRecord.astro';
+import type { CitationMetric } from '../../lib/metrics/contract';
+import type { CatalogPublication } from '../../lib/publications/catalog';
+
+const { metrics, publications } = Astro.props as {
+  metrics: Record<string, { citationCount: CitationMetric }>;
+  publications: CatalogPublication[];
+};
+const categories = [
+  ...new Set(publications.map(({ primaryCategory }) => primaryCategory))
+];
+const grouped = categories.map((category) => ({
+  category,
+  publications: publications
+    .filter((publication) => publication.primaryCategory === category)
+    .sort((left, right) => left.displayOrder - right.displayOrder)
+}));
+---
+
+<section class="publication-catalog" data-publication-catalog>
+  <div
+    class="publication-catalog__no-results"
+    data-publication-no-results
+    hidden
+  >
+    <h2>No matching publications</h2>
+    <p>Clear filters or search again.</p>
+  </div>
+  <div data-publication-groups>
+    {
+      grouped.map(({ category, publications: categoryPublications }) => (
+        <section data-publication-category={category}>
+          <h2 class="type-heading-md">{category}</h2>
+          <div data-publication-category-records>
+            {categoryPublications.map((publication) => (
+              <PublicationRecord
+                metric={metrics[publication.id]?.citationCount}
+                publication={publication}
+              />
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</section>
+
+<script is:inline src="/scripts/publication-catalog.js"></script>

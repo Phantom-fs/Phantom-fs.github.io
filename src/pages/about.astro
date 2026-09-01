@@ -1,0 +1,35 @@
+---
+import { resolve } from 'node:path';
+import AboutLists from '../components/about/AboutLists.astro';
+import AboutOpportunity from '../components/about/AboutOpportunity.astro';
+import Biography from '../components/about/Biography.astro';
+import ExperienceTimeline from '../components/about/ExperienceTimeline.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadValidatedContent } from '../lib/content/query';
+
+const content = await loadValidatedContent(resolve('src/content'));
+const biography = content.site.find(
+  ({ data }) => data.id === 'about-introduction'
+);
+if (!biography) {
+  throw new Error('Required About site content is missing');
+}
+const opportunity = content.site.find(({ data }) => data.id === 'opportunity');
+if (!opportunity) {
+  throw new Error('Required opportunity site content is missing');
+}
+
+const byOrder = <T extends { data: { order: number } }>(entries: T[]) =>
+  [...entries].sort((left, right) => left.data.order - right.data.order);
+---
+
+<BaseLayout title="About" description={biography.data.summary} route="about">
+  <Biography biography={biography} />
+  <ExperienceTimeline positions={byOrder(content.positions)} />
+  <AboutLists
+    education={byOrder(content.education)}
+    honors={byOrder(content.honors)}
+    service={byOrder(content.service)}
+  />
+  <AboutOpportunity opportunity={opportunity.data} />
+</BaseLayout>

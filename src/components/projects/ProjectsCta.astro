@@ -1,0 +1,27 @@
+---
+import ActionGroup from '../shared/ActionGroup.astro';
+---
+
+<section
+  class="projects-cta section-band-orientation"
+  data-projects-section="collaboration"
+>
+  <div class="frame projects-cta__inner">
+    <ActionGroup
+      label="Project collaboration contact"
+      actions={[
+        {
+          href: 'mailto:farhansheth.jb@gmail.com?subject=Research%20collaboration',
+          kind: 'primary',
+          label: 'Email Farhan'
+        },
+        {
+          href: '/files/Farhan_Sheth_CV.pdf',
+          kind: 'secondary',
+          label: 'Download CV',
+          target: '_blank'
+        }
+      ]}
+    />
+  </div>
+</section>

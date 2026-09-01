@@ -1,0 +1,115 @@
+---
+const { education, honors, service } = Astro.props as {
+  education: {
+    body: string;
+    data: {
+      endDate?: string;
+      cgpa?: string;
+      coursework?: string[];
+      institution: string;
+      startDate: string;
+      title: string;
+    };
+  }[];
+  honors: {
+    body: string;
+    data: { issuer: string; title: string; year: number };
+  }[];
+  service: {
+    body: string;
+    data: { organization: string; role: string; title: string };
+  }[];
+};
+
+const formatYear = (date: string) => date.slice(0, 4);
+---
+
+<section
+  class="about-section section-band-evidence"
+  data-about-section="education"
+  aria-labelledby="education-title"
+>
+  <div class="frame about-reading-axis">
+    <div class="about-section__heading">
+      <p class="type-label">Foundation</p><h2 id="education-title">
+        Education
+      </h2>
+    </div>
+    <ul class="about-list">
+      {
+        education.map((entry) => (
+          <li>
+            <>
+              <h3>{entry.data.title}</h3>
+              <p>
+                {entry.data.institution} · {formatYear(entry.data.startDate)}–
+                {formatYear(entry.data.endDate ?? entry.data.startDate)}
+              </p>
+              {entry.data.cgpa && <p>CGPA: {entry.data.cgpa}</p>}
+              {entry.data.coursework && (
+                <p>Coursework: {entry.data.coursework.join(', ')}</p>
+              )}
+              {!entry.data.cgpa && !entry.data.coursework && (
+                <p>{entry.body}</p>
+              )}
+            </>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+<section
+  class="about-section section-band-evidence"
+  data-about-section="honors"
+  aria-labelledby="honors-title"
+>
+  <div class="frame about-reading-axis">
+    <div class="about-section__heading">
+      <p class="type-label">Recognition</p><h2 id="honors-title">
+        Honors and awards
+      </h2>
+    </div>
+    <ul class="about-list">
+      {
+        honors.map((entry) => (
+          <li>
+            <>
+              <h3>{entry.data.title}</h3>
+              <p>{entry.data.issuer}</p>
+              {entry.body && <p>{entry.body}</p>}
+            </>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+<section
+  class="about-section section-band-evidence"
+  data-about-section="service"
+  aria-labelledby="service-title"
+>
+  <div class="frame about-reading-axis">
+    <div class="about-section__heading">
+      <p class="type-label">Practice</p><h2 id="service-title">
+        Teaching and academic service
+      </h2>
+    </div>
+    <ul class="about-list">
+      {
+        service.map((entry) => (
+          <li>
+            <>
+              <h3>{entry.data.title}</h3>
+              <p>
+                {entry.data.role} · {entry.data.organization}
+              </p>
+              {entry.body && <p>{entry.body}</p>}
+            </>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

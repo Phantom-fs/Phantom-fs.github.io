@@ -1,0 +1,16 @@
+.worktrees/
+.superpowers/
+
+node_modules/
+dist/
+.astro/
+.tools/
+playwright-report/
+test-results/
+.lighthouseci/
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+src/data/generated/
+public/metrics/

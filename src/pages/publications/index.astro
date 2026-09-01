@@ -1,0 +1,65 @@
+---
+import { resolve } from 'node:path';
+import PublicationCatalog from '../../components/publications/PublicationCatalog.astro';
+import PublicationExplorer from '../../islands/PublicationExplorer';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadValidatedContent } from '../../lib/content/query';
+import { loadBuildMetrics } from '../../lib/metrics/loader';
+import { toCatalogPublication } from '../../lib/publications/catalog';
+import { parseExplorerState } from '../../lib/publications/explorer';
+
+const content = await loadValidatedContent(resolve('src/content'));
+const introduction = content.site.find(
+  ({ data }) => data.id === 'publications-introduction'
+);
+if (!introduction)
+  throw new Error(
+    'Required site content is missing: publications-introduction'
+  );
+const publications = [...content.publications].sort(
+  (left, right) => left.data.displayOrder - right.data.displayOrder
+);
+const metrics = loadBuildMetrics().publications;
+const explorerRecords = publications.map(({ body, data }) => ({
+  abstract: body,
+  authors: data.authors.map(({ name }) => name),
+  category: data.primaryCategory,
+  citationCount: metrics[data.id]?.citationCount.value ?? null,
+  detailPage: data.detailPage,
+  hashtags: data.hashtags,
+  id: data.id,
+  rank: data.rank ? { system: data.rank.system, value: data.rank.value } : null,
+  title: data.title,
+  tldr: data.tldr,
+  venue: data.venue,
+  year: data.year
+}));
+const initialExplorerState = parseExplorerState(Astro.url.searchParams);
+---
+
+<BaseLayout
+  title="Publications"
+  description={introduction.data.summary}
+  route="publications"
+>
+  <section class="section-band-orientation publications-introduction">
+    <div class="frame prose">
+      <h1>{introduction.data.title}</h1>
+      <p class="type-body-lg">{introduction.data.summary}</p>
+      <p>{introduction.body}</p>
+    </div>
+  </section>
+  <section class="section-band-evidence">
+    <div class="frame publications-composition">
+      <PublicationExplorer
+        client:load
+        initialState={initialExplorerState}
+        records={explorerRecords}
+      />
+      <PublicationCatalog
+        metrics={metrics}
+        publications={publications.map(toCatalogPublication)}
+      />
+    </div>
+  </section>
+</BaseLayout>

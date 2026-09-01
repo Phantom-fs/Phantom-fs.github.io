@@ -1,0 +1,19 @@
+---
+const { biography } = Astro.props as {
+  biography: { body: string; data: { summary: string; title: string } };
+};
+
+const paragraphs = biography.body.split(/\n{2,}/).filter(Boolean);
+---
+
+<section
+  class="about-biography section-band-orientation"
+  data-about-section="biography"
+>
+  <div class="frame prose">
+    <p class="type-label">Researcher profile</p>
+    <h1>{biography.data.title}</h1>
+    <p class="type-body-lg">{biography.data.summary}</p>
+    {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+const { label, open = false } = Astro.props as {
+  label: string;
+  open?: boolean;
+};
+---
+
+<details class="summary-disclosure" open={open}>
+  <summary aria-expanded={open}>
+    <span>{label}</span>
+    <span class="summary-disclosure__indicator" aria-hidden="true">+</span>
+  </summary>
+  <div class="summary-disclosure__content"><slot /></div>
+</details>
+
+<script>
+  document
+    .querySelectorAll<HTMLDetailsElement>('.summary-disclosure')
+    .forEach((details) => {
+      const summary = details.querySelector('summary');
+      details.addEventListener('toggle', () => {
+        summary?.setAttribute('aria-expanded', String(details.open));
+      });
+    });
+</script>

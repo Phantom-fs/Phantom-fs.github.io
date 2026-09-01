@@ -1,0 +1,26 @@
+---
+const curatedVenues = [
+  'EACL',
+  'Interspeech',
+  'IJCNLP-AACL',
+  'ACM HEALTH',
+  'EAAI',
+  'ICHMT'
+] as const;
+---
+
+<section
+  class="venue-rail section-band-utility"
+  data-home-section="venues"
+  aria-label="Published in"
+  role="region"
+>
+  <div class="frame">
+    <div class="venue-rail__heading">
+      <h2 class="type-heading-md" id="venue-title">Published in</h2>
+    </div>
+    <div class="venue-rail__list" role="list" aria-label="Published in">
+      {curatedVenues.map((venue) => <span role="listitem">{venue}</span>)}
+    </div>
+  </div>
+</section>

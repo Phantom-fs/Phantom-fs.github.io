@@ -1,0 +1,107 @@
+:root {
+  color-scheme: light dark;
+  --font-display: 'Newsreader Atlas', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope Atlas', Arial, Helvetica, sans-serif;
+  --font-mono: 'IBM Plex Mono Atlas', 'Courier New', monospace;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --frame-max: 72rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --z-base: 0;
+  --z-popover: 10;
+  --z-sticky: 20;
+  --z-modal-backdrop: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --z-tooltip: 60;
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-fast: 160ms;
+  --motion-standard: 240ms;
+  --motion-slow: 320ms;
+}
+
+:root,
+:root[data-theme='light'] {
+  --color-background: #f4f1e8;
+  --color-surface: #fcfaf5;
+  --color-ink: #161a1d;
+  --color-muted: #59636b;
+  --color-rule: #c8ced1;
+  --color-annotation: #24557a;
+  --color-signal: #a95738;
+  --color-fresh: #426957;
+  --color-on-signal: #fcfaf5;
+  --color-focus: #24557a;
+  --color-subtle: color-mix(in srgb, #f4f1e8 82%, #24557a);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-background: #141719;
+    --color-surface: #1d2124;
+    --color-ink: #f2eee5;
+    --color-muted: #a7b0b5;
+    --color-rule: #394147;
+    --color-annotation: #86a8be;
+    --color-signal: #d08a68;
+    --color-fresh: #82a892;
+    --color-on-signal: #141719;
+    --color-focus: #86a8be;
+    --color-subtle: color-mix(in srgb, #141719 82%, #86a8be);
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-background: #141719;
+  --color-surface: #1d2124;
+  --color-ink: #f2eee5;
+  --color-muted: #a7b0b5;
+  --color-rule: #394147;
+  --color-annotation: #86a8be;
+  --color-signal: #d08a68;
+  --color-fresh: #82a892;
+  --color-on-signal: #141719;
+  --color-focus: #86a8be;
+  --color-subtle: color-mix(in srgb, #141719 82%, #86a8be);
+}
+
+@font-face {
+  font-family: 'Newsreader Atlas';
+  font-style: normal;
+  font-weight: 400 550;
+  font-display: swap;
+  src: url('/fonts/newsreader-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Manrope Atlas';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/manrope-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono Atlas';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono Atlas';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-500.woff2') format('woff2');
+}

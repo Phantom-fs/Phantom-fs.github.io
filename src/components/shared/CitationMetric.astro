@@ -1,0 +1,82 @@
+---
+import { citationState } from '../../lib/ui/system';
+import type { CitationMetric as CitationMetricValue } from '../../lib/metrics/contract';
+
+const {
+  failure = false,
+  label = 'Citations',
+  metric,
+  presentation = 'badge'
+} = Astro.props as {
+  failure?: boolean;
+  label?: string;
+  metric?: CitationMetricValue | null;
+  presentation?: 'badge' | 'catalog' | 'count' | 'evidence';
+};
+const state = citationState(metric, failure);
+---
+
+{
+  presentation === 'evidence' ? (
+    <div class="citation-metric" data-citation-metric>
+      <dt>{label}</dt>
+      <dd>
+        <span class="citation-metric__value">
+          {metric && !failure ? metric.value : state.label}
+        </span>
+        <span
+          class:list={['citation-metric__state', `status-badge--${state.kind}`]}
+          data-citation-state={state.kind}
+        >
+          {state.kind === 'stale'
+            ? 'Citation data is stale.'
+            : state.kind === 'failure'
+              ? 'Citation source failed.'
+              : state.kind === 'unavailable'
+                ? 'Citation data is unavailable.'
+                : 'Citation data is current.'}
+        </span>
+        {metric && !failure && (
+          <a
+            class="link-underlined citation-metric__source"
+            href={metric.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {metric.source} ·{' '}
+            {new Date(metric.updatedAt).toLocaleDateString('en-CA')}
+          </a>
+        )}
+      </dd>
+    </div>
+  ) : presentation === 'catalog' ? (
+    <span
+      class:list={[
+        'citation-metric__catalog',
+        `citation-metric__catalog--${state.kind}`
+      ]}
+      data-catalog-citation
+      data-citation-state={state.kind}
+    >
+      {metric && !failure
+        ? `Cited by ${metric.value}`
+        : 'Citations unavailable'}
+    </span>
+  ) : presentation === 'count' ? (
+    <span class="citation-metric__count">
+      {label}: {metric && !failure ? metric.value : state.label}
+    </span>
+  ) : (
+    <span class:list={['status-badge', `status-badge--${state.kind}`]}>
+      <span>
+        {label}: {state.label}
+      </span>
+      {metric && !failure && (
+        <a href={metric.sourceUrl} target="_blank" rel="noopener noreferrer">
+          {metric.source} ·{' '}
+          {new Date(metric.updatedAt).toLocaleDateString('en-CA')}
+        </a>
+      )}
+    </span>
+  )
+}

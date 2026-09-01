@@ -1,0 +1,29 @@
+---
+import ActionGroup from '../components/shared/ActionGroup.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The requested research page is unavailable."
+>
+  <section
+    class="frame section-band-orientation"
+    aria-labelledby="not-found-title"
+  >
+    <p class="type-metadata">404 · route unavailable</p>
+    <h1 id="not-found-title">This page could not be found.</h1>
+    <p class="type-body-lg prose">
+      Return to the research record or continue through its primary sections.
+    </p>
+    <ActionGroup
+      label="Route recovery"
+      actions={[
+        { href: '/', kind: 'primary', label: 'Home' },
+        { href: '/publications/', kind: 'secondary', label: 'Publications' },
+        { href: '/research/', kind: 'secondary', label: 'Research' },
+        { href: '/about/', kind: 'secondary', label: 'About' }
+      ]}
+    />
+  </section>
+</BaseLayout>

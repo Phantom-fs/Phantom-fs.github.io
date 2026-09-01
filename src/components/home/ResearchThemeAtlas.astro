@@ -1,0 +1,31 @@
+---
+import DomainRelationshipIndex from '../shared/DomainRelationshipIndex.astro';
+
+const { domains, introduction } = Astro.props as {
+  domains: { category: string; slug: string; summary: string; title: string }[];
+  introduction: { summary: string };
+};
+---
+
+<section
+  class="home-atlas section-band-orientation"
+  data-home-section="atlas"
+  aria-labelledby="home-atlas-title"
+>
+  <div class="frame home-atlas__grid">
+    <div>
+      <h2 class="type-heading-md" id="home-atlas-title">
+        How the work connects
+      </h2>
+      <p class="prose type-body-lg">{introduction.summary}</p>
+    </div>
+    <DomainRelationshipIndex
+      compact
+      currentDomain=""
+      description={introduction.summary}
+      domains={domains}
+      id="home-domain-atlas"
+      route="home"
+    />
+  </div>
+</section>

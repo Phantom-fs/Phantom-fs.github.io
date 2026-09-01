@@ -1,0 +1,166 @@
+---
+import { primaryNavigation } from '../../lib/ui/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+const { currentPath } = Astro.props;
+const isCurrent = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+const isOverview = currentPath === '/overview/' || currentPath === '/overview';
+const navigation = isOverview
+  ? [
+      { href: '/', label: 'Full site' },
+      ...primaryNavigation.filter(({ href }) => href !== '/')
+    ]
+  : [...primaryNavigation, { href: '/overview/', label: 'Scholar view' }];
+const desktopNavigation = isOverview ? navigation : primaryNavigation;
+---
+
+<header class="site-header">
+  <div class="frame site-header__row">
+    <a class="site-mark" href="/" aria-label="Farhan Sheth home">
+      <img src="/icons/fs-atlas-mark.svg" width="28" height="28" alt="" />
+      <span>Farhan Sheth</span>
+    </a>
+    <nav
+      class="site-nav site-header__desktop-nav"
+      aria-label="Primary navigation"
+    >
+      {
+        desktopNavigation.map(({ href, label }) => (
+          <a
+            href={href}
+            class={href === '/' && isOverview ? 'site-nav__return' : undefined}
+            aria-current={isCurrent(href) ? 'page' : undefined}
+            data-alternate-route={href === '/overview/' ? 'true' : undefined}
+            data-full-site-return={
+              href === '/' && isOverview ? 'true' : undefined
+            }
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="site-header__actions">
+      {
+        !isOverview && (
+          <a
+            class="control site-header__scholar-view"
+            data-header-scholar-view
+            href="/overview/"
+          >
+            Scholar view
+          </a>
+        )
+      }
+      <ThemeToggle />
+      <a
+        class="action action--utility"
+        href="/files/Farhan_Sheth_CV.pdf"
+        download
+      >
+        Download CV
+      </a>
+      <button
+        class="control mobile-menu-trigger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-navigation-dialog"
+        data-nav-open
+      >
+        Menu
+      </button>
+    </div>
+  </div>
+  <dialog
+    class="site-dialog"
+    id="primary-navigation-dialog"
+    aria-labelledby="mobile-menu-title"
+  >
+    <div class="site-dialog__inner">
+      <div class="site-dialog__heading">
+        <h2 class="type-heading-md" id="mobile-menu-title">Navigation</h2>
+        <button class="control" type="button" data-nav-close>Close menu</button>
+      </div>
+      <nav class="site-nav" aria-label="Mobile primary navigation">
+        {
+          navigation.map(({ href, label }) => (
+            <a
+              href={href}
+              class={
+                href === '/' && isOverview ? 'site-nav__return' : undefined
+              }
+              aria-current={isCurrent(href) ? 'page' : undefined}
+              data-alternate-route={href === '/overview/' ? 'true' : undefined}
+              data-full-site-return={
+                href === '/' && isOverview ? 'true' : undefined
+              }
+            >
+              {label}
+            </a>
+          ))
+        }
+      </nav>
+      <a
+        class="action action--secondary"
+        href="/files/Farhan_Sheth_CV.pdf"
+        download
+      >
+        Download CV
+      </a>
+    </div>
+  </dialog>
+</header>
+
+<script>
+  const initializeMobileNavigation = () => {
+    const header = document.querySelector<HTMLElement>('.site-header');
+    const trigger = header?.querySelector<HTMLButtonElement>('[data-nav-open]');
+    const dialog = header?.querySelector<HTMLDialogElement>(
+      '#primary-navigation-dialog'
+    );
+    const closeButton =
+      dialog?.querySelector<HTMLButtonElement>('[data-nav-close]');
+
+    if (
+      !header ||
+      !trigger ||
+      !dialog ||
+      trigger.dataset.mobileNavigationInitialized === 'true'
+    ) {
+      return;
+    }
+
+    trigger.dataset.mobileNavigationInitialized = 'true';
+    const restoreTrigger = () => {
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.focus();
+    };
+
+    trigger.addEventListener('click', () => {
+      if (!dialog.open) {
+        dialog.showModal();
+        trigger.setAttribute('aria-expanded', 'true');
+        closeButton?.focus();
+      }
+    });
+
+    closeButton?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', restoreTrigger);
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  };
+
+  const lifecycleHost = window as typeof window & {
+    atlasMobileNavigationLifecycle?: AbortController;
+  };
+  lifecycleHost.atlasMobileNavigationLifecycle?.abort();
+  const lifecycle = new AbortController();
+  lifecycleHost.atlasMobileNavigationLifecycle = lifecycle;
+
+  initializeMobileNavigation();
+  document.addEventListener('astro:after-swap', initializeMobileNavigation, {
+    signal: lifecycle.signal
+  });
+</script>

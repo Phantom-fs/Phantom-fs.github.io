@@ -1,0 +1,53 @@
+---
+import { publicEmail, socialLinks } from '../../lib/ui/site';
+
+const { currentPath = '' } = Astro.props as { currentPath?: string };
+const isOverview = currentPath === '/overview/' || currentPath === '/overview';
+---
+
+<footer class="site-footer">
+  <div class="frame site-footer__grid">
+    <div class="site-footer__identity">
+      <p class="type-label">Farhan Sheth</p>
+      <a
+        class="site-footer__contact link-underlined"
+        href={`mailto:${publicEmail}?subject=Research%20conversation`}
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="M3 5.5h18v13H3zM3.5 6l8.5 6.7L20.5 6"></path>
+        </svg>
+        <span class="site-footer__contact-label">Get in touch</span>
+        <span class="site-footer__contact-email">{publicEmail}</span>
+      </a>
+    </div>
+    <nav class="site-footer__links type-body-sm" aria-label="Research profiles">
+      {
+        socialLinks.map(({ href, label }) => (
+          <a
+            class="link-underlined"
+            href={href}
+            rel="me noopener noreferrer"
+            target="_blank"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="M14 4h6v6M20 4l-9 9M20 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6" />
+            </svg>
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+    {
+      isOverview && (
+        <a
+          class="action action--secondary site-footer__return"
+          data-overview-return
+          aria-label="Return to full site"
+          href="/"
+        >
+          Return to full site
+        </a>
+      )
+    }
+  </div>
+</footer>

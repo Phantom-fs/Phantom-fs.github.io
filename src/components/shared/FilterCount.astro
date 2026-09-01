@@ -1,0 +1,7 @@
+---
+const { count = 0 } = Astro.props as { count?: number };
+---
+
+<span class="filter-count" aria-label={`${count} active filters`}>
+  {count} active {count === 1 ? 'filter' : 'filters'}
+</span>

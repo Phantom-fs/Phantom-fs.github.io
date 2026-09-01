@@ -1,0 +1,88 @@
+---
+import { resolve } from 'node:path';
+import ProjectIndex from '../components/projects/ProjectIndex.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadValidatedContent } from '../lib/content/query';
+import { deploymentOrigin } from '../lib/ui/system';
+
+const content = await loadValidatedContent(resolve('src/content'));
+const introduction = content.site.find(
+  ({ data }) => data.id === 'projects-introduction'
+);
+if (!introduction) {
+  throw new Error('Required site content is missing: projects-introduction');
+}
+const projects = [...content.projects].sort(
+  (left, right) => left.data.order - right.data.order
+);
+const publications = new Map(
+  content.publications.map(({ data }) => [
+    data.id,
+    { slug: data.slug, title: data.title }
+  ])
+);
+const structuredProjects = projects.map(({ data }) => {
+  const associatedPublications = data.associatedPublicationIds.map((id) => {
+    const publication = publications.get(id);
+    if (!publication) {
+      throw new Error(
+        `Project association could not be resolved: ${data.slug}`
+      );
+    }
+
+    return publication;
+  });
+
+  return {
+    '@type': 'Project',
+    description: data.summary,
+    name: data.title,
+    subjectOf: associatedPublications.map((publication) => ({
+      '@type': 'ScholarlyArticle',
+      name: publication.title,
+      url: `${deploymentOrigin}/publications/${publication.slug}/`
+    })),
+    url: `${deploymentOrigin}/projects/#${data.slug}`
+  };
+});
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          item: deploymentOrigin,
+          name: 'Home',
+          position: 1
+        },
+        {
+          '@type': 'ListItem',
+          item: `${deploymentOrigin}/projects/`,
+          name: 'Projects',
+          position: 2
+        }
+      ]
+    },
+    ...structuredProjects
+  ]
+};
+---
+
+<BaseLayout
+  title="Projects"
+  description={introduction.data.summary}
+  route="projects"
+>
+  <ProjectIndex
+    introduction={introduction}
+    projects={projects}
+    publications={publications}
+  />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+</BaseLayout>

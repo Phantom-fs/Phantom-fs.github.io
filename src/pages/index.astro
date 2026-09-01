@@ -1,0 +1,55 @@
+---
+import { resolve } from 'node:path';
+import CollaborationCallout from '../components/home/CollaborationCallout.astro';
+import EditorialPublicationPicks from '../components/home/EditorialPublicationPicks.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import ImpactMetrics from '../components/home/ImpactMetrics.astro';
+import HomeUpdates from '../components/home/HomeUpdates.astro';
+import OpportunityStrip from '../components/home/OpportunityStrip.astro';
+import ResearchThemeAtlas from '../components/home/ResearchThemeAtlas.astro';
+import VisitorMap from '../components/home/VisitorMap.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadValidatedContent } from '../lib/content/query';
+import { loadBuildMetrics } from '../lib/metrics/loader';
+import { socialLinks } from '../lib/ui/site';
+
+const content = await loadValidatedContent(resolve('src/content'));
+const siteEntry = (id: string) => {
+  const entry = content.site.find(({ data }) => data.id === id);
+  if (!entry) throw new Error(`Required site content is missing: ${id}`);
+  return entry.data;
+};
+const visitorMap = content.site.find(({ data }) => data.id === 'visitor-map');
+if (!visitorMap)
+  throw new Error('Required site content is missing: visitor-map');
+const domains = [...content.research].sort(
+  (left, right) => left.data.order - right.data.order
+);
+const featuredPublications = content.publications
+  .filter(({ data }) => data.homeFeatured)
+  .sort((left, right) => left.data.displayOrder - right.data.displayOrder);
+const metrics = loadBuildMetrics().author;
+---
+
+<BaseLayout
+  title="Home"
+  description={siteEntry('home-introduction').summary}
+  route="home"
+>
+  <HomeHero identity={siteEntry('identity')} socialLinks={socialLinks} />
+  <OpportunityStrip opportunity={siteEntry('opportunity')} />
+  <ImpactMetrics metrics={metrics} />
+  <HomeUpdates
+    updates={content.updates.sort(
+      (left, right) =>
+        new Date(right.data.date).getTime() - new Date(left.data.date).getTime()
+    )}
+  />
+  <ResearchThemeAtlas
+    domains={domains.map(({ data }) => data)}
+    introduction={siteEntry('home-introduction')}
+  />
+  <EditorialPublicationPicks publications={featuredPublications} />
+  <CollaborationCallout collaboration={siteEntry('collaboration')} />
+  <VisitorMap visitorMap={visitorMap} />
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+interface Props {
+  disabled?: boolean;
+  href: string;
+  kind?: 'primary' | 'secondary' | 'utility';
+  label: string;
+  target?: '_blank';
+}
+
+const {
+  disabled = false,
+  href,
+  kind = 'secondary',
+  label,
+  target
+} = Astro.props;
+const external = target === '_blank';
+---
+
+{
+  disabled ? (
+    <span class:list={['action', `action--${kind}`]} aria-disabled="true">
+      <span>{label}</span>
+      {kind !== 'utility' && (
+        <span class="action__arrow" aria-hidden="true">
+          →
+        </span>
+      )}
+    </span>
+  ) : (
+    <a
+      class:list={['action', `action--${kind}`]}
+      href={href}
+      target={target}
+      rel={external ? 'noopener noreferrer' : undefined}
+    >
+      <span>{label}</span>
+      {kind !== 'utility' && (
+        <span class="action__arrow" aria-hidden="true">
+          →
+        </span>
+      )}
+    </a>
+  )
+}

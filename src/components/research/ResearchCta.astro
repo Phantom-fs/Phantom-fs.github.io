@@ -1,0 +1,26 @@
+---
+import ActionGroup from '../shared/ActionGroup.astro';
+---
+
+<section
+  class="research-cta section-band-evidence"
+  aria-label="Research next steps"
+>
+  <div class="frame research-cta__inner">
+    <ActionGroup
+      label="Research next steps"
+      actions={[
+        {
+          href: '/publications/',
+          kind: 'primary',
+          label: 'Browse publications'
+        },
+        {
+          href: 'mailto:farhansheth.jb@gmail.com?subject=Research%20collaboration',
+          kind: 'secondary',
+          label: 'Discuss collaboration'
+        }
+      ]}
+    />
+  </div>
+</section>

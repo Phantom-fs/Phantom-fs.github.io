@@ -1,0 +1,100 @@
+---
+const {
+  compact = false,
+  currentDomain,
+  domains,
+  id,
+  route = 'research'
+} = Astro.props as {
+  compact?: boolean;
+  currentDomain: string;
+  domains: { category: string; slug: string; summary: string; title: string }[];
+  id: string;
+  route?: 'home' | 'research';
+};
+
+if (domains.length !== 6) {
+  throw new Error(
+    `Domain relationship index requires exactly six domains; received ${domains.length}`
+  );
+}
+
+const researchDestination = (slug: string) =>
+  route === 'home' ? `/research/#${slug}` : `#${slug}`;
+const publicationDestination = (category: string) =>
+  `/publications/?category=${encodeURIComponent(category)}`;
+const Heading = route === 'home' ? 'h3' : 'h2';
+---
+
+<nav
+  aria-labelledby={`${id}-title`}
+  class:list={[
+    'domain-relationship-index',
+    { 'domain-relationship-index--compact': compact }
+  ]}
+  data-current-domain={currentDomain || undefined}
+  data-domain-relationship-index
+  data-research-atlas
+>
+  <header class="domain-relationship-index__heading">
+    <Heading class="type-heading-md" id={`${id}-title`}>
+      Research areas
+    </Heading>
+  </header>
+  <ol class="domain-relationship-index__domains">
+    {
+      domains.map((domain, index) => (
+        <li
+          aria-current={
+            route === 'research' && domain.slug === currentDomain
+              ? 'true'
+              : undefined
+          }
+          data-domain-relationship={domain.slug}
+        >
+          <div class="domain-relationship-index__domain">
+            <span aria-hidden="true" class="domain-relationship-index__number">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div>
+              {route === 'research' ? (
+                <a
+                  class="domain-relationship-index__selector"
+                  data-domain-selector={domain.slug}
+                  href={researchDestination(domain.slug)}
+                >
+                  {domain.title}
+                </a>
+              ) : (
+                <h3>{domain.title}</h3>
+              )}
+              <p>{domain.summary}</p>
+            </div>
+          </div>
+          {route === 'home' && (
+            <div
+              aria-label={`Explore ${domain.title}`}
+              class="domain-relationship-index__links"
+              role="group"
+            >
+              <a
+                class="link-underlined"
+                data-domain-research-link
+                href={researchDestination(domain.slug)}
+              >
+                Research questions
+              </a>
+              <a
+                class="link-underlined"
+                data-domain-publications-link
+                href={publicationDestination(domain.category)}
+              >
+                Publications
+              </a>
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

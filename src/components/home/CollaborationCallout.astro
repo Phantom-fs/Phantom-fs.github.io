@@ -1,0 +1,36 @@
+---
+import ActionGroup from '../shared/ActionGroup.astro';
+
+const { collaboration } = Astro.props as {
+  collaboration: { summary: string; title: string };
+};
+---
+
+<section
+  class="collaboration-callout section-band-orientation"
+  data-home-section="collaboration"
+  aria-labelledby="collaboration-title"
+>
+  <div class="frame collaboration-callout__inner">
+    <div>
+      <h2 id="collaboration-title">{collaboration.title}</h2>
+      <p class="prose type-body-lg">{collaboration.summary}</p>
+    </div>
+    <ActionGroup
+      label="Research collaboration contact"
+      actions={[
+        {
+          href: 'mailto:farhansheth.jb@gmail.com?subject=Research%20conversation',
+          kind: 'primary',
+          label: 'Email Farhan'
+        },
+        {
+          href: '/files/Farhan_Sheth_CV.pdf',
+          kind: 'secondary',
+          label: 'Download CV',
+          target: '_blank'
+        }
+      ]}
+    />
+  </div>
+</section>

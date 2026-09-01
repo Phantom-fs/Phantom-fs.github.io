@@ -1,0 +1,27 @@
+---
+import { ctaActions, type CtaAction } from '../../lib/ui/system';
+import ActionLink from './ActionLink.astro';
+
+const { actions, label } = Astro.props as {
+  actions: CtaAction[];
+  label: string;
+};
+
+const orderedActions = ctaActions(actions);
+---
+
+<nav class="action-group" aria-label={label}>
+  {
+    orderedActions.map(
+      ({ disabled, href, kind, label: actionLabel, target }) => (
+        <ActionLink
+          disabled={disabled}
+          href={href}
+          kind={kind}
+          label={actionLabel}
+          target={target}
+        />
+      )
+    )
+  }
+</nav>

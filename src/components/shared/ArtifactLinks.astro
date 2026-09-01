@@ -1,0 +1,30 @@
+---
+import {
+  artifactActions,
+  type ArtifactLinks as ArtifactLinkData
+} from '../../lib/ui/system';
+
+const { label = 'Related resources', links = {} } = Astro.props as {
+  label?: string;
+  links?: ArtifactLinkData;
+};
+const actions = artifactActions(links);
+---
+
+{
+  actions.length > 0 && (
+    <nav class="artifact-links" aria-label={label}>
+      {actions.map(({ href, key, label }) => (
+        <a
+          class="link-underlined type-body-sm"
+          href={href}
+          data-artifact={key}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+  )
+}

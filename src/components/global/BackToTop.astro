@@ -1,0 +1,49 @@
+<a
+  class="back-to-top"
+  data-back-to-top
+  href="#main-content"
+  aria-label="Back to top"
+  hidden
+>
+  <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+    <path d="M12 19V5M6 11l6-6 6 6"></path>
+  </svg>
+  <span>Top</span>
+</a>
+
+<script>
+  const initializeBackToTop = () => {
+    const lifecycleHost = window as typeof window & {
+      atlasBackToTopScrollLifecycle?: AbortController;
+    };
+    lifecycleHost.atlasBackToTopScrollLifecycle?.abort();
+
+    const control =
+      document.querySelector<HTMLAnchorElement>('[data-back-to-top]');
+    if (!control) return;
+
+    const scrollLifecycle = new AbortController();
+    lifecycleHost.atlasBackToTopScrollLifecycle = scrollLifecycle;
+    const updateVisibility = () => {
+      control.hidden = window.scrollY < 160;
+    };
+
+    updateVisibility();
+    window.addEventListener('scroll', updateVisibility, {
+      passive: true,
+      signal: scrollLifecycle.signal
+    });
+  };
+
+  const lifecycleHost = window as typeof window & {
+    atlasBackToTopLifecycle?: AbortController;
+  };
+  lifecycleHost.atlasBackToTopLifecycle?.abort();
+  const lifecycle = new AbortController();
+  lifecycleHost.atlasBackToTopLifecycle = lifecycle;
+
+  initializeBackToTop();
+  document.addEventListener('astro:after-swap', initializeBackToTop, {
+    signal: lifecycle.signal
+  });
+</script>

@@ -1,0 +1,48 @@
+---
+const {
+  alt,
+  caption,
+  compact = false
+} = Astro.props as {
+  alt: string;
+  caption?: string;
+  compact?: boolean;
+};
+---
+
+<figure class:list={['atlas-graphic', { 'atlas-graphic--compact': compact }]}>
+  <svg
+    aria-label={alt}
+    class="atlas-graphic__image"
+    role="img"
+    viewBox="0 0 720 480"
+  >
+    <path
+      class="atlas-graphic__rule"
+      d="M68 106c72-54 140-29 193 18s111 65 189 15 135-32 210 18M46 326c67-44 121-50 196-1s144 47 211-9 131-49 223-12M122 222c46-54 103-76 162-36s107 37 158-10 112-59 178-26"
+    ></path>
+    <path
+      class="atlas-graphic__path"
+      d="M132 122C241 83 268 192 355 204s117-74 214-62M127 329c100-66 142 9 225-3s118-93 234-53M216 224c54 28 105 32 149-20s101-81 170-58"
+    ></path>
+    <g class="atlas-graphic__node"
+      ><circle cx="132" cy="122" r="10"></circle><circle
+        cx="569"
+        cy="142"
+        r="10"></circle><circle cx="127" cy="329" r="10"></circle><circle
+        cx="586"
+        cy="273"
+        r="10"></circle><circle cx="216" cy="224" r="10"></circle><circle
+        cx="535"
+        cy="146"
+        r="10"></circle></g
+    >
+  </svg>
+  {
+    caption && (
+      <figcaption class="atlas-graphic__caption type-body-sm">
+        {caption}
+      </figcaption>
+    )
+  }
+</figure>

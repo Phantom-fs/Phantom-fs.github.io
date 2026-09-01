@@ -1,0 +1,76 @@
+---
+const { domain, publications } = Astro.props as {
+  domain: {
+    body: string;
+    data: {
+      category: string;
+      collaborationInterests: string[];
+      methods: string[];
+      questions: string[];
+      representativePublicationIds: string[];
+      slug: string;
+      summary: string;
+      title: string;
+    };
+  };
+  publications: Map<string, { slug: string; title: string }>;
+};
+
+const relatedPublications = domain.data.representativePublicationIds.flatMap(
+  (id) => {
+    const publication = publications.get(id);
+    return publication ? [publication] : [];
+  }
+);
+---
+
+<section
+  class="research-domain"
+  data-research-domain
+  id={domain.data.slug}
+  aria-labelledby={`${domain.data.slug}-title`}
+>
+  <p class="type-metadata">{domain.data.category}</p>
+  <h2 id={`${domain.data.slug}-title`}>{domain.data.title}</h2>
+  <p class="type-body-lg">{domain.data.summary}</p>
+  <p>{domain.body}</p>
+  <div class="research-domain__details">
+    <div>
+      <h3 class="type-heading-md">Current questions</h3>
+      <ul>{domain.data.questions.map((question) => <li>{question}</li>)}</ul>
+    </div>
+    <div>
+      <h3 class="type-heading-md">Methods</h3>
+      <ul>{domain.data.methods.map((method) => <li>{method}</li>)}</ul>
+    </div>
+  </div>
+  <div class="research-domain__details">
+    <div>
+      <h3 class="type-heading-md">Representative papers</h3>
+      <ul>
+        {
+          relatedPublications.map((publication) => (
+            <li>
+              <a
+                class="link-underlined"
+                href={`/publications/?research=${domain.data.slug}`}
+              >
+                {publication.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <h3 class="type-heading-md">Collaboration interests</h3>
+      <ul>
+        {
+          domain.data.collaborationInterests.map((interest) => (
+            <li>{interest}</li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

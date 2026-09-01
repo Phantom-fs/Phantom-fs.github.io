@@ -1,0 +1,17 @@
+---
+const { introduction } = Astro.props as {
+  introduction: { body: string; data: { summary: string; title: string } };
+};
+---
+
+<section
+  class="research-statement section-band-orientation"
+  aria-labelledby="research-title"
+>
+  <div class="frame prose">
+    <p class="type-metadata">Research</p>
+    <h1 id="research-title">{introduction.data.title}</h1>
+    <p class="type-body-lg">{introduction.data.summary}</p>
+    <p>{introduction.body}</p>
+  </div>
+</section>

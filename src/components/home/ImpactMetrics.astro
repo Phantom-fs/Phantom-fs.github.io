@@ -1,0 +1,52 @@
+---
+import type { NormalizedMetrics } from '../../lib/metrics/contract';
+
+const { metrics } = Astro.props as {
+  metrics: NormalizedMetrics['author'];
+};
+---
+
+<section
+  class="impact-metrics section-band-evidence"
+  data-home-section="impact"
+  aria-labelledby="impact-title"
+>
+  <div class="frame">
+    <div class="impact-metrics__heading">
+      <div>
+        <h2 class="type-heading-md" id="impact-title">Academic impact</h2>
+        <p class="type-metadata">Google Scholar metrics</p>
+      </div>
+    </div>
+    <dl class="impact-metrics__list">
+      <div class="citation-metric" data-citation-metric>
+        <dt>Total citations</dt>
+        <dd>
+          <span class="citation-metric__value"
+            >{metrics.totalCitations.value}</span
+          >
+        </dd>
+      </div>
+      <div class="citation-metric" data-citation-metric>
+        <dt>h-index</dt>
+        <dd>
+          <span class="citation-metric__value">{metrics.hIndex.value}</span>
+        </dd>
+      </div>
+      <div class="citation-metric" data-citation-metric>
+        <dt>i10-index</dt>
+        <dd>
+          <span class="citation-metric__value">{metrics.i10Index.value}</span>
+        </dd>
+      </div>
+      <div class="citation-metric" data-citation-metric>
+        <dt>Publications</dt>
+        <dd>
+          <span class="citation-metric__value"
+            >{metrics.publicationCount.value}</span
+          >
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>

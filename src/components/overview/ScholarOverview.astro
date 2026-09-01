@@ -1,0 +1,340 @@
+---
+import type { ValidatedContent } from '../../lib/content/query';
+import type { NormalizedMetrics } from '../../lib/metrics/contract';
+
+const { content, metrics } = Astro.props as {
+  content: ValidatedContent;
+  metrics: NormalizedMetrics;
+};
+const requiredSiteContent = (id: string) => {
+  const entry = content.site.find(({ data }) => data.id === id);
+  if (!entry) throw new Error(`Required site content is missing: ${id}`);
+  return entry;
+};
+const identity = requiredSiteContent('identity');
+const opportunity = requiredSiteContent('opportunity');
+const about = requiredSiteContent('about-introduction');
+const contact = requiredSiteContent('contact');
+if (!contact.data.socialLinks || contact.data.socialLinks.length === 0) {
+  throw new Error('Required site contact social links are missing');
+}
+const byOrder = <T extends { data: { order: number } }>(entries: T[]) =>
+  [...entries].sort((left, right) => left.data.order - right.data.order);
+const positions = byOrder(content.positions);
+const education = byOrder(content.education);
+const honors = byOrder(content.honors);
+const service = byOrder(content.service);
+const updates = [...content.updates].sort((left, right) =>
+  right.data.date.localeCompare(left.data.date)
+);
+const selectedPublications = [...content.publications]
+  .filter(({ data }) => data.detailPage)
+  .sort((left, right) => left.data.displayOrder - right.data.displayOrder);
+if (selectedPublications.length !== 10) {
+  throw new Error(
+    'Academic overview requires exactly ten selected publications'
+  );
+}
+const publicationGroups = [
+  ...new Set(selectedPublications.map(({ data }) => data.primaryCategory))
+].map((category) => ({
+  category,
+  publications: selectedPublications.filter(
+    ({ data }) => data.primaryCategory === category
+  )
+}));
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('en', {
+    month: 'short',
+    timeZone: 'UTC',
+    year: 'numeric'
+  }).format(new Date(`${date}T00:00:00Z`));
+---
+
+<section
+  class="overview-opening section-band-orientation"
+  aria-labelledby="overview-title"
+>
+  <div class="frame overview-opening__grid">
+    <div class="prose">
+      <p class="type-label">{identity.data.title}</p>
+      <h1 id="overview-title">Academic overview</h1>
+      <p class="type-body-lg">{identity.data.summary}</p>
+      <p>{opportunity.data.summary}</p>
+    </div>
+    <aside class="overview-opening__aside" aria-label="Profile links">
+      <a
+        class="action action--primary overview-return"
+        data-overview-return
+        href="/"
+      >
+        Full site
+      </a>
+      <nav
+        class="overview-profile-links"
+        aria-label="Scholar and research profiles"
+      >
+        {
+          contact.data.socialLinks.map((link) => (
+            <a
+              class="link-underlined"
+              href={link.url}
+              rel="me noopener noreferrer"
+              target="_blank"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </aside>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-about-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-about-title">About</h2>
+    </div>
+    <p class="overview-about-summary type-body-lg">{about.data.summary}</p>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-impact-title"
+>
+  <div class="frame">
+    <div class="overview-section__heading">
+      <h2 id="overview-impact-title">Google Scholar impact</h2>
+    </div>
+    <dl class="impact-metrics__list overview-impact-metrics">
+      <div class="citation-metric">
+        <dt>Total citations</dt><dd>
+          <span class="citation-metric__value"
+            >{metrics.author.totalCitations.value}</span
+          >
+        </dd>
+      </div>
+      <div class="citation-metric">
+        <dt>h-index</dt><dd>
+          <span class="citation-metric__value"
+            >{metrics.author.hIndex.value}</span
+          >
+        </dd>
+      </div>
+      <div class="citation-metric">
+        <dt>i10-index</dt><dd>
+          <span class="citation-metric__value"
+            >{metrics.author.i10Index.value}</span
+          >
+        </dd>
+      </div>
+      <div class="citation-metric">
+        <dt>Publications</dt><dd>
+          <span class="citation-metric__value"
+            >{metrics.author.publicationCount.value}</span
+          >
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-news-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-news-title">News</h2>
+    </div>
+    <ol class="overview-news-list">
+      {
+        updates.map((entry) => (
+          <li data-overview-news-item>
+            <time class="type-metadata" datetime={entry.data.date}>
+              {formatDate(entry.data.date)}
+            </time>
+            <p>{entry.data.title}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-publications-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-publications-title">Selected publications</h2>
+    </div>
+    <div class="overview-publication-groups">
+      {
+        publicationGroups.map(({ category, publications }) => (
+          <section data-overview-publication-group aria-label={category}>
+            <h3>{category}</h3>
+            <ol class="overview-selected-publications">
+              {publications.map(({ data: publication }) => (
+                <li data-overview-selected-publication>
+                  <a
+                    class="link-underlined"
+                    href={`/publications/${publication.slug}/`}
+                  >
+                    {publication.title}
+                  </a>
+                  <p class="type-metadata">
+                    {publication.status === 'under-review'
+                      ? 'Under review'
+                      : `${publication.venueAbbreviation} · ${publication.year}`}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-experience-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-experience-title">Experience</h2>
+    </div>
+    <ol class="overview-summary-list">
+      {
+        positions.map(({ data: position }) => (
+          <li>
+            <h3>{position.organization}</h3>
+            <p>
+              {position.title} · {formatDate(position.startDate)} –{' '}
+              {position.current
+                ? 'Present'
+                : formatDate(position.endDate ?? position.startDate)}
+            </p>
+            {position.advisor && (
+              <p>
+                <span>Advisor:</span>{' '}
+                <a
+                  class="link-underlined"
+                  href={position.advisor.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {position.advisor.name}
+                </a>
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-education-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-education-title">Education</h2>
+    </div>
+    <ol class="overview-summary-list">
+      {
+        education.map(({ data: entry }) => (
+          <li>
+            <h3>{entry.title}</h3>
+            <p>
+              {entry.institution} · {entry.startDate.slice(0, 4)}–
+              {(entry.endDate ?? entry.startDate).slice(0, 4)}
+            </p>
+            {entry.cgpa && <p>CGPA: {entry.cgpa}</p>}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-honors-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-honors-title">Honors</h2>
+    </div>
+    <ol class="overview-summary-list">
+      {
+        honors.map(({ data: honor }) => (
+          <li>
+            <h3>{honor.title}</h3>
+            <p>{honor.issuer}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section
+  class="overview-section section-band-evidence"
+  aria-labelledby="overview-service-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-service-title">Teaching and academic service</h2>
+    </div>
+    <ol class="overview-summary-list">
+      {
+        service.map(({ data: entry }) => (
+          <li>
+            <h3>{entry.title}</h3>
+            <p>
+              {entry.role} · {entry.organization}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section
+  class="overview-contact section-band-orientation"
+  aria-labelledby="overview-contact-title"
+>
+  <div class="frame overview-reading-axis">
+    <div class="overview-section__heading">
+      <h2 id="overview-contact-title">Contact</h2>
+    </div>
+    <div class="overview-contact__content">
+      <p>{contact.data.summary}</p>
+      <p>
+        <a
+          class="overview-contact__email"
+          data-overview-contact-email
+          href="mailto:farhansheth.jb@gmail.com?subject=Research%20conversation"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path d="M3 5.5h18v13H3zM3.5 6l8.5 6.7L20.5 6"></path>
+          </svg>
+          <span>Research conversation</span>
+          <span class="type-metadata">farhansheth.jb@gmail.com</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</section>

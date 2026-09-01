@@ -1,0 +1,46 @@
+---
+const { publications } = Astro.props as {
+  publications: {
+    data: {
+      slug: string;
+      status: string;
+      title: string;
+      tldr: string;
+      venueAbbreviation: string;
+      year: number;
+    };
+  }[];
+};
+---
+
+<section
+  class="editorial-picks section-band-evidence"
+  data-home-section="publications"
+  aria-labelledby="picks-title"
+>
+  <div class="frame">
+    <div class="editorial-picks__heading">
+      <h2 class="type-heading-md" id="picks-title">Selected publications</h2>
+    </div>
+    <ol class="editorial-picks__list">
+      {
+        publications.map(({ data }) => (
+          <li data-home-pick>
+            <a
+              class="editorial-picks__title link-underlined"
+              href={`/publications/${data.slug}/`}
+            >
+              {data.title}
+            </a>
+            <p class="type-metadata" data-home-pick-metadata>
+              {data.status === 'under-review'
+                ? 'Under review'
+                : `${data.venueAbbreviation} · ${data.year}`}
+            </p>
+            <p>{data.tldr}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

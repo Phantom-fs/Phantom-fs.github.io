@@ -1,0 +1,113 @@
+---
+import { resolve } from 'node:path';
+import PublicationDetail from '../../components/publications/PublicationDetail.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadValidatedContent } from '../../lib/content/query';
+import { loadBuildMetrics } from '../../lib/metrics/loader';
+
+export async function getStaticPaths() {
+  const content = await loadValidatedContent(resolve('src/content'));
+  return content.publications
+    .filter(({ data }) => data.detailPage)
+    .map(({ data }) => ({ params: { slug: data.slug } }));
+}
+
+const content = await loadValidatedContent(resolve('src/content'));
+const publication = content.publications.find(
+  ({ data }) => data.slug === Astro.params.slug && data.detailPage
+);
+if (!publication)
+  throw new Error(`No approved detail page for ${Astro.params.slug}`);
+const metrics = loadBuildMetrics().publications;
+const canonical = new URL(
+  `/publications/${publication.data.slug}/`,
+  'https://phantom-fs.github.io'
+).toString();
+const scholarlyArticleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  author: publication.data.authors.map(({ name }) => ({
+    '@type': 'Person',
+    name
+  })),
+  creativeWorkStatus: publication.data.status,
+  datePublished: String(publication.data.year),
+  headline: publication.data.title,
+  identifier: [publication.data.doi, publication.data.arxivId].filter(Boolean),
+  isAccessibleForFree: publication.data.openAccess,
+  mainEntityOfPage: canonical,
+  name: publication.data.title,
+  sameAs: publication.data.links?.paper,
+  url: canonical
+};
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      item: 'https://phantom-fs.github.io/publications/',
+      name: 'Publications',
+      position: 1
+    },
+    {
+      '@type': 'ListItem',
+      item: canonical,
+      name: publication.data.title,
+      position: 2
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title={publication.data.title}
+  description={publication.data.tldr}
+  route="publication-detail"
+>
+  <Fragment slot="head">
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(scholarlyArticleJsonLd)}
+    />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbJsonLd)}
+    />
+  </Fragment>
+  <section class="section-band-orientation">
+    <div class="frame">
+      <PublicationDetail
+        metric={metrics[publication.data.id]?.citationCount}
+        publication={{ ...publication.data, abstract: publication.body }}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const backLink = document.querySelector<HTMLAnchorElement>(
+    '[data-publication-back]'
+  );
+  const returnQuery = new URLSearchParams(window.location.search).get('return');
+  if (backLink && returnQuery && returnQuery.length <= 2048) {
+    const allowedKeys = new Set([
+      'q',
+      'category',
+      'year',
+      'type',
+      'status',
+      'rank',
+      'artifacts',
+      'openAccess',
+      'sort'
+    ]);
+    const restored = new URLSearchParams(returnQuery);
+    if ([...restored.keys()].every((key) => allowedKeys.has(key))) {
+      backLink.href = `/publications/?${restored.toString()}`;
+    }
+  }
+  document.querySelector<HTMLElement>('#main-content')?.focus();
+</script>

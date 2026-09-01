@@ -1,0 +1,75 @@
+---
+const { positions } = Astro.props as {
+  positions: {
+    body: string;
+    data: {
+      current: boolean;
+      endDate?: string;
+      organization: string;
+      advisor?: { name: string; url: string };
+      slug: string;
+      startDate: string;
+      title: string;
+    };
+  }[];
+};
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('en', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(`${date}T00:00:00Z`));
+---
+
+<section
+  class="about-section section-band-evidence"
+  data-about-section="experience"
+  aria-labelledby="experience-title"
+>
+  <div class="frame about-reading-axis">
+    <div class="about-section__heading">
+      <p class="type-label">Chronology</p>
+      <h2 id="experience-title">Experience</h2>
+    </div>
+    <ol class="experience-timeline">
+      {
+        positions.map((position) => (
+          <li id={position.data.slug} data-experience-entry>
+            <div class="experience-timeline__heading">
+              <div>
+                <h3>{position.data.organization}</h3>
+                <p>{position.data.title}</p>
+              </div>
+              <p class="type-metadata">
+                {formatDate(position.data.startDate)} –{' '}
+                {position.data.current
+                  ? 'Present'
+                  : formatDate(
+                      position.data.endDate ?? position.data.startDate
+                    )}
+              </p>
+            </div>
+            {position.data.current && (
+              <span class="status-badge status-badge--fresh">Current role</span>
+            )}
+            {position.data.advisor && (
+              <p data-advisor>
+                <span>Advisor:</span>{' '}
+                <a
+                  class="link-underlined"
+                  href={position.data.advisor.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {position.data.advisor.name}
+                </a>
+              </p>
+            )}
+            <p data-experience-description>{position.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

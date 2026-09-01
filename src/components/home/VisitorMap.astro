@@ -1,0 +1,83 @@
+<section
+  class="visitor-map section-band-utility"
+  data-home-section="visitor-map"
+  data-visitor-map
+  aria-labelledby="visitor-map-title"
+>
+  <div class="frame">
+    <div class="visitor-map__heading">
+      <h2 class="type-heading-md" id="visitor-map-title">
+        Visitors around the world
+      </h2>
+    </div>
+    <div class="visitor-map__frame" aria-hidden="true">
+      <script
+        is:inline
+        type="text/javascript"
+        id="mapmyvisitors"
+        src="https://mapmyvisitors.com/map.js?cl=e8e4e4&w=350&t=tt&d=B66x2QoETm-rNLiPfNrv2mAeGKYz5sFIJhRl8zGpbBg&co=2786c9&cmo=d92e2e&cmn=2cad2c"
+      ></script>
+    </div>
+  </div>
+</section>
+
+<script>
+  type VisitorMapDocument = Document & {
+    visitorMapAfterSwap?: () => void;
+    visitorMapBeforeSwap?: () => void;
+  };
+  type VisitorMapFrame = HTMLElement & { visitorMapCleanup?: () => void };
+
+  const visitorMapDocument = document as VisitorMapDocument;
+  const cleanupVisitorMap = () => {
+    const frame = document.querySelector<VisitorMapFrame>(
+      '.visitor-map__frame'
+    );
+    frame?.visitorMapCleanup?.();
+  };
+
+  const initializeVisitorMap = () => {
+    cleanupVisitorMap();
+    const frame = document.querySelector<VisitorMapFrame>(
+      '.visitor-map__frame'
+    );
+    if (!frame) return;
+
+    const removeMapFromTabOrder = () => {
+      frame.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+        link.tabIndex = -1;
+      });
+    };
+
+    const observer = new MutationObserver(removeMapFromTabOrder);
+    frame.visitorMapCleanup = () => {
+      observer.disconnect();
+      delete frame.visitorMapCleanup;
+    };
+    removeMapFromTabOrder();
+    observer.observe(frame, {
+      childList: true,
+      subtree: true
+    });
+  };
+
+  visitorMapDocument.visitorMapBeforeSwap?.();
+  visitorMapDocument.visitorMapAfterSwap?.();
+  if (visitorMapDocument.visitorMapBeforeSwap) {
+    document.removeEventListener(
+      'astro:before-swap',
+      visitorMapDocument.visitorMapBeforeSwap
+    );
+  }
+  if (visitorMapDocument.visitorMapAfterSwap) {
+    document.removeEventListener(
+      'astro:after-swap',
+      visitorMapDocument.visitorMapAfterSwap
+    );
+  }
+  visitorMapDocument.visitorMapBeforeSwap = cleanupVisitorMap;
+  visitorMapDocument.visitorMapAfterSwap = initializeVisitorMap;
+  document.addEventListener('astro:before-swap', cleanupVisitorMap);
+  document.addEventListener('astro:after-swap', initializeVisitorMap);
+  initializeVisitorMap();
+</script>

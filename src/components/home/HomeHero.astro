@@ -1,0 +1,162 @@
+---
+import ActionGroup from '../shared/ActionGroup.astro';
+import ProfileServiceIcon from '../shared/ProfileServiceIcon.astro';
+
+const curatedVenues = [
+  'EACL',
+  'Interspeech',
+  'IJCNLP-AACL',
+  'ACM HEALTH',
+  'EAAI',
+  'ICHMT'
+] as const;
+
+const { identity, socialLinks } = Astro.props as {
+  identity: { summary: string; title: string };
+  socialLinks: readonly { href: string; label: string }[];
+};
+---
+
+<section
+  class="home-hero section-band-orientation"
+  data-home-hero
+  data-home-section="identity"
+>
+  <div class="frame hero-composition home-hero__grid">
+    <div class="home-hero__identity">
+      <p class="type-metadata">Farhan Sheth</p>
+      <h1 class="type-display-home">{identity.title}</h1>
+      <p class="home-hero__statement type-body-lg">{identity.summary}</p>
+      <div data-home-actions>
+        <ActionGroup
+          label="Research discovery"
+          actions={[
+            {
+              href: '/publications/',
+              kind: 'primary',
+              label: 'Explore publications'
+            },
+            {
+              href: '/research/',
+              kind: 'secondary',
+              label: 'View research agenda'
+            }
+          ]}
+        />
+      </div>
+      <nav class="home-hero__venues" aria-label="Published in" data-hero-venues>
+        <span class="type-metadata">Published in</span>
+        <div class="home-hero__venue-list">
+          {
+            curatedVenues.map((venue) => (
+              <a
+                class="home-hero__venue link-underlined"
+                href={`/publications/?q=${encodeURIComponent(venue)}`}
+              >
+                {venue}
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+      <nav
+        class="home-hero__profiles type-body-sm"
+        aria-label="Research profiles"
+      >
+        {
+          socialLinks.map(({ href, label }) => (
+            <a
+              class="home-hero__profile link-underlined"
+              href={href}
+              rel="me noopener noreferrer"
+              target="_blank"
+            >
+              <ProfileServiceIcon label={label} />
+              {label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+    <div class="portrait-frame" data-portrait-frame>
+      <picture>
+        <source
+          media="(max-width: 30rem)"
+          srcset="/images/profile-img-320.avif"
+          type="image/avif"
+        />
+        <source srcset="/images/profile-img-487.avif" type="image/avif" />
+        <source srcset="/images/profile-img-487.webp" type="image/webp" />
+        <img
+          alt="Farhan Sheth"
+          height="617"
+          loading="eager"
+          src="/images/profile-img-487.jpg"
+          width="487"
+        />
+      </picture>
+    </div>
+  </div>
+</section>
+
+<script>
+  type HomeHeroDocument = Document & {
+    homeHeroAfterSwap?: () => void;
+    homeHeroBeforeSwap?: () => void;
+  };
+  type HomeHeroElement = HTMLElement & { homeHeroCleanup?: () => void };
+
+  const homeHeroDocument = document as HomeHeroDocument;
+
+  const cleanupHomeHero = () => {
+    const hero = document.querySelector<HomeHeroElement>('[data-home-hero]');
+    hero?.homeHeroCleanup?.();
+  };
+
+  const initializeHomeHero = () => {
+    cleanupHomeHero();
+    const hero = document.querySelector<HomeHeroElement>('[data-home-hero]');
+    const portrait = hero?.querySelector<HTMLElement>('[data-portrait-frame]');
+    if (!hero || !portrait) return;
+
+    const controller = new AbortController();
+    let observer: IntersectionObserver | undefined;
+    hero.homeHeroCleanup = () => {
+      observer?.disconnect();
+      controller.abort();
+      delete hero.homeHeroCleanup;
+    };
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      requestAnimationFrame(() => {
+        if (!controller.signal.aborted) hero.dataset.entrance = 'complete';
+      });
+    }
+
+    if (!('IntersectionObserver' in window)) return;
+    observer = new IntersectionObserver(([entry]) => {
+      portrait.dataset.motionPaused = String(!entry.isIntersecting);
+    });
+    observer.observe(portrait);
+  };
+
+  homeHeroDocument.homeHeroBeforeSwap?.();
+  homeHeroDocument.homeHeroAfterSwap?.();
+  if (homeHeroDocument.homeHeroBeforeSwap) {
+    document.removeEventListener(
+      'astro:before-swap',
+      homeHeroDocument.homeHeroBeforeSwap
+    );
+  }
+  if (homeHeroDocument.homeHeroAfterSwap) {
+    document.removeEventListener(
+      'astro:after-swap',
+      homeHeroDocument.homeHeroAfterSwap
+    );
+  }
+  homeHeroDocument.homeHeroBeforeSwap = cleanupHomeHero;
+  homeHeroDocument.homeHeroAfterSwap = initializeHomeHero;
+  document.addEventListener('astro:before-swap', cleanupHomeHero);
+  document.addEventListener('astro:after-swap', initializeHomeHero);
+  initializeHomeHero();
+</script>

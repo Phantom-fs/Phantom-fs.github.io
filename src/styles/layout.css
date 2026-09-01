@@ -1,0 +1,79 @@
+.frame {
+  width: min(var(--frame-max), calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.page-main {
+  min-height: 60vh;
+  padding-block: var(--space-12) var(--space-24);
+}
+
+.section-band-orientation {
+  padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+}
+
+.section-band-evidence {
+  padding-block: clamp(var(--space-8), 6vw, var(--space-16));
+}
+
+.section-band-utility {
+  padding-block: clamp(var(--space-6), 4vw, var(--space-12));
+}
+
+.grid-12,
+.grid-8 {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.hero-composition,
+.research-composition,
+.publications-composition {
+  display: grid;
+  align-items: start;
+  gap: var(--space-8);
+}
+
+.prose {
+  max-width: 75ch;
+}
+
+@media (min-width: 48rem) {
+  .frame {
+    width: min(var(--frame-max), calc(100% - 4rem));
+  }
+
+  .grid-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .grid-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .hero-composition {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+
+  .research-composition {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  }
+
+  .publications-composition {
+    grid-template-columns: minmax(15rem, 3fr) minmax(0, 9fr);
+  }
+}
+
+@media (min-width: 90rem) {
+  .frame {
+    width: min(var(--frame-max), calc(100% - 6rem));
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .frame {
+    width: min(var(--frame-max), calc(100% - 2rem));
+  }
+}

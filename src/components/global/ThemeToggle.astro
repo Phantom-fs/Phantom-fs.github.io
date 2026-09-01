@@ -1,0 +1,65 @@
+---
+const { id = 'theme-toggle' } = Astro.props;
+---
+
+<button
+  class="control"
+  id={id}
+  type="button"
+  aria-label="Use dark theme"
+  aria-pressed="false"
+  data-theme-toggle
+>
+  <span aria-hidden="true">◐</span>
+  <span>Theme</span>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const storageKey = 'atlas-theme';
+
+  const updateButton = (button: HTMLButtonElement) => {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark';
+    button.setAttribute('aria-pressed', String(dark));
+    button.setAttribute(
+      'aria-label',
+      dark ? 'Use light theme' : 'Use dark theme'
+    );
+  };
+
+  const initializeThemeToggle = () => {
+    const button = document.querySelector<HTMLButtonElement>(
+      '[data-theme-toggle]'
+    );
+
+    if (!button) return;
+
+    updateButton(button);
+    if (button.dataset.themeToggleInitialized === 'true') return;
+
+    button.dataset.themeToggleInitialized = 'true';
+    button.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = nextTheme;
+      try {
+        localStorage.setItem(storageKey, nextTheme);
+      } catch {
+        // The selected theme remains available for the current page session.
+      }
+      updateButton(button);
+    });
+  };
+
+  const lifecycleHost = window as typeof window & {
+    atlasThemeToggleLifecycle?: AbortController;
+  };
+  lifecycleHost.atlasThemeToggleLifecycle?.abort();
+  const lifecycle = new AbortController();
+  lifecycleHost.atlasThemeToggleLifecycle = lifecycle;
+
+  initializeThemeToggle();
+  document.addEventListener('astro:after-swap', initializeThemeToggle, {
+    signal: lifecycle.signal
+  });
+</script>

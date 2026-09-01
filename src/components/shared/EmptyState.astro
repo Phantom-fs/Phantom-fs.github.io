@@ -1,0 +1,17 @@
+---
+const { description, title, titleId } = Astro.props as {
+  description: string;
+  title: string;
+  titleId?: string;
+};
+---
+
+<section
+  class="empty-state"
+  aria-label={titleId ? undefined : title}
+  aria-labelledby={titleId}
+>
+  <h2 class="type-heading-md" id={titleId}>{title}</h2>
+  <p>{description}</p>
+  <slot />
+</section>

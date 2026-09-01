@@ -1,0 +1,20 @@
+---
+import { resolve } from 'node:path';
+import ScholarOverview from '../components/overview/ScholarOverview.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadValidatedContent } from '../lib/content/query';
+import { loadBuildMetrics } from '../lib/metrics/loader';
+
+const content = await loadValidatedContent(resolve('src/content'));
+const metrics = loadBuildMetrics();
+const identity = content.site.find(({ data }) => data.id === 'identity');
+if (!identity) throw new Error('Required site content is missing: identity');
+---
+
+<BaseLayout
+  title="Scholar view"
+  description={identity.data.summary}
+  route="overview"
+>
+  <ScholarOverview content={content} metrics={metrics} />
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import ActionGroup from '../shared/ActionGroup.astro';
+
+const { opportunity } = Astro.props as {
+  opportunity: { summary: string; title: string };
+};
+---
+
+<section
+  class="opportunity-strip section-band-utility"
+  data-home-section="opportunity"
+  aria-labelledby="opportunity-title"
+>
+  <div class="frame opportunity-strip__grid">
+    <div>
+      <p class="type-metadata">Research opportunities</p>
+      <h2 class="type-heading-md" id="opportunity-title">
+        {opportunity.title}
+      </h2>
+    </div>
+    <div>
+      <p class="prose">{opportunity.summary}</p>
+      <ActionGroup
+        label="Research opportunity contact"
+        actions={[
+          {
+            href: 'mailto:farhansheth.jb@gmail.com?subject=2026%E2%80%932027%20research%20opportunity',
+            kind: 'primary',
+            label: 'Discuss 2026–2027 opportunities'
+          }
+        ]}
+      />
+    </div>
+  </div>
+</section>

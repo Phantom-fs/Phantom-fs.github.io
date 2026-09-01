@@ -1,0 +1,63 @@
+---
+import RankBadge from './RankBadge.astro';
+import CitationMetric from './CitationMetric.astro';
+import type { CitationMetric as CitationMetricValue } from '../../lib/metrics/contract';
+
+interface Rank {
+  evidenceUrl: string;
+  evidenceYear: number;
+  system: string;
+  value: string;
+}
+
+const {
+  authors,
+  citationMetric,
+  rank,
+  title,
+  titleHref,
+  transitionName,
+  venue
+} = Astro.props as {
+  authors: string[];
+  citationMetric?: CitationMetricValue | null;
+  rank?: Rank;
+  title: string;
+  titleHref?: string;
+  transitionName?: string;
+  venue: string;
+};
+---
+
+<div class="publication-identity">
+  <h3 class="publication-identity__title" transition:name={transitionName}>
+    {
+      titleHref ? (
+        <a class="link-underlined" href={titleHref} data-publication-title>
+          {title}
+        </a>
+      ) : (
+        title
+      )
+    }
+  </h3>
+  <ol class="publication-identity__authors" aria-label="Ordered authors">
+    {
+      authors.map((author) => (
+        <li
+          class:list={{
+            'publication-identity__author--subject':
+              author.includes('Farhan Sheth')
+          }}
+        >
+          {author}
+        </li>
+      ))
+    }
+  </ol>
+  <div class="metadata-list type-metadata" data-publication-metadata>
+    <span>{venue}</span>
+    <CitationMetric metric={citationMetric} presentation="catalog" />
+    <RankBadge rank={rank} />
+  </div>
+</div>

@@ -1,0 +1,247 @@
+---
+import DomainRelationshipIndex from '../shared/DomainRelationshipIndex.astro';
+import ResearchDomain from './ResearchDomain.astro';
+
+const { domains, introduction, publications } = Astro.props as {
+  domains: {
+    body: string;
+    data: {
+      category: string;
+      collaborationInterests: string[];
+      methods: string[];
+      questions: string[];
+      representativePublicationIds: string[];
+      slug: string;
+      summary: string;
+      title: string;
+    };
+  }[];
+  introduction: { summary: string };
+  publications: Map<string, { slug: string; title: string }>;
+};
+---
+
+<section
+  class="research-chapter section-band-orientation"
+  aria-label="Research domains"
+  data-research-chapter
+>
+  <div class="frame research-composition research-chapter__grid">
+    <aside class="research-chapter__atlas">
+      <DomainRelationshipIndex
+        compact
+        currentDomain={domains[0]?.data.slug ?? ''}
+        description={introduction.summary}
+        domains={domains.map(({ data }) => data)}
+        id="research-domain-atlas"
+        route="research"
+      />
+    </aside>
+    <div class="research-chapter__domains">
+      {
+        domains.map((domain) => (
+          <ResearchDomain domain={domain} publications={publications} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  type ResearchChapterDocument = Document & {
+    researchChapterAfterSwap?: () => void;
+    researchChapterBeforeSwap?: () => void;
+  };
+  type ResearchChapterElement = HTMLElement & {
+    researchChapterCleanup?: () => void;
+  };
+
+  const researchChapterDocument = document as ResearchChapterDocument;
+
+  const cleanupResearchChapter = () => {
+    const chapter = document.querySelector<ResearchChapterElement>(
+      '[data-research-chapter]'
+    );
+    chapter?.researchChapterCleanup?.();
+  };
+
+  const initializeResearchChapter = () => {
+    cleanupResearchChapter();
+    const chapter = document.querySelector<ResearchChapterElement>(
+      '[data-research-chapter]'
+    );
+    const atlas = chapter?.querySelector<HTMLElement>('[data-research-atlas]');
+    const domains = [
+      ...chapter!.querySelectorAll<HTMLElement>('[data-research-domain]')
+    ];
+    const selectors = [
+      ...atlas!.querySelectorAll<HTMLAnchorElement>('[data-domain-selector]')
+    ];
+    const cards = selectors.map(
+      (selector) =>
+        selector.closest('[data-domain-relationship]') as HTMLElement | null
+    );
+    const defaultSlug = domains[0]?.id;
+
+    if (
+      !chapter ||
+      !atlas ||
+      !defaultSlug ||
+      domains.length !== 6 ||
+      selectors.length !== domains.length ||
+      cards.some((card) => !card) ||
+      !domains.every((domain) =>
+        selectors.some(
+          (selector) => selector.dataset.domainSelector === domain.id
+        )
+      )
+    ) {
+      return;
+    }
+
+    const controller = new AbortController();
+    chapter.researchChapterCleanup = () => {
+      controller.abort();
+      delete chapter.researchChapterCleanup;
+    };
+
+    const setSelection = (
+      slug: string,
+      moveFocus = false,
+      scrollToPanel = false
+    ) => {
+      const selectedDomain = domains.find((domain) => domain.id === slug);
+      if (!selectedDomain) return;
+
+      atlas.dataset.currentDomain = slug;
+      selectors.forEach((selector) => {
+        const selected = selector.dataset.domainSelector === slug;
+        selector.setAttribute('aria-selected', String(selected));
+        selector.tabIndex = selected ? 0 : -1;
+        selector
+          .closest<HTMLElement>('[data-domain-relationship]')
+          ?.setAttribute('aria-current', String(selected));
+        if (selected && moveFocus) selector.focus();
+      });
+      domains.forEach((domain) => {
+        domain.hidden = domain !== selectedDomain;
+      });
+      if (scrollToPanel) {
+        selectedDomain.scrollIntoView({ block: 'start' });
+      }
+    };
+
+    const normalizeHash = () => {
+      const requestedSlug = window.location.hash.slice(1);
+      const slug = domains.some((domain) => domain.id === requestedSlug)
+        ? requestedSlug
+        : defaultSlug;
+      if (window.location.hash !== `#${slug}`) {
+        window.history.replaceState(null, '', `#${slug}`);
+      }
+      setSelection(slug);
+    };
+
+    selectors.forEach((selector, index) => {
+      const slug = selector.dataset.domainSelector;
+      if (!slug) return;
+      selector.id = `research-domain-tab-${slug}`;
+      selector.setAttribute('aria-controls', slug);
+      selector.setAttribute('role', 'tab');
+      selector.addEventListener(
+        'pointerdown',
+        (event) => event.preventDefault(),
+        { signal: controller.signal }
+      );
+      cards[index]!.addEventListener(
+        'click',
+        (event) => {
+          event.preventDefault();
+          setSelection(slug, false, true);
+          if (window.location.hash !== `#${slug}`) {
+            window.history.pushState(null, '', `#${slug}`);
+          }
+        },
+        { signal: controller.signal }
+      );
+      selector.addEventListener(
+        'keydown',
+        (event) => {
+          const nextIndex =
+            event.key === 'ArrowRight' || event.key === 'ArrowDown'
+              ? (index + 1) % selectors.length
+              : event.key === 'ArrowLeft' || event.key === 'ArrowUp'
+                ? (index - 1 + selectors.length) % selectors.length
+                : event.key === 'Home'
+                  ? 0
+                  : event.key === 'End'
+                    ? selectors.length - 1
+                    : null;
+          if (nextIndex !== null) {
+            event.preventDefault();
+            const nextSlug = selectors[nextIndex].dataset.domainSelector;
+            if (nextSlug) {
+              setSelection(nextSlug, true);
+              window.history.pushState(null, '', `#${nextSlug}`);
+            }
+          }
+          if (event.key === ' ') {
+            event.preventDefault();
+            setSelection(slug, true);
+            if (window.location.hash !== `#${slug}`) {
+              window.history.pushState(null, '', `#${slug}`);
+            }
+          }
+        },
+        { signal: controller.signal }
+      );
+    });
+    domains.forEach((domain) => {
+      domain.setAttribute('role', 'tabpanel');
+      domain.setAttribute(
+        'aria-labelledby',
+        `research-domain-tab-${domain.id}`
+      );
+    });
+    atlas
+      .querySelector<HTMLElement>('.domain-relationship-index__domains')
+      ?.setAttribute('role', 'tablist');
+    chapter.dataset.researchEnhanced = 'true';
+    window.addEventListener('hashchange', normalizeHash, {
+      signal: controller.signal
+    });
+    window.addEventListener('popstate', normalizeHash, {
+      signal: controller.signal
+    });
+    normalizeHash();
+  };
+
+  const initializeResearchChapterAfterSwap = () => {
+    if (document.querySelector('[data-research-chapter]')) {
+      initializeResearchChapter();
+    }
+  };
+
+  researchChapterDocument.researchChapterBeforeSwap?.();
+  if (researchChapterDocument.researchChapterBeforeSwap) {
+    document.removeEventListener(
+      'astro:before-swap',
+      researchChapterDocument.researchChapterBeforeSwap
+    );
+  }
+  if (researchChapterDocument.researchChapterAfterSwap) {
+    document.removeEventListener(
+      'astro:after-swap',
+      researchChapterDocument.researchChapterAfterSwap
+    );
+  }
+  researchChapterDocument.researchChapterBeforeSwap = cleanupResearchChapter;
+  researchChapterDocument.researchChapterAfterSwap =
+    initializeResearchChapterAfterSwap;
+  document.addEventListener('astro:before-swap', cleanupResearchChapter);
+  document.addEventListener(
+    'astro:after-swap',
+    initializeResearchChapterAfterSwap
+  );
+  initializeResearchChapter();
+</script>

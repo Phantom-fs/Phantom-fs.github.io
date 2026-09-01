@@ -1,0 +1,172 @@
+---
+import ArtifactLinks from '../shared/ArtifactLinks.astro';
+import BibTeXAction from '../shared/BibTeXAction.astro';
+import CitationMetric from '../shared/CitationMetric.astro';
+import RankBadge from '../shared/RankBadge.astro';
+import SummaryDisclosure from '../shared/SummaryDisclosure.astro';
+import { createBibTeX } from '../../lib/publications/bibtex';
+import type { CitationMetric as CitationMetricValue } from '../../lib/metrics/contract';
+import type { ArtifactLinks as ArtifactLinkData } from '../../lib/ui/system';
+
+interface Rank {
+  evidenceUrl: string;
+  evidenceYear: number;
+  system: string;
+  value: string;
+}
+
+interface Publication {
+  abstract: string;
+  authors: Array<{ equalContribution?: boolean; name: string }>;
+  doi?: string;
+  hashtags: string[];
+  links?: ArtifactLinkData;
+  primaryCategory: string;
+  rank?: Rank;
+  status: string;
+  title: string;
+  tldr: string;
+  type: string;
+  venue: string;
+  year: number;
+  arxivId?: string;
+  id: string;
+}
+
+const { metric, publication } = Astro.props as {
+  metric?: CitationMetricValue | null;
+  publication: Publication;
+};
+const authors = publication.authors.map(({ equalContribution, name }) =>
+  equalContribution ? `${name}*` : name
+);
+const hasEqualContribution = publication.authors.some(
+  ({ equalContribution }) => equalContribution
+);
+const categoryHref = `/publications/?category=${encodeURIComponent(publication.primaryCategory)}`;
+const bibtex = createBibTeX({
+  arxivId: publication.arxivId,
+  authors: publication.authors.map(({ name }) => name),
+  doi: publication.doi,
+  id: publication.id,
+  title: publication.title,
+  type: publication.type,
+  venue: publication.venue,
+  year: publication.year
+});
+---
+
+<article class="publication-detail" data-publication-detail>
+  <nav aria-label="Breadcrumb" class="publication-detail__breadcrumb">
+    <a class="link-underlined" href="/publications/">Publications</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{publication.title}</span>
+  </nav>
+  <a
+    class="link-underlined publication-detail__back"
+    data-publication-back
+    href="/publications/"
+  >
+    ← Back to publications
+  </a>
+  <header class="publication-detail__header">
+    <p class="type-metadata">{publication.status} · {publication.type}</p>
+    <h1 transition:name={`publication-${publication.id}`}>
+      {publication.title}
+    </h1>
+    <ol aria-label="Ordered authors" class="publication-identity__authors">
+      {
+        authors.map((author) => (
+          <li
+            class:list={{
+              'publication-identity__author--subject':
+                author.includes('Farhan Sheth')
+            }}
+          >
+            {author}
+          </li>
+        ))
+      }
+    </ol>
+    {hasEqualContribution && <p class="type-body-sm">* Equal contribution.</p>}
+    <div class="metadata-list type-metadata">
+      <span>{publication.venue}</span>
+      <span>{publication.year}</span>
+      <RankBadge rank={publication.rank} />
+      {
+        publication.doi && (
+          <a
+            class="link-underlined"
+            href={`https://doi.org/${publication.doi}`}
+          >
+            DOI: {publication.doi}
+          </a>
+        )
+      }
+      {
+        publication.arxivId && (
+          <a
+            class="link-underlined"
+            href={`https://arxiv.org/abs/${publication.arxivId}`}
+          >
+            arXiv: {publication.arxivId}
+          </a>
+        )
+      }
+    </div>
+  </header>
+  <div class="publication-detail__grid">
+    <section
+      aria-labelledby="publication-summary-title"
+      class="publication-detail__narrative"
+    >
+      <h2 id="publication-summary-title">Research record</h2>
+      <SummaryDisclosure
+        label="TLDR — verified methodology and contribution summary"
+        open
+      >
+        <p>{publication.tldr}</p>
+      </SummaryDisclosure>
+      <SummaryDisclosure label="Abstract">
+        <p>{publication.abstract}</p>
+      </SummaryDisclosure>
+    </section>
+    <aside
+      aria-label="Publication evidence"
+      class="publication-detail__evidence"
+    >
+      <dl>
+        <CitationMetric metric={metric} presentation="evidence" />
+      </dl>
+      <section aria-labelledby="publication-taxonomy-title">
+        <h2 class="type-heading-md" id="publication-taxonomy-title">
+          Research links
+        </h2>
+        <p>
+          <a class="link-underlined" href={categoryHref}>
+            {publication.primaryCategory}
+          </a>
+        </p>
+        <ul class="publication-detail__hashtags">
+          {
+            publication.hashtags.map((hashtag) => (
+              <li>
+                <a
+                  class="publication-hashtag"
+                  href={`/publications/?q=${encodeURIComponent(hashtag)}`}
+                >
+                  #{hashtag}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      <ArtifactLinks
+        links={publication.links}
+        label={`Resources for ${publication.title}`}
+      />
+      <BibTeXAction citationKey={publication.id} value={bibtex} />
+    </aside>
+  </div>
+</article>

@@ -1,0 +1,114 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import BackToTop from '../components/global/BackToTop.astro';
+import SiteFooter from '../components/global/SiteFooter.astro';
+import SiteHeader from '../components/global/SiteHeader.astro';
+import { buildPageMetadata, deploymentOrigin } from '../lib/ui/system';
+import '../styles/global.css';
+
+interface Props {
+  description: string;
+  route?: string;
+  title: string;
+}
+
+const { description, route, title } = Astro.props;
+const metadata = buildPageMetadata({
+  description,
+  pathname: Astro.url.pathname,
+  title
+});
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['Person', 'ProfilePage'],
+  email: 'mailto:farhansheth.jb@gmail.com',
+  image: `${deploymentOrigin}/images/profile-img.jpg`,
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Farhan Sheth',
+    url: deploymentOrigin
+  },
+  name: 'Farhan Sheth',
+  sameAs: [
+    'https://scholar.google.com/citations?user=ZeKCtQQAAAAJ',
+    'https://orcid.org/0009-0009-9371-6983',
+    'https://github.com/Phantom-fs',
+    'https://www.linkedin.com/in/farhan-sheth/'
+  ],
+  url: deploymentOrigin
+};
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={metadata.description} />
+    <meta name="theme-color" content="#F4F1E8" />
+    <link rel="canonical" href={metadata.canonical} />
+    <link
+      rel="preload"
+      href="/fonts/manrope-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Farhan Sheth research updates"
+      href="/rss.xml"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Farhan Sheth" />
+    <meta property="og:title" content={metadata.title} />
+    <meta property="og:description" content={metadata.description} />
+    <meta property="og:url" content={metadata.canonical} />
+    <meta property="og:image" content={metadata.image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metadata.title} />
+    <meta name="twitter:description" content={metadata.description} />
+    <meta name="twitter:image" content={metadata.image} />
+    <script is:inline>
+      const applyStoredTheme = () => {
+        let storedTheme = null;
+
+        try {
+          storedTheme = localStorage.getItem('atlas-theme');
+        } catch {
+          // The document attribute supplies the required first-visit light theme.
+        }
+
+        document.documentElement.dataset.theme =
+          storedTheme === 'dark' || storedTheme === 'light'
+            ? storedTheme
+            : 'light';
+      };
+
+      applyStoredTheme();
+      document.addEventListener('astro:after-swap', applyStoredTheme);
+    </script>
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(personJsonLd)}
+    />
+    <slot name="head" />
+    <title>{metadata.title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader currentPath={Astro.url.pathname} />
+    <main class="page-main" data-route={route} id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter currentPath={Astro.url.pathname} />
+    <BackToTop />
+  </body>
+</html>

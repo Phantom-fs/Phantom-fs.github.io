@@ -1,0 +1,25 @@
+{
+  "scholar": {
+    "author": {
+      "scholar_author_id": "ZeKCtQQAAAAJ",
+      "name": "Farhan Sheth",
+      "citedby": 56,
+      "hindex": 4,
+      "i10index": 3,
+      "publications": [
+        {
+          "author_pub_id": "ZeKCtQQAAAAJ:9ZlFYXVOiuMC",
+          "num_citations": 18
+        }
+      ]
+    }
+  },
+  "publications": [
+    {
+      "id": "herald",
+      "title": "HERALD",
+      "scholarPublicationId": "ZeKCtQQAAAAJ:9ZlFYXVOiuMC",
+      "doi": "10.1000/herald"
+    }
+  ]
+}

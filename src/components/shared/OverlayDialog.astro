@@ -1,0 +1,61 @@
+---
+interface Props {
+  heading: string;
+  id: string;
+  triggerLabel: string;
+}
+
+const { heading, id, triggerLabel } = Astro.props;
+---
+
+<button
+  class="control"
+  type="button"
+  aria-controls={id}
+  aria-expanded="false"
+  data-overlay-open={id}
+>
+  {triggerLabel}
+</button>
+<dialog
+  class="site-dialog"
+  id={id}
+  aria-labelledby={`${id}-title`}
+  data-overlay-dialog
+>
+  <div class="site-dialog__inner">
+    <div class="site-dialog__heading">
+      <h2 class="type-heading-md" id={`${id}-title`}>{heading}</h2>
+      <button class="control" type="button" data-overlay-close>Close</button>
+    </div>
+    <slot />
+  </div>
+</dialog>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-overlay-open]')
+    .forEach((trigger) => {
+      const dialog = document.getElementById(
+        trigger.dataset.overlayOpen ?? ''
+      ) as HTMLDialogElement | null;
+      const close = dialog?.querySelector<HTMLButtonElement>(
+        '[data-overlay-close]'
+      );
+      const restore = () => {
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.focus();
+      };
+
+      trigger.addEventListener('click', () => {
+        dialog?.showModal();
+        trigger.setAttribute('aria-expanded', 'true');
+        close?.focus();
+      });
+      close?.addEventListener('click', () => dialog?.close());
+      dialog?.addEventListener('close', restore);
+      dialog?.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    });
+</script>

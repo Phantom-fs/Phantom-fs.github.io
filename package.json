@@ -1,0 +1,72 @@
+{
+  "name": "modern-academic-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": ">=24.0.0 <25",
+    "pnpm": "10.x"
+  },
+  "pnpm": {
+    "overrides": {
+      "@puppeteer/browsers": "3.2.1",
+      "proxy-agent": "8.0.2",
+      "tmp": "0.2.7",
+      "uuid": "11.1.1"
+    }
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "astro preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "astro:check": "astro check",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:visual": "playwright test --config=playwright.visual.config.ts --project=chromium",
+    "test:e2e:list": "playwright test --list",
+    "test:a11y": "playwright test --grep @a11y",
+    "test:python": "powershell -ExecutionPolicy Bypass -File scripts/test-python.ps1",
+    "assets:build": "node scripts/assets/generate-images.mjs",
+    "metrics:build": "node scripts/metrics/build.mjs",
+    "validate:content": "tsx scripts/validate-content.ts",
+    "check:links": "node scripts/check-links.mjs",
+    "audit:lighthouse": "lhci autorun",
+    "check:dependencies": "pnpm ls gsap scrollmagic locomotive-scroll lenis --depth -1",
+    "verify": "pnpm format:check && pnpm lint && pnpm astro:check && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.1.0",
+    "astro": "~7.2.0",
+    "gray-matter": "^4.0.3",
+    "preact": "^10.27.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@axe-core/playwright": "^4.11.0",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.58.2",
+    "@preact/preset-vite": "2.10.6",
+    "@testing-library/preact": "3.2.4",
+    "@testing-library/user-event": "14.6.1",
+    "@types/node": "^24.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-astro": "^1.5.0",
+    "jsdom": "27.4.0",
+    "linkinator": "^6.1.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "sharp": "0.35.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  }
+}
