@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="atlas-title atlas-description">
+  <style>:root{--background:#FCFAF5;--ink:#161A1D;--muted:#59636B;--rule:#C8CED1;--annotation:#24557A;--signal:#A95738}@media(prefers-color-scheme:dark){:root{--background:#1D2124;--ink:#F2EEE5;--muted:#A7B0B5;--rule:#394147;--annotation:#86A8BE;--signal:#D08A68}}</style>
+  <title id="atlas-title">Research atlas</title>
+  <desc id="atlas-description">Six research domains are connected by shared methods, data stewardship, and applied evaluation.</desc>
+  <rect width="720" height="480" fill="var(--background)"/>
+  <g fill="none" stroke="var(--rule)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M68 106c72-54 140-29 193 18s111 65 189 15 135-32 210 18"/>
+    <path d="M46 326c67-44 121-50 196-1s144 47 211-9 131-49 223-12"/>
+    <path d="M122 222c46-54 103-76 162-36s107 37 158-10 112-59 178-26"/>
+  </g>
+  <g fill="none" stroke="var(--annotation)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <path d="M132 122C241 83 268 192 355 204s117-74 214-62"/>
+    <path d="M127 329c100-66 142 9 225-3s118-93 234-53" stroke-dasharray="10 9"/>
+    <path d="M216 224c54 28 105 32 149-20s101-81 170-58" stroke-dasharray="3 8"/>
+  </g>
+  <g fill="var(--signal)" stroke="var(--background)" stroke-width="5">
+    <circle cx="132" cy="122" r="10"/><circle cx="569" cy="142" r="10"/>
+    <circle cx="127" cy="329" r="10"/><circle cx="586" cy="273" r="10"/>
+    <circle cx="216" cy="224" r="10"/><circle cx="535" cy="146" r="10"/>
+  </g>
+  <g fill="var(--ink)" font-family="Arial, sans-serif" font-size="17" font-weight="700">
+    <text x="74" y="92">Healthcare &amp; Clinical AI</text>
+    <text x="496" y="114">Privacy, Trust &amp; Safety</text>
+    <text x="62" y="363">Speech, Audio &amp; Synthetic Media</text>
+    <text x="453" y="307">Multimodal &amp; Human-Centered AI</text>
+    <text x="156" y="208">Scientific &amp; Applied AI</text>
+    <text x="454" y="181">Earth &amp; Agricultural Intelligence</text>
+  </g>
+  <text x="360" y="452" fill="var(--muted)" font-family="monospace" font-size="14" text-anchor="middle">shared methods · careful evaluation · applied evidence</text>
+</svg>
