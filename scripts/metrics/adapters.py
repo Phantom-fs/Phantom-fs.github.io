@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import multiprocessing
+import random
+import time
 from queue import Empty
 from typing import Any, Callable
 
@@ -40,14 +42,19 @@ def spawn_bounded_call(
     worker: SpawnWorker,
     worker_args: tuple[object, ...],
     *,
-    attempts: int = 2,
-    timeout_seconds: float = 8,
+    attempts: int = 3,
+    timeout_seconds: float = 17,
 ) -> dict[str, object]:
     """Run a module-level worker under a bounded, reaped spawn-process policy."""
     _validate_policy(attempts, timeout_seconds)
     context = multiprocessing.get_context('spawn')
     failure: Exception | None = None
-    for _ in range(attempts):
+    for attempt_num in range(attempts):
+        # Add randomized backoff between attempts (skip for first attempt)
+        if attempt_num > 0:
+            backoff_seconds = random.uniform(0.1, 0.5)
+            time.sleep(backoff_seconds)
+        
         queue = context.Queue()
         process = context.Process(target=worker, args=(queue, *worker_args))
         try:
@@ -89,6 +96,34 @@ def spawn_bounded_call(
 def scholarly_lookup(author_id: str = SCHOLAR_AUTHOR_ID) -> dict[str, object]:
     """Request the complete bounded Scholar author record before normalization."""
     from scholarly import scholarly
+    from scholarly import ProxyGenerator
+
+    # Setup user-agent with fallback
+    user_agent = None
+    try:
+        from fake_useragent import UserAgent
+        ua = UserAgent()
+        user_agent = ua.random
+    except Exception:
+        # If fake_useragent fails, skip it gracefully
+        pass
+
+    # Setup proxy with fallback
+    pg = None
+    try:
+        pg = ProxyGenerator()
+        pg.FreeProxies()
+    except Exception:
+        # If proxy setup fails, skip it gracefully
+        pg = None
+
+    # Apply user-agent if available
+    if user_agent is not None:
+        scholarly.headers = {'User-Agent': user_agent}
+
+    # Apply proxy if available
+    if pg is not None:
+        scholarly.use_proxy(pg)
 
     author = scholarly.fill(
         scholarly.search_author_id(author_id),
@@ -108,7 +143,7 @@ def _scholar_worker(queue: Any, author_id: str) -> None:
         queue.put(('error', 'unavailable'))
 
 
-def bounded_scholar_lookup(attempts: int = 2, timeout_seconds: float = 8) -> dict[str, object]:
+def bounded_scholar_lookup(attempts: int = 3, timeout_seconds: float = 17) -> dict[str, object]:
     return spawn_bounded_call(
         _scholar_worker,
         (SCHOLAR_AUTHOR_ID,),
