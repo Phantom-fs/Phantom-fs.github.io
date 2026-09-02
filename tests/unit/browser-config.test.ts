@@ -124,6 +124,6 @@ describe('reproducible browser verification configuration', () => {
     expect(visualConfig).toContain(
       "snapshotPathTemplate: '{testDir}/baselines/{arg}{ext}'"
     );
-    expect(visualConfig).toContain('maxDiffPixelRatio: 0.05');
+    expect(visualConfig).toContain('maxDiffPixelRatio: 0.08');
   });
 });

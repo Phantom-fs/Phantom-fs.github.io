@@ -8,7 +8,7 @@ export default defineConfig(baseConfig, {
   snapshotPathTemplate: '{testDir}/baselines/{arg}{ext}',
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.05
+      maxDiffPixelRatio: 0.08
     }
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }]

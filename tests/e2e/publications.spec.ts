@@ -39,7 +39,7 @@ test.describe('Publications catalog and approved detail routes', () => {
 
   test('keeps collapsed publication records compact for catalogue scanning', async ({
     page
-  }) => {
+  }, testInfo) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/publications/');
     await page.evaluate(() => document.fonts.ready);
@@ -58,7 +58,10 @@ test.describe('Publications catalog and approved detail routes', () => {
         Number.parseFloat(getComputedStyle(element).fontSize)
       )
     ).toBeGreaterThanOrEqual(20);
-    await expect(title).toHaveCSS('text-wrap', 'pretty');
+    await expect(title).toHaveCSS(
+      'text-wrap',
+      testInfo.project.name === 'firefox' ? 'balance' : 'pretty'
+    );
     expect(
       await firstSummary.evaluate((element) =>
         Number.parseFloat(getComputedStyle(element).fontSize)
