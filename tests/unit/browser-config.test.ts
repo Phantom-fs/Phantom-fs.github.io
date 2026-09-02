@@ -39,6 +39,10 @@ describe('reproducible browser verification configuration', () => {
     expect(workflow).toContain(
       'pnpm exec playwright test --project=${{ matrix.browser }}'
     );
+    expect(workflow).toMatch(
+      /browser:[\s\S]*?python -m pip install --require-hashes -r requirements\.lock/
+    );
+    expect(workflow).toMatch(/browser:[\s\S]*?METRICS_MODE: push/);
     expect(workflow).not.toContain('id: setup-pnpm');
     expect(workflow).not.toContain('npm_execpath:');
     expect(workflow).not.toContain('pnpm test:e2e -- --project=');
@@ -73,6 +77,12 @@ describe('reproducible browser verification configuration', () => {
       /workflow_dispatch:[\s\S]*?metrics_mode:[\s\S]*?options:\s+- push\s+- schedule/
     );
     expect(workflow).toContain("inputs.metrics_mode == 'schedule'");
+    expect(workflow).toContain('python -m scripts.metrics.run');
+    expect(workflow).toContain('--mode schedule');
+    expect(workflow).toContain('git add src/data/generated/citations.json');
+    expect(workflow).toMatch(
+      /uses: withastro\/action@v6[\s\S]*?METRICS_MODE: push/
+    );
   });
 
   it('runs push workflows on the GitHub default branch', async () => {

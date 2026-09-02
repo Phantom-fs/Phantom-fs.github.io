@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-01T21:12:50.460Z",
+  "stale": false,
+  "author": {
+    "totalCitations": {
+      "value": 103,
+      "source": "scholar",
+      "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+      "updatedAt": "2026-09-01T21:12:50.460Z",
+      "stale": false
+    },
+    "hIndex": {
+      "value": 7,
+      "source": "scholar",
+      "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+      "updatedAt": "2026-09-01T21:12:50.460Z",
+      "stale": false
+    },
+    "i10Index": {
+      "value": 5,
+      "source": "scholar",
+      "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+      "updatedAt": "2026-09-01T21:12:50.460Z",
+      "stale": false
+    },
+    "publicationCount": {
+      "value": 18,
+      "source": "scholar",
+      "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+      "updatedAt": "2026-09-01T21:12:50.460Z",
+      "stale": false
+    }
+  },
+  "publications": {
+    "soil-classification": {
+      "citationCount": {
+        "value": 17,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:UeHWp8X0CEIC"
+    },
+    "herbify": {
+      "citationCount": {
+        "value": 16,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:Tyk-4Ss8FVUC"
+    },
+    "geological-rock-classification": {
+      "citationCount": {
+        "value": 15,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:9yKSN-GCB0IC"
+    },
+    "nanofluid-density": {
+      "citationCount": {
+        "value": 14,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:qjMakFHDy7sC"
+    },
+    "phishing-discrete-models": {
+      "citationCount": {
+        "value": 10,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:u-x6o8ySG0sC"
+    },
+    "mango-leaf-disease": {
+      "citationCount": {
+        "value": 9,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:u5HHmVD_uO8C"
+    },
+    "chest-xray-encryption": {
+      "citationCount": {
+        "value": 7,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:Zph67rFs4hoC"
+    },
+    "curved-worlds": {
+      "citationCount": {
+        "value": 5,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:mVmsd5A6BfQC"
+    },
+    "recruitview": {
+      "citationCount": {
+        "value": 3,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:qxL8FJ1GzNcC"
+    },
+    "nanofluid-specific-heat": {
+      "citationCount": {
+        "value": 2,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:aqlVkmm33-oC"
+    },
+    "phishing-llm": {
+      "citationCount": {
+        "value": 2,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:qUcmZB5y_30C"
+    },
+    "signal-eacl-2026": {
+      "citationCount": {
+        "value": 1,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:hC7cP41nSMkC"
+    },
+    "learning-heat": {
+      "citationCount": {
+        "value": 1,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:_kc_bZDykSQC"
+    },
+    "cross-lingual-generator-attribution": {
+      "citationCount": {
+        "value": 1,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:YOwf2qJgpHMC"
+    },
+    "data-efficient-neuroimaging": {
+      "citationCount": {
+        "value": 0,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:IWHjjKOFINEC"
+    },
+    "uc-prun": {
+      "citationCount": {
+        "value": 0,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:L8Ckcad2t8MC"
+    },
+    "alzheimer-detection": {
+      "citationCount": {
+        "value": 0,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:7PzlFSSx8tAC"
+    },
+    "herald": {
+      "citationCount": {
+        "value": 0,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-09-01T21:12:50.460Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:9ZlFYXVOiuMC"
+    }
+  },
+  "diagnostics": []
+}

@@ -193,6 +193,31 @@ def validate_document(document: object) -> dict[str, Any]:
     return document
 
 
+def validate_durable_metrics(
+    document: object, publications: list[PublicationIdentifier]
+) -> dict[str, Any]:
+    """Validate the last successful Scholar artifact against the current publication catalog."""
+    normalized = validate_document(document)
+    expected = {
+        publication.id: publication.scholar_publication_id
+        for publication in publications
+    }
+    if any(identifier is None for identifier in expected.values()):
+        raise MetricsError('all durable metrics publications require Scholar identifiers')
+    if normalized['stale']:
+        raise MetricsError('durable metrics must not be stale')
+    if normalized['author']['publicationCount']['value'] != len(expected):
+        raise MetricsError('durable metrics publication count is incomplete')
+
+    persisted_publications = normalized['publications']
+    if set(persisted_publications) != set(expected):
+        raise MetricsError('durable metrics publication set is incomplete')
+    for publication_id, scholar_identifier in expected.items():
+        if persisted_publications[publication_id]['sourceIdentifier'] != scholar_identifier:
+            raise MetricsError('durable metrics Scholar identifier does not match the catalog')
+    return normalized
+
+
 def build_metrics(
     fixture: dict[str, object],
     publications: list[PublicationIdentifier],

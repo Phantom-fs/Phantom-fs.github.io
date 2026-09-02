@@ -32,11 +32,13 @@ jobs:
       - run: pnpm test
       - run: pnpm build
         env:
-          METRICS_MODE: scholar
+          METRICS_MODE: push
       - run: pnpm audit --prod --audit-level high
 
   browser:
     runs-on: ubuntu-latest
+    env:
+      METRICS_MODE: push
     strategy:
       fail-fast: false
       matrix:
@@ -53,6 +55,7 @@ jobs:
         with:
           version: 10.34.5
       - run: pnpm install --frozen-lockfile
+      - run: python -m pip install --require-hashes -r requirements.lock
       - run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
       - run: pnpm exec playwright test --project=${{ matrix.browser }}
       - if: matrix.browser == 'chromium'

@@ -1,4 +1,7 @@
 import json
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -88,3 +91,42 @@ def test_incomplete_scholar_publications_fail_every_build_mode(mode: str) -> Non
             mode=mode,
             generated_at=GENERATED_AT,
         )
+
+
+def test_push_mode_validates_the_durable_scholar_artifact_without_fetching(
+    tmp_path: Path,
+) -> None:
+    """Catches CI/browser builds attempting a live Scholar request instead of using the durable artifact."""
+    output = tmp_path / 'citations.json'
+    output.write_text(
+        (PROJECT_ROOT / 'src' / 'data' / 'generated' / 'citations.json').read_text(
+            encoding='utf-8'
+        ),
+        encoding='utf-8',
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            '-m',
+            'scripts.metrics.run',
+            '--mode',
+            'push',
+            '--identifiers',
+            str(PROJECT_ROOT / 'src' / 'data' / 'publication-identifiers.json'),
+            '--output',
+            str(output),
+            '--generated-at',
+            GENERATED_AT,
+        ],
+        cwd=PROJECT_ROOT,
+        env={
+            **os.environ,
+            'METRICS_FIXTURE': str(FIXTURES_ROOT / 'scholar-invalid.json'),
+        },
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr

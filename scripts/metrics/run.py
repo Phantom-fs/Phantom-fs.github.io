@@ -9,7 +9,13 @@ import sys
 from pathlib import Path
 
 from .adapters import RemoteFetchError, fetch_scholar_author
-from .pipeline import MetricsError, MetricsUnavailableError, build_metrics, publication_identifiers
+from .pipeline import (
+    MetricsError,
+    MetricsUnavailableError,
+    build_metrics,
+    publication_identifiers,
+    validate_durable_metrics,
+)
 
 
 def _remote_fixture(publications: list[dict[str, object]]) -> dict[str, object]:
@@ -30,19 +36,26 @@ def main() -> int:
     records = json.loads(arguments.identifiers.read_text(encoding='utf-8'))
     if not isinstance(records, list):
         raise MetricsError('publication identifiers must be a JSON array')
-    fixture = (
-        json.loads(Path(os.environ['METRICS_FIXTURE']).read_text(encoding='utf-8'))
-        if os.environ.get('METRICS_FIXTURE')
-        else _remote_fixture(records)
-    )
+    publications = publication_identifiers(records)
     try:
-        document = build_metrics(
-            fixture=fixture,
-            publications=publication_identifiers(records),
-            mode=arguments.mode,
-            generated_at=arguments.generated_at,
-        )
-    except MetricsUnavailableError as error:
+        if arguments.mode == 'push':
+            document = validate_durable_metrics(
+                json.loads(arguments.output.read_text(encoding='utf-8')),
+                publications,
+            )
+        else:
+            fixture = (
+                json.loads(Path(os.environ['METRICS_FIXTURE']).read_text(encoding='utf-8'))
+                if os.environ.get('METRICS_FIXTURE')
+                else _remote_fixture(records)
+            )
+            document = build_metrics(
+                fixture=fixture,
+                publications=publications,
+                mode=arguments.mode,
+                generated_at=arguments.generated_at,
+            )
+    except (MetricsError, MetricsUnavailableError, OSError, json.JSONDecodeError) as error:
         print(error, file=sys.stderr)
         return 2
     arguments.output.parent.mkdir(parents=True, exist_ok=True)

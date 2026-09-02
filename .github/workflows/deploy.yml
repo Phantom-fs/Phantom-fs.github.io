@@ -17,7 +17,7 @@ on:
     - cron: '17 8 * * *'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: pages
@@ -33,9 +33,28 @@ jobs:
           python-version: '3.13'
       - run: python -m pip install --require-hashes -r requirements.lock
       - run: python -m pytest
+      - name: Refresh Scholar metrics
+        if: github.event_name == 'schedule' || inputs.metrics_mode == 'schedule'
+        run: |
+          python -m scripts.metrics.run \
+            --mode schedule \
+            --identifiers src/data/publication-identifiers.json \
+            --output src/data/generated/citations.json \
+            --generated-at "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+      - name: Persist refreshed Scholar metrics
+        if: github.event_name == 'schedule' || inputs.metrics_mode == 'schedule'
+        run: |
+          if git diff --quiet -- src/data/generated/citations.json; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/generated/citations.json
+          git commit -m 'chore(metrics): refresh Scholar citations'
+          git push
       - uses: withastro/action@v6
         env:
-          METRICS_MODE: ${{ (github.event_name == 'schedule' || inputs.metrics_mode == 'schedule') && 'schedule' || 'push' }}
+          METRICS_MODE: push
         with:
           path: .
           package-manager: pnpm@10.34.5
