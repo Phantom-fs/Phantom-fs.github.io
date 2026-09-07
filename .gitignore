@@ -1,6 +1,12 @@
 .worktrees/
 .superpowers/
 
+# Local Codex governance, plans, and continuity are intentionally not published.
+AGENTS.md
+.agents/
+.codex/
+docs/migration/
+
 node_modules/
 dist/
 .astro/

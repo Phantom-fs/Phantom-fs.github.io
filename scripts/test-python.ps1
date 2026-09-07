@@ -21,10 +21,23 @@ function Invoke-Checked {
   }
 }
 
+function Get-Sha256Hex {
+  param([string]$Path)
+
+  $stream = [System.IO.File]::OpenRead($Path)
+  $sha256 = [System.Security.Cryptography.SHA256]::Create()
+  try {
+    return ([System.BitConverter]::ToString($sha256.ComputeHash($stream))).Replace('-', '')
+  } finally {
+    $sha256.Dispose()
+    $stream.Dispose()
+  }
+}
+
 New-Item -ItemType Directory -Force -Path $downloadRoot | Out-Null
 if (-not (Test-Path -LiteralPath $uvPath)) {
   Invoke-WebRequest -Uri $archiveUrl -OutFile $archivePath
-  $actualHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $archivePath).Hash
+  $actualHash = Get-Sha256Hex -Path $archivePath
   if ($actualHash -ne $archiveSha256) {
     throw "Pinned uv archive hash mismatch: expected $archiveSha256, received $actualHash"
   }
