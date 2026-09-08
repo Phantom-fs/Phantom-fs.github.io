@@ -234,16 +234,52 @@ test.describe('global academic atlas shell', () => {
     }
   });
 
-  test('publishes route-neutral metadata endpoints', async ({ page }) => {
-    const sitemap = await page.request.get('/sitemap.xml');
+  test('publishes an indexable canonical sitemap and crawler directive', async ({
+    page
+  }) => {
+    const sitemapIndex = await page.request.get('/sitemap-index.xml');
+    const sitemap = await page.request.get('/sitemap-0.xml');
     const rss = await page.request.get('/rss.xml');
     const robots = await page.request.get('/robots.txt');
 
+    await expect(sitemapIndex).toBeOK();
     expect(sitemap.ok()).toBe(true);
     await expect(sitemap).toBeOK();
-    expect(await sitemap.text()).toContain('<urlset');
+    expect(await sitemapIndex.text()).toContain(
+      '<loc>https://phantom-fs.github.io/sitemap-0.xml</loc>'
+    );
+    const locations = [...(await sitemap.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+      ([, location]) => location
+    );
+    expect(new Set(locations)).toEqual(
+      new Set([
+        'https://phantom-fs.github.io/',
+        'https://phantom-fs.github.io/research/',
+        'https://phantom-fs.github.io/publications/',
+        'https://phantom-fs.github.io/projects/',
+        'https://phantom-fs.github.io/about/',
+        'https://phantom-fs.github.io/overview/',
+        ...[
+          'alzheimer-detection',
+          'cross-lingual-generator-attribution',
+          'curved-worlds',
+          'herald',
+          'herbify',
+          'learning-heat',
+          'recruitview',
+          'signal-eacl-2026',
+          'soil-classification',
+          'uc-prun'
+        ].map(
+          (slug) => `https://phantom-fs.github.io/publications/${slug}/`
+        )
+      ])
+    );
+    expect(locations).not.toContain('https://phantom-fs.github.io/404.html');
     expect(await rss.text()).toContain('<rss');
-    expect(await robots.text()).toContain('Sitemap:');
+    expect(await robots.text()).toContain(
+      'Sitemap: https://phantom-fs.github.io/sitemap-index.xml'
+    );
   });
 
   test('serves exact static artifacts with MIME types and a plain 404', async ({

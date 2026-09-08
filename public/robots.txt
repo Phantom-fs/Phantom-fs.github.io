@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://phantom-fs.github.io/sitemap.xml
+Sitemap: https://phantom-fs.github.io/sitemap-index.xml
