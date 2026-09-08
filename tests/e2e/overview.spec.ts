@@ -244,7 +244,7 @@ test.describe('Scholar overview reading mode', () => {
         footer
           .getByRole('navigation', { name: 'Research profiles' })
           .locator('a')
-      ).toHaveCount(6);
+      ).toHaveCount(7);
       await expect(backToTop).toHaveAttribute('href', '#main-content');
       await expect(backToTop).toBeHidden();
     }
