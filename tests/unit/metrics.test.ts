@@ -101,6 +101,7 @@ describe('Scholar-only build metrics', () => {
       cwd: process.cwd(),
       env: {
         ...process.env,
+        METRICS_MODE: undefined,
         METRICS_FIXTURE: resolve('tests/fixtures/metrics/scholar-invalid.json')
       },
       encoding: 'utf8'
