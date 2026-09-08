@@ -31,9 +31,57 @@ test.describe('Home and Research routes', () => {
     await expect(
       page.getByRole('heading', {
         level: 1,
-        name: 'AI researcher'
+        name: 'Farhan Sheth'
       })
     ).toBeVisible();
+    await expect(page.locator('.home-hero__identity')).toContainText(
+      'AI researcher'
+    );
+    await expect(page).toHaveTitle('Farhan Sheth | AI Researcher');
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      'content',
+      'Farhan Sheth is an AI researcher studying multimodal and trustworthy AI across clinical, speech, agricultural, and scientific applications.'
+    );
+    await expect(
+      page.locator('meta[name="google-site-verification"]')
+    ).toHaveAttribute('content', '7U4pmWJ0ScNO0w0ySLhAAgYqH10UgW5CcPwn58JeA3Q');
+    const homepageGraph = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll((scripts) =>
+        scripts
+          .map((script) => JSON.parse(script.textContent ?? 'null'))
+          .find((data) => Array.isArray(data?.['@graph']))
+      );
+    expect(homepageGraph['@context']).toBe('https://schema.org');
+    expect(homepageGraph['@graph']).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          '@id': 'https://phantom-fs.github.io/#website',
+          '@type': 'WebSite',
+          name: 'Farhan Sheth',
+          url: 'https://phantom-fs.github.io/'
+        }),
+        expect.objectContaining({
+          '@id': 'https://phantom-fs.github.io/#profile-page',
+          '@type': 'ProfilePage',
+          mainEntity: { '@id': 'https://phantom-fs.github.io/#person' }
+        }),
+        expect.objectContaining({
+          '@id': 'https://phantom-fs.github.io/#person',
+          '@type': 'Person',
+          name: 'Farhan Sheth',
+          sameAs: [
+            'https://scholar.google.com/citations?user=ZeKCtQQAAAAJ',
+            'https://orcid.org/0009-0009-9371-6983',
+            'https://github.com/Phantom-fs',
+            'https://www.linkedin.com/in/farhan-sheth/',
+            'https://www.researchgate.net/profile/Farhan-Sheth',
+            'https://dblp.org/pid/399/0371.html',
+            'https://huggingface.co/Phantom-fs'
+          ]
+        })
+      ])
+    );
     expect(
       await page.locator('.home-hero__statement').evaluate((statement) => {
         const styles = getComputedStyle(statement);
@@ -121,7 +169,7 @@ test.describe('Home and Research routes', () => {
       await page.goto('/');
       const hero = page.locator('[data-home-hero]');
       await expect(hero.locator('.portrait-frame__atlas')).toHaveCount(0);
-      await expect(hero.locator('[data-profile-icon]')).toHaveCount(6);
+      await expect(hero.locator('[data-profile-icon]')).toHaveCount(7);
       await expect(
         hero
           .locator('[data-profile-icon]')
@@ -134,7 +182,8 @@ test.describe('Home and Research routes', () => {
         'GitHub',
         'LinkedIn',
         'ResearchGate',
-        'DBLP'
+        'DBLP',
+        'Hugging Face'
       ]);
       await expect(hero.locator('[data-portrait-frame]')).toHaveCSS(
         'border-top-left-radius',

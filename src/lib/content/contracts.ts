@@ -61,6 +61,7 @@ const rankSchema = z
 
 export const contentSchemas = {
   site: commonSchema.extend({
+    seoDescription: requiredText.optional(),
     summary: requiredText,
     socialLinks: z
       .array(

@@ -17,6 +17,8 @@ socialLinks:
     url: https://www.researchgate.net/profile/Farhan-Sheth
   - label: DBLP
     url: https://dblp.org/pid/399/0371.html
+  - label: Hugging Face
+    url: https://huggingface.co/Phantom-fs
 ---
 
 The public contact path is farhansheth.jb@gmail.com, with context preserved in the email subject.

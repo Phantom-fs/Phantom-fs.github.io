@@ -11,7 +11,7 @@ import VisitorMap from '../components/home/VisitorMap.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadValidatedContent } from '../lib/content/query';
 import { loadBuildMetrics } from '../lib/metrics/loader';
-import { socialLinks } from '../lib/ui/site';
+import { homepageJsonLd, socialLinks } from '../lib/ui/site';
 
 const content = await loadValidatedContent(resolve('src/content'));
 const siteEntry = (id: string) => {
@@ -22,6 +22,12 @@ const siteEntry = (id: string) => {
 const visitorMap = content.site.find(({ data }) => data.id === 'visitor-map');
 if (!visitorMap)
   throw new Error('Required site content is missing: visitor-map');
+const homeIntroduction = siteEntry('home-introduction');
+if (!homeIntroduction.seoDescription) {
+  throw new Error(
+    'Required site content is missing: home-introduction.seoDescription'
+  );
+}
 const domains = [...content.research].sort(
   (left, right) => left.data.order - right.data.order
 );
@@ -33,9 +39,21 @@ const metrics = loadBuildMetrics().author;
 
 <BaseLayout
   title="Home"
-  description={siteEntry('home-introduction').summary}
+  documentTitle="Farhan Sheth | AI Researcher"
+  description={homeIntroduction.seoDescription}
   route="home"
 >
+  <Fragment slot="head">
+    <meta
+      name="google-site-verification"
+      content="7U4pmWJ0ScNO0w0ySLhAAgYqH10UgW5CcPwn58JeA3Q"
+    />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(homepageJsonLd(homeIntroduction.seoDescription))}
+    />
+  </Fragment>
   <HomeHero identity={siteEntry('identity')} socialLinks={socialLinks} />
   <OpportunityStrip opportunity={siteEntry('opportunity')} />
   <ImpactMetrics metrics={metrics} />
@@ -47,7 +65,7 @@ const metrics = loadBuildMetrics().author;
   />
   <ResearchThemeAtlas
     domains={domains.map(({ data }) => data)}
-    introduction={siteEntry('home-introduction')}
+    introduction={homeIntroduction}
   />
   <EditorialPublicationPicks publications={featuredPublications} />
   <CollaborationCallout collaboration={siteEntry('collaboration')} />

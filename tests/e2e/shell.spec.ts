@@ -32,11 +32,9 @@ test.describe('global academic atlas shell', () => {
       'href',
       'https://phantom-fs.github.io/404.html'
     );
-    expect(
-      await page
-        .locator('script[type="application/ld+json"]')
-        .evaluate((element) => element.textContent)
-    ).toContain('ProfilePage');
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(
+      0
+    );
 
     const report = await new AxeBuilder({ page }).analyze();
     expect(

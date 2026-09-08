@@ -31,6 +31,20 @@ describe('global UI system contracts', () => {
     });
   });
 
+  it('allows a page to supply a complete name-first document title', () => {
+    expect(
+      buildPageMetadata({
+        description: 'A research record.',
+        documentTitle: 'Farhan Sheth | AI Researcher',
+        pathname: '/',
+        title: 'Home'
+      })
+    ).toMatchObject({
+      canonical: 'https://phantom-fs.github.io/',
+      title: 'Farhan Sheth | AI Researcher'
+    });
+  });
+
   it('orders only available publication artifacts consistently', () => {
     expect(
       artifactActions({

@@ -3,40 +3,23 @@ import { ClientRouter } from 'astro:transitions';
 import BackToTop from '../components/global/BackToTop.astro';
 import SiteFooter from '../components/global/SiteFooter.astro';
 import SiteHeader from '../components/global/SiteHeader.astro';
-import { buildPageMetadata, deploymentOrigin } from '../lib/ui/system';
+import { buildPageMetadata } from '../lib/ui/system';
 import '../styles/global.css';
 
 interface Props {
   description: string;
+  documentTitle?: string;
   route?: string;
   title: string;
 }
 
-const { description, route, title } = Astro.props;
+const { description, documentTitle, route, title } = Astro.props;
 const metadata = buildPageMetadata({
   description,
+  documentTitle,
   pathname: Astro.url.pathname,
   title
 });
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': ['Person', 'ProfilePage'],
-  email: 'mailto:farhansheth.jb@gmail.com',
-  image: `${deploymentOrigin}/images/profile-img.jpg`,
-  mainEntity: {
-    '@type': 'Person',
-    name: 'Farhan Sheth',
-    url: deploymentOrigin
-  },
-  name: 'Farhan Sheth',
-  sameAs: [
-    'https://scholar.google.com/citations?user=ZeKCtQQAAAAJ',
-    'https://orcid.org/0009-0009-9371-6983',
-    'https://github.com/Phantom-fs',
-    'https://www.linkedin.com/in/farhan-sheth/'
-  ],
-  url: deploymentOrigin
-};
 ---
 
 <!doctype html>
@@ -93,11 +76,6 @@ const personJsonLd = {
       applyStoredTheme();
       document.addEventListener('astro:after-swap', applyStoredTheme);
     </script>
-    <script
-      is:inline
-      type="application/ld+json"
-      set:html={JSON.stringify(personJsonLd)}
-    />
     <slot name="head" />
     <title>{metadata.title}</title>
     <ClientRouter />

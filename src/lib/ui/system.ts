@@ -7,12 +7,14 @@ export const selectTheme = (storedTheme: string | null): ThemeName =>
 
 export interface PageMetadataInput {
   description: string;
+  documentTitle?: string;
   pathname: string;
   title: string;
 }
 
 export const buildPageMetadata = ({
   description,
+  documentTitle,
   pathname,
   title
 }: PageMetadataInput) => {
@@ -28,7 +30,7 @@ export const buildPageMetadata = ({
     canonical,
     description,
     image: `${deploymentOrigin}/images/og-research-atlas.jpg`,
-    title: `${title} | Farhan Sheth`
+    title: documentTitle ?? `${title} | Farhan Sheth`
   };
 };
 
