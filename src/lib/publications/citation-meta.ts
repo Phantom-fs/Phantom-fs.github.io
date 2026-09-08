@@ -2,7 +2,13 @@ export interface CitationMetaPublication {
   authors: Array<{ name: string }>;
   doi?: string;
   title: string;
-  type: 'journal' | 'conference' | 'workshop' | 'preprint' | 'thesis' | 'book-chapter';
+  type:
+    | 'journal'
+    | 'conference'
+    | 'workshop'
+    | 'preprint'
+    | 'thesis'
+    | 'book-chapter';
   venue: string;
   year: number;
 }

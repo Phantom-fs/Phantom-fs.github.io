@@ -704,7 +704,9 @@ test.describe('Publications catalog and approved detail routes', () => {
     expect(bibtex).toContain('eprint = {2606.03399}');
   });
 
-  test('keeps publication catalog abstracts collapsed by default', async ({ page }) => {
+  test('keeps publication catalog abstracts collapsed by default', async ({
+    page
+  }) => {
     await page.goto('/publications/');
     const abstracts = page
       .locator('[data-publication-record] details')

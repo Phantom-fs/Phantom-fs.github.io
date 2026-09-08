@@ -49,10 +49,9 @@ test.describe('Home and Research routes', () => {
       'content',
       'Farhan Sheth, AI researcher'
     );
-    await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute(
-      'content',
-      'Farhan Sheth, AI researcher'
-    );
+    await expect(
+      page.locator('meta[name="twitter:image:alt"]')
+    ).toHaveAttribute('content', 'Farhan Sheth, AI researcher');
     const homepageGraph = await page
       .locator('script[type="application/ld+json"]')
       .evaluateAll((scripts) =>

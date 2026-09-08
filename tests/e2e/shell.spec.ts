@@ -32,9 +32,9 @@ test.describe('global academic atlas shell', () => {
       'href',
       'https://phantom-fs.github.io/404.html'
     );
-    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(
-      0
-    );
+    await expect(
+      page.locator('script[type="application/ld+json"]')
+    ).toHaveCount(0);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
       'content',
       'noindex'
@@ -250,9 +250,9 @@ test.describe('global academic atlas shell', () => {
     expect(await sitemapIndex.text()).toContain(
       '<loc>https://phantom-fs.github.io/sitemap-0.xml</loc>'
     );
-    const locations = [...(await sitemap.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(
-      ([, location]) => location
-    );
+    const locations = [
+      ...(await sitemap.text()).matchAll(/<loc>([^<]+)<\/loc>/g)
+    ].map(([, location]) => location);
     expect(new Set(locations)).toEqual(
       new Set([
         'https://phantom-fs.github.io/',
@@ -272,9 +272,7 @@ test.describe('global academic atlas shell', () => {
           'signal-eacl-2026',
           'soil-classification',
           'uc-prun'
-        ].map(
-          (slug) => `https://phantom-fs.github.io/publications/${slug}/`
-        )
+        ].map((slug) => `https://phantom-fs.github.io/publications/${slug}/`)
       ])
     );
     expect(locations).toHaveLength(16);
