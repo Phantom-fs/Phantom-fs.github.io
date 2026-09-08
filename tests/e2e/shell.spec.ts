@@ -277,7 +277,15 @@ test.describe('global academic atlas shell', () => {
         )
       ])
     );
+    expect(locations).toHaveLength(16);
     expect(locations).not.toContain('https://phantom-fs.github.io/404.html');
+    for (const location of locations) {
+      const document = await page.request.get(new URL(location).pathname);
+      expect(document.ok(), location).toBe(true);
+      expect(await document.text(), location).toContain(
+        `<link rel="canonical" href="${location}"`
+      );
+    }
     expect(await rss.text()).toContain('<rss');
     expect(await robots.text()).toContain(
       'Sitemap: https://phantom-fs.github.io/sitemap-index.xml'

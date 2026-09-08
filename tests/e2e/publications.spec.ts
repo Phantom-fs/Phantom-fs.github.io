@@ -596,6 +596,10 @@ test.describe('Publications catalog and approved detail routes', () => {
     await expect(page.locator('[data-publication-detail]')).toContainText(
       '2026'
     );
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
+      'content',
+      'article'
+    );
     await expect(
       page.locator('[data-publication-detail] details').filter({
         has: page.getByText('Abstract', { exact: true })

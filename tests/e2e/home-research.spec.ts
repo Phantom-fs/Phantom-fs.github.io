@@ -45,6 +45,14 @@ test.describe('Home and Research routes', () => {
     await expect(
       page.locator('meta[name="google-site-verification"]')
     ).toHaveAttribute('content', '7U4pmWJ0ScNO0w0ySLhAAgYqH10UgW5CcPwn58JeA3Q');
+    await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute(
+      'content',
+      'Farhan Sheth, AI researcher'
+    );
+    await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute(
+      'content',
+      'Farhan Sheth, AI researcher'
+    );
     const homepageGraph = await page
       .locator('script[type="application/ld+json"]')
       .evaluateAll((scripts) =>
