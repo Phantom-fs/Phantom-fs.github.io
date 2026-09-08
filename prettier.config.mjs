@@ -1,4 +1,5 @@
 export default {
+  endOfLine: 'crlf',
   plugins: ['prettier-plugin-astro'],
   singleQuote: true,
   trailingComma: 'none',
