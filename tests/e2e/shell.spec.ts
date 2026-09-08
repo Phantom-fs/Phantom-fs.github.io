@@ -35,6 +35,10 @@ test.describe('global academic atlas shell', () => {
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(
       0
     );
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      'content',
+      'noindex'
+    );
 
     const report = await new AxeBuilder({ page }).analyze();
     expect(

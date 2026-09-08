@@ -596,6 +596,49 @@ test.describe('Publications catalog and approved detail routes', () => {
     await expect(page.locator('[data-publication-detail]')).toContainText(
       '2026'
     );
+    await expect(
+      page.locator('[data-publication-detail] details').filter({
+        has: page.getByText('Abstract', { exact: true })
+      })
+    ).toHaveAttribute('open', '');
+    const citationTags = await page
+      .locator('meta[name^="citation_"]')
+      .evaluateAll((tags) =>
+        tags.map((tag) => ({
+          content: tag.getAttribute('content'),
+          name: tag.getAttribute('name')
+        }))
+      );
+    expect(citationTags).toEqual([
+      {
+        content:
+          'Uc-PrUn: Uncertainty-Calibrated Machine Unlearning using Vision-Language Models for Clinical Decision Support',
+        name: 'citation_title'
+      },
+      { content: 'Farhan Sheth', name: 'citation_author' },
+      { content: 'Mohd Mujtaba Akhtar', name: 'citation_author' },
+      { content: 'Girish', name: 'citation_author' },
+      { content: 'Muskaan Singh', name: 'citation_author' },
+      { content: 'Alexander Davey', name: 'citation_author' },
+      { content: '2026', name: 'citation_publication_date' },
+      {
+        content: 'ACM Transactions on Computing for Healthcare',
+        name: 'citation_journal_title'
+      },
+      { content: '10.1145/3820497', name: 'citation_doi' }
+    ]);
+    const scholarlyArticle = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll((scripts) =>
+        scripts
+          .map((script) => JSON.parse(script.textContent ?? 'null'))
+          .find((data) => data?.['@type'] === 'ScholarlyArticle')
+      );
+    expect(scholarlyArticle.author[0]).toMatchObject({
+      '@id': 'https://phantom-fs.github.io/#person',
+      '@type': 'Person',
+      name: 'Farhan Sheth'
+    });
     await page.getByRole('button', { name: 'Copy BibTeX' }).click();
     await expect(page.locator('[data-bibtex-status]')).toHaveText(
       /BibTeX copied\.|Copy unavailable; copy manually\./
@@ -655,6 +698,19 @@ test.describe('Publications catalog and approved detail routes', () => {
     expect(bibtex).toMatch(/^@misc\{/);
     expect(bibtex).not.toContain('booktitle');
     expect(bibtex).toContain('eprint = {2606.03399}');
+  });
+
+  test('keeps publication catalog abstracts collapsed by default', async ({ page }) => {
+    await page.goto('/publications/');
+    const abstracts = page
+      .locator('[data-publication-record] details')
+      .filter({ has: page.getByText('Abstract', { exact: true }) });
+    expect(await abstracts.count()).toBeGreaterThan(0);
+    expect(
+      await abstracts.evaluateAll((details) =>
+        details.every((details) => !details.hasAttribute('open'))
+      )
+    ).toBe(true);
   });
 
   test('preserves an applied catalog query through the visible detail return path', async ({

@@ -9,11 +9,12 @@ import '../styles/global.css';
 interface Props {
   description: string;
   documentTitle?: string;
+  robots?: string;
   route?: string;
   title: string;
 }
 
-const { description, documentTitle, route, title } = Astro.props;
+const { description, documentTitle, robots, route, title } = Astro.props;
 const metadata = buildPageMetadata({
   description,
   documentTitle,
@@ -28,6 +29,7 @@ const metadata = buildPageMetadata({
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={metadata.description} />
+    {robots && <meta name="robots" content={robots} />}
     <meta name="theme-color" content="#F4F1E8" />
     <link rel="canonical" href={metadata.canonical} />
     <link
