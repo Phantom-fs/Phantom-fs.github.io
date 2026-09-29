@@ -20,7 +20,7 @@ hashtags: [speech-forensics, synthetic-speech, emotion, geometric-learning]
 tldr: MiCuNet uses mixed-curvature fusion and temporal gating to trace emotion, manipulation, and generator source across English and Chinese synthetic speech.
 doi: 10.18653/v1/2025.findings-ijcnlp.37
 arxivId: '2511.10790'
-scholarPublicationId: ZeKCtQQAAAAJ:YOwf2qJgpHMC
+scholarPublicationId: ZeKCtQQAAAAJ:mB3voiENLucC
 links:
   paper: https://aclanthology.org/2025.findings-ijcnlp.37/
 openAccess: true
