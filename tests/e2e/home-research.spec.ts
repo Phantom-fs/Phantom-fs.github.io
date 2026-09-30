@@ -63,18 +63,18 @@ test.describe('Home and Research routes', () => {
     expect(homepageGraph['@graph']).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          '@id': 'https://phantom-fs.github.io/#website',
+          '@id': 'https://farhansheth.com/#website',
           '@type': 'WebSite',
           name: 'Farhan Sheth',
-          url: 'https://phantom-fs.github.io/'
+          url: 'https://farhansheth.com'
         }),
         expect.objectContaining({
-          '@id': 'https://phantom-fs.github.io/#profile-page',
+          '@id': 'https://farhansheth.com/#profile-page',
           '@type': 'ProfilePage',
-          mainEntity: { '@id': 'https://phantom-fs.github.io/#person' }
+          mainEntity: { '@id': 'https://farhansheth.com/#person' }
         }),
         expect.objectContaining({
-          '@id': 'https://phantom-fs.github.io/#person',
+          '@id': 'https://farhansheth.com/#person',
           '@type': 'Person',
           name: 'Farhan Sheth',
           sameAs: [

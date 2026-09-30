@@ -639,7 +639,7 @@ test.describe('Publications catalog and approved detail routes', () => {
           .find((data) => data?.['@type'] === 'ScholarlyArticle')
       );
     expect(scholarlyArticle.author[0]).toMatchObject({
-      '@id': 'https://phantom-fs.github.io/#person',
+      '@id': 'https://farhansheth.com/#person',
       '@type': 'Person',
       name: 'Farhan Sheth'
     });

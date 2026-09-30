@@ -1,6 +1,6 @@
 export type ThemeName = 'light' | 'dark';
 
-export const deploymentOrigin = 'https://phantom-fs.github.io';
+export const deploymentOrigin = 'https://farhansheth.com';
 
 export const selectTheme = (storedTheme: string | null): ThemeName =>
   storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : 'light';

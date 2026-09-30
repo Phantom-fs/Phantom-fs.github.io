@@ -25,8 +25,8 @@ describe('global UI system contracts', () => {
         title: 'Research'
       })
     ).toMatchObject({
-      canonical: 'https://phantom-fs.github.io/research/',
-      image: 'https://phantom-fs.github.io/images/og-research-atlas.jpg',
+      canonical: 'https://farhansheth.com/research/',
+      image: 'https://farhansheth.com/images/og-research-atlas.jpg',
       title: 'Research | Farhan Sheth'
     });
   });
@@ -40,7 +40,7 @@ describe('global UI system contracts', () => {
         title: 'Home'
       })
     ).toMatchObject({
-      canonical: 'https://phantom-fs.github.io/',
+      canonical: 'https://farhansheth.com',
       title: 'Farhan Sheth | AI Researcher'
     });
   });

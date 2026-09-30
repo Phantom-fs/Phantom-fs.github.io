@@ -1,6 +1,6 @@
 # Farhan Sheth
 
-Farhan Sheth's academic website: [phantom-fs.github.io](https://phantom-fs.github.io/).
+Farhan Sheth's academic website: [farhansheth.com](https://farhansheth.com).
 
 ## License
 

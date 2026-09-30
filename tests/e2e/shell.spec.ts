@@ -30,7 +30,7 @@ test.describe('global academic atlas shell', () => {
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      'https://phantom-fs.github.io/404.html'
+      'https://farhansheth.com/404.html'
     );
     await expect(
       page.locator('script[type="application/ld+json"]')
@@ -248,19 +248,19 @@ test.describe('global academic atlas shell', () => {
     expect(sitemap.ok()).toBe(true);
     await expect(sitemap).toBeOK();
     expect(await sitemapIndex.text()).toContain(
-      '<loc>https://phantom-fs.github.io/sitemap-0.xml</loc>'
+      '<loc>https://farhansheth.com/sitemap-0.xml</loc>'
     );
     const locations = [
       ...(await sitemap.text()).matchAll(/<loc>([^<]+)<\/loc>/g)
     ].map(([, location]) => location);
     expect(new Set(locations)).toEqual(
       new Set([
-        'https://phantom-fs.github.io/',
-        'https://phantom-fs.github.io/research/',
-        'https://phantom-fs.github.io/publications/',
-        'https://phantom-fs.github.io/projects/',
-        'https://phantom-fs.github.io/about/',
-        'https://phantom-fs.github.io/overview/',
+        'https://farhansheth.com/',
+        'https://farhansheth.com/research/',
+        'https://farhansheth.com/publications/',
+        'https://farhansheth.com/projects/',
+        'https://farhansheth.com/about/',
+        'https://farhansheth.com/overview/',
         ...[
           'alzheimer-detection',
           'cross-lingual-generator-attribution',
@@ -272,11 +272,11 @@ test.describe('global academic atlas shell', () => {
           'signal-eacl-2026',
           'soil-classification',
           'uc-prun'
-        ].map((slug) => `https://phantom-fs.github.io/publications/${slug}/`)
+        ].map((slug) => `https://farhansheth.com/publications/${slug}/`)
       ])
     );
     expect(locations).toHaveLength(16);
-    expect(locations).not.toContain('https://phantom-fs.github.io/404.html');
+    expect(locations).not.toContain('https://farhansheth.com/404.html');
     for (const location of locations) {
       const document = await page.request.get(new URL(location).pathname);
       expect(document.ok(), location).toBe(true);
@@ -286,7 +286,7 @@ test.describe('global academic atlas shell', () => {
     }
     expect(await rss.text()).toContain('<rss');
     expect(await robots.text()).toContain(
-      'Sitemap: https://phantom-fs.github.io/sitemap-index.xml'
+      'Sitemap: https://farhansheth.com/sitemap-index.xml'
     );
   });
 

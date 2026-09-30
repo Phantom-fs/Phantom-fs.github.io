@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://phantom-fs.github.io',
+  site: 'https://farhansheth.com',
   base: '/',
   integrations: [
     preact(),
