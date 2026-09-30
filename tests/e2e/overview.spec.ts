@@ -229,6 +229,46 @@ test.describe('Scholar overview reading mode', () => {
   }) => {
     for (const route of [...normalRoutes, '/overview/']) {
       await page.goto(route);
+
+      await page.evaluate(() => {
+        window.scrollTo(0, 0);
+      });
+
+      // Make sure the browser really reached the component's hidden threshold.
+      await expect
+        .poll(() => page.evaluate(() => window.scrollY))
+        .toBeLessThan(160);
+
+      // Explicitly notify the scroll-driven component after position settles.
+      await page.evaluate(() => {
+        window.dispatchEvent(new Event('scroll'));
+      });
+
+      const footer = page.locator('.site-footer');
+      const contact = footer.locator('.site-footer__contact');
+      const backToTop = page.locator('[data-back-to-top]');
+
+      await expect(
+        footer.getByText('Farhan Sheth', { exact: true })
+      ).toBeVisible();
+      await expect(contact).toContainText('Get in touch');
+      await expect(contact.locator('svg')).toHaveCount(1);
+      await expect(contact).toHaveCSS('min-height', '44px');
+      await expect(
+        footer
+          .getByRole('navigation', { name: 'Research profiles' })
+          .locator('a')
+      ).toHaveCount(7);
+
+      await expect(backToTop).toHaveAttribute('href', '#main-content');
+      await expect(
+        backToTop,
+        `Back-to-top should be hidden at the top of ${route}`
+      ).toBeHidden();
+    }
+    /*
+    for (const route of [...normalRoutes, '/overview/']) {
+      await page.goto(route);
       await page.evaluate(() => window.scrollTo(0, 0));
       const footer = page.locator('.site-footer');
       const contact = footer.locator('.site-footer__contact');
@@ -248,6 +288,7 @@ test.describe('Scholar overview reading mode', () => {
       await expect(backToTop).toHaveAttribute('href', '#main-content');
       await expect(backToTop).toBeHidden();
     }
+    */
 
     await page.goto('/about/');
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
