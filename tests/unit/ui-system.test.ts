@@ -40,7 +40,7 @@ describe('global UI system contracts', () => {
         title: 'Home'
       })
     ).toMatchObject({
-      canonical: 'https://farhansheth.com',
+      canonical: 'https://farhansheth.com/',
       title: 'Farhan Sheth | AI Researcher'
     });
   });

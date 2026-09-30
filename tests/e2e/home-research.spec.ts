@@ -66,7 +66,7 @@ test.describe('Home and Research routes', () => {
           '@id': 'https://farhansheth.com/#website',
           '@type': 'WebSite',
           name: 'Farhan Sheth',
-          url: 'https://farhansheth.com'
+          url: 'https://farhansheth.com/'
         }),
         expect.objectContaining({
           '@id': 'https://farhansheth.com/#profile-page',
