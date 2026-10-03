@@ -18,7 +18,7 @@ primaryCategory: Earth & Agricultural Intelligence
 hashtags: [herb-identification, computer-vision, vision-transformers, dataset]
 tldr: Herbify standardizes 6,104 images across 91 species and combines EfficientNetV2-Large with ViT-Large/16 for high-precision identification.
 doi: 10.1186/s13007-025-01421-5
-scholarPublicationId: ZeKCtQQAAAAJ:Tyk-4Ss8FVUC
+scholarPublicationId: ZeKCtQQAAAAJ:HDshCWvjkbEC
 links:
   paper: https://doi.org/10.1186/s13007-025-01421-5
   code: https://github.com/Phantom-fs/Herbify-Modules
