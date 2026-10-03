@@ -38,6 +38,7 @@ export const homepageJsonLd = (description: string) => ({
       '@id': websiteId,
       '@type': 'WebSite',
       name: 'Farhan Sheth',
+      alternateName: 'Farhan Sheth Research',
       url: canonicalSiteUrl
     },
     {

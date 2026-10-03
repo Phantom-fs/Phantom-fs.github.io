@@ -13,6 +13,17 @@ import { loadValidatedContent } from '../lib/content/query';
 import { loadBuildMetrics } from '../lib/metrics/loader';
 import { homepageJsonLd, socialLinks } from '../lib/ui/site';
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://farhansheth.com/#website',
+  url: 'https://farhansheth.com/',
+  name: 'Farhan Sheth',
+  alternateName: [
+    'Farhan Sheth | AI Researcher',
+    'farhansheth.com'
+  ]
+};
 const content = await loadValidatedContent(resolve('src/content'));
 const siteEntry = (id: string) => {
   const entry = content.site.find(({ data }) => data.id === id);
