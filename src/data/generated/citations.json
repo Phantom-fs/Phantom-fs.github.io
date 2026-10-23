@@ -1,74 +1,74 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-17T12:11:59Z",
+  "generatedAt": "2026-10-23T13:27:48Z",
   "stale": false,
   "author": {
     "totalCitations": {
-      "value": 131,
+      "value": 133,
       "source": "scholar",
       "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-      "updatedAt": "2026-10-17T12:11:59Z",
+      "updatedAt": "2026-10-23T13:27:48Z",
       "stale": false
     },
     "hIndex": {
       "value": 7,
       "source": "scholar",
       "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-      "updatedAt": "2026-10-17T12:11:59Z",
+      "updatedAt": "2026-10-23T13:27:48Z",
       "stale": false
     },
     "i10Index": {
       "value": 7,
       "source": "scholar",
       "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-      "updatedAt": "2026-10-17T12:11:59Z",
+      "updatedAt": "2026-10-23T13:27:48Z",
       "stale": false
     },
     "publicationCount": {
       "value": 18,
       "source": "scholar",
       "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-      "updatedAt": "2026-10-17T12:11:59Z",
+      "updatedAt": "2026-10-23T13:27:48Z",
       "stale": false
     }
   },
   "publications": {
     "soil-classification": {
       "citationCount": {
-        "value": 20,
+        "value": 21,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:UeHWp8X0CEIC"
+    },
+    "nanofluid-density": {
+      "citationCount": {
+        "value": 19,
+        "source": "scholar",
+        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
+        "updatedAt": "2026-10-23T13:27:48Z",
+        "stale": false
+      },
+      "sourceIdentifier": "ZeKCtQQAAAAJ:qjMakFHDy7sC"
     },
     "herbify": {
       "citationCount": {
         "value": 18,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:HDshCWvjkbEC"
-    },
-    "nanofluid-density": {
-      "citationCount": {
-        "value": 18,
-        "source": "scholar",
-        "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
-        "stale": false
-      },
-      "sourceIdentifier": "ZeKCtQQAAAAJ:qjMakFHDy7sC"
     },
     "geological-rock-classification": {
       "citationCount": {
         "value": 15,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:9yKSN-GCB0IC"
@@ -78,7 +78,7 @@
         "value": 14,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:Zph67rFs4hoC"
@@ -88,7 +88,7 @@
         "value": 12,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:u-x6o8ySG0sC"
@@ -98,7 +98,7 @@
         "value": 10,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:u5HHmVD_uO8C"
@@ -108,7 +108,7 @@
         "value": 5,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:aqlVkmm33-oC"
@@ -118,7 +118,7 @@
         "value": 5,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:mVmsd5A6BfQC"
@@ -128,7 +128,7 @@
         "value": 5,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:qxL8FJ1GzNcC"
@@ -138,7 +138,7 @@
         "value": 5,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:qUcmZB5y_30C"
@@ -148,7 +148,7 @@
         "value": 2,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:_kc_bZDykSQC"
@@ -158,7 +158,7 @@
         "value": 1,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:hC7cP41nSMkC"
@@ -168,7 +168,7 @@
         "value": 1,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:mB3voiENLucC"
@@ -178,7 +178,7 @@
         "value": 0,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:L8Ckcad2t8MC"
@@ -188,7 +188,7 @@
         "value": 0,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:7PzlFSSx8tAC"
@@ -198,7 +198,7 @@
         "value": 0,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:9ZlFYXVOiuMC"
@@ -208,7 +208,7 @@
         "value": 0,
         "source": "scholar",
         "sourceUrl": "https://scholar.google.com/citations?user=ZeKCtQQAAAAJ",
-        "updatedAt": "2026-10-17T12:11:59Z",
+        "updatedAt": "2026-10-23T13:27:48Z",
         "stale": false
       },
       "sourceIdentifier": "ZeKCtQQAAAAJ:IWHjjKOFINEC"
