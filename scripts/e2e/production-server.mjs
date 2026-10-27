@@ -35,7 +35,7 @@ const runProductionBuild = async () => {
   await new Promise((resolveBuild, rejectBuild) => {
     const build = spawn(process.execPath, [buildEntrypoint], {
       cwd: root,
-      env: process.env,
+      env: { ...process.env, METRICS_MODE: 'push' },
       stdio: 'inherit'
     });
     build.once('error', rejectBuild);

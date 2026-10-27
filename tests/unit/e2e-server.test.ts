@@ -20,6 +20,7 @@ describe('production browser-server harness', () => {
     expect(build).not.toContain('python -m http.server');
     expect(server).toContain("'scripts', 'build.mjs'");
     expect(server).toMatch(/spawn\(\s*process\.execPath/);
+    expect(server).toContain("env: { ...process.env, METRICS_MODE: 'push' }");
     expect(server).not.toContain('npm_execpath');
     expect(server).not.toMatch(/spawn\(['\"]pnpm/);
     expect(server).not.toContain('python -m http.server');

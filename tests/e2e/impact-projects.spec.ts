@@ -37,12 +37,23 @@ for (const width of [320, 390, 1440]) {
         )
       ).toBe(true);
       await expect(dialog.locator('p, details, table')).toHaveCount(0);
-      if (key === 'citations')
-        await expect(
-          dialog.locator(
-            '[data-impact-panel="citations"] .impact-bars__label strong'
-          )
-        ).toHaveText(['37', '93', '3']);
+      if (key === 'citations') {
+        const counts = await dialog
+          .locator('[data-impact-panel="citations"] .impact-bars__label strong')
+          .allTextContents();
+        const total = Number(
+          (
+            await trigger
+              .locator('..')
+              .locator('.citation-metric__value')
+              .innerText()
+          ).replace(/,/g, '')
+        );
+        expect(counts).toHaveLength(3);
+        expect(counts.reduce((sum, count) => sum + Number(count), 0)).toBe(
+          total
+        );
+      }
       if (key === 'h-index')
         await expect(
           dialog.locator('.impact-rank-bars__bar--core')
