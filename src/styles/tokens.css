@@ -57,6 +57,7 @@
   --color-focus: #4c6a92;
   --color-subtle: #eef1f4;
   --color-scroll-thumb: #8393a2;
+  --color-scroll-idle: rgb(131 147 162 / 8%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -77,6 +78,7 @@
     --color-focus: #a4bad4;
     --color-subtle: #303940;
     --color-scroll-thumb: #9aa9b6;
+    --color-scroll-idle: rgb(154 169 182 / 8%);
   }
 }
 
@@ -97,6 +99,7 @@
   --color-focus: #a4bad4;
   --color-subtle: #303940;
   --color-scroll-thumb: #9aa9b6;
+  --color-scroll-idle: rgb(154 169 182 / 8%);
 }
 
 @font-face {

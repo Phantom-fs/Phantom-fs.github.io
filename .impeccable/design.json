@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-27T06:30:42.931Z",
+  "generatedAt": "2026-10-27T16:54:00Z",
   "title": "Design System: Editorial Research Atlas",
   "extensions": {
     "colorMeta": {
@@ -194,7 +194,23 @@
         "name": "research-sticky-min-height",
         "value": "45rem"
       }
-    ]
+    ],
+    "impactExplorer": {
+      "source": "Unchanged saved Google Scholar snapshot and validated catalogue years",
+      "views": [
+        "Current citations grouped by publication year",
+        "Top 12 papers ranked by citations with h-core and threshold",
+        "i10 threshold counts",
+        "Publications by catalogue year"
+      ],
+      "interaction": "Native modal, 44px close X, Escape, backdrop dismissal, focus restoration, title/key/chart only, accessible data values and static no-JS charts",
+      "scope": "Publication-year citation grouping is not a historical received-citations series; user explicitly permits it after Scholar access failed."
+    },
+    "projectNavigation": "Shared Research tab controller: default first project, sidebar summaries, keyboard, hash/history, full no-JS reading; closing CTA preserved.",
+    "footer": "Original compact layout, copyright aligned to the left frame edge, static box/diagonal-arrow icons on profile and return links; email button is text only.",
+    "themeControl": "44px circular icon-only sun/moon button with accessible dynamic action label and persistent theme choice.",
+    "backToTop": "56px circular up arrow; scroll to exact zero, focus main without scrolling and preserve chapter/query hash. Home opportunity/impact boundary is one neutral 1px rule.",
+    "readingModeNavigation": "Home first in primary navigation for all routes. In the mobile menu, Scholar view / Full site is a centered full-width action directly above Download CV with a 12px gap. Overview desktop uses Home in navigation and Full site as its separate header utility."
   },
   "components": [
     {
@@ -263,7 +279,7 @@
     "keyCharacteristics": [
       "Labeled research relationships provide orientation without decorative framing.",
       "Hairline rules and compact metadata create an annotated-bibliography rhythm.",
-      "Identity and bounded portrait form one asymmetric hero composition; the role sits below the identity heading.",
+      "Identity and bounded portrait form one asymmetric hero composition; the role sits above the identity heading.",
       "Six research categories are distinguished by line pattern, geometry, and explicit labels—not a rainbow palette.",
       "Publication entries are records in a continuous scholarly index, not interchangeable product cards."
     ],
@@ -287,8 +303,8 @@
       "**Do** design unavailable, stale, empty, loading, failure, long-title, and missing-artifact states.",
       "**Do** use the conditional native sticky Research atlas to preserve domain context on sufficiently wide and tall viewports, with a normal-flow fallback everywhere else.",
       "**Do** vary section composition through proportion, measure, rhythm bands, and evidence density while preserving semantic order.",
-      "**Do** use shared symmetric section and introduction spacing, with the role below the Home identity heading.",
-      "Use graphite/cool-gray 28–32px section headings and 18–22px subordinate headings. Home domain headings and compact News use 16–18px, with blue-gray native scrollbars at 8% idle opacity, revealed during scrolling or keyboard focus and fading after 800ms idle. Research list headings and introductory copy stay outside its keyboard/wheel scroll area. Home/About opportunities keep centered-left headings and right-side actions on desktop, switch all content left on mobile, and use an 8px copy/action gap. Discuss research uses the same section heading role, with right-side desktop actions and natural-width left-side mobile actions. Research/Projects closing actions follow the same responsive alignment. Back-to-top is a 56px circle with a 24px static up arrow and accessible label. The visitor frame keeps its full-width border, with a separate centered widget capped at 640px."
+      "**Do** use shared symmetric section and introduction spacing, with the role above the Home identity heading.",
+      "Use graphite/cool-gray 28–32px section headings and 18–22px subordinate headings. Home domain headings and compact News use 16–18px, with blue-gray native scrollbars at 8% idle opacity, revealed only on scrollbar gutter hover or press, never during content scrolling/focus, with explicit RGBA idle colors and no transition. Research list headings and introductory copy stay outside its keyboard/wheel scroll area. Home/About opportunities keep centered-left headings and right-side actions on desktop, switch all content left on mobile, and use an 8px copy/action gap. Discuss research uses the same section heading role, with right-side desktop actions and natural-width left-side mobile actions. Research/Projects closing actions follow the same responsive alignment. Back-to-top is a 56px circle with a 24px static up arrow and accessible label. The visitor frame keeps its full-width border, with a separate centered widget capped at 640px."
     ],
     "donts": [
       "**Don't** reuse the reference site's layouts, structure, or styling.",
@@ -296,7 +312,7 @@
       "**Don't** use purple/violet, neon gradients, gradient text, glow, glassmorphism, giant pills, stock AI imagery, or synthetic headshot retouching.",
       "**Don't** repeat tiny uppercase eyebrows, numbered section labels, identical cards, or hero-metric templates as scaffolding.",
       "**Don't** return to cream/terracotta by default or treat familiar colors and fonts as evidence of AI authorship; reference history establishes a human design process, not a current-site authorship guarantee.",
-      "**Don't** add decorative arrows to actions, footer utilities or back-to-top controls, or duplicate a research category above its heading.",
+      "**Don't** add decorative arrows to actions or footer utilities (retain the functional Back to top arrow), or duplicate a research category above its heading.",
       "**Don't** use side-stripe accents, decorative grid/stripe backgrounds, wide ghost-card shadows, over-rounding, or sketchy SVG illustrations.",
       "**Don't** introduce a centered cinematic Hero, strict AIDA restructuring, bento grid, marquee, horizontal accordion, testimonial carousel, blanket alternating case studies, scroll-scrubbed text, card-stack reveal, or GSAP scroll pinning.",
       "**Don't** replace an intentional decision because it appears on an Impeccable caution list; keep the exception visible and request approval for any future change.",

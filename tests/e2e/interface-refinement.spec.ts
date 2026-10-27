@@ -367,7 +367,9 @@ test('mobile filters align with sort and Back to top is a circular target', asyn
   await dialog.screenshot({
     path: `.impeccable/review/refinement/filter-${test.info().project.name}.png`
   });
-  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await dialog
+    .getByRole('button', { name: 'Close filters', exact: true })
+    .click();
   await page.evaluate(() => scrollTo(0, document.body.scrollHeight));
   const top = page.locator('[data-back-to-top]');
   await expect(top).toBeVisible();

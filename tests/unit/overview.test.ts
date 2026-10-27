@@ -51,7 +51,7 @@ describe('Scholar overview source contract', () => {
     expect(header).toContain("{ href: '/', label: 'Full site' }");
     expect(header).toContain('data-full-site-return');
     expect(footer).toContain('aria-label="Return to full site"');
-    expect(footer).toContain('<svg');
+    expect(footer).toContain('ExternalLinkIcon');
     expect(footer).toContain('site-footer__contact');
     expect(footer).not.toContain(
       '<nav class="site-footer__links type-body-sm" aria-label="Research profiles">\n      {\n        isOverview'

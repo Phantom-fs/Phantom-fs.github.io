@@ -2,7 +2,7 @@
   <a
     class="back-to-top"
     data-back-to-top
-    href="#main-content"
+    href="#page-top"
     aria-label="Back to top"
     hidden
   >
@@ -30,6 +30,24 @@
     };
 
     updateVisibility();
+    control.addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault();
+        document
+          .querySelector<HTMLElement>('main')
+          ?.focus({ preventScroll: true });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+            .matches
+            ? 'instant'
+            : 'smooth'
+        });
+      },
+      { signal: scrollLifecycle.signal }
+    );
     window.addEventListener('scroll', updateVisibility, {
       passive: true,
       signal: scrollLifecycle.signal

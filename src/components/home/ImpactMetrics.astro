@@ -1,8 +1,12 @@
 ---
 import type { NormalizedMetrics } from '../../lib/metrics/contract';
+import ImpactExplorer from './ImpactExplorer.astro';
 
-const { metrics } = Astro.props as {
+const { metrics, publications, snapshot, copy } = Astro.props as {
   metrics: NormalizedMetrics['author'];
+  publications: { id: string; title: string; year: number }[];
+  snapshot: NormalizedMetrics;
+  copy: { data: { title: string; summary: string }; body: string };
 };
 ---
 
@@ -19,34 +23,61 @@ const { metrics } = Astro.props as {
       </div>
     </div>
     <dl class="impact-metrics__list">
-      <div class="citation-metric" data-citation-metric>
+      <div class="citation-metric impact-metric" data-citation-metric>
         <dt>Total citations</dt>
         <dd>
           <span class="citation-metric__value"
             >{metrics.totalCitations.value}</span
           >
+          <a
+            href="#impact-data"
+            class="impact-trigger"
+            data-impact-trigger="citations"
+            aria-label={`Explore total citations: ${metrics.totalCitations.value}`}
+          ></a>
         </dd>
       </div>
-      <div class="citation-metric" data-citation-metric>
+      <div class="citation-metric impact-metric" data-citation-metric>
         <dt>h-index</dt>
         <dd>
           <span class="citation-metric__value">{metrics.hIndex.value}</span>
+          <a
+            href="#impact-data"
+            class="impact-trigger"
+            data-impact-trigger="h-index"
+            aria-label={`Explore h-index: ${metrics.hIndex.value}`}></a>
         </dd>
       </div>
-      <div class="citation-metric" data-citation-metric>
+      <div class="citation-metric impact-metric" data-citation-metric>
         <dt>i10-index</dt>
         <dd>
           <span class="citation-metric__value">{metrics.i10Index.value}</span>
+          <a
+            href="#impact-data"
+            class="impact-trigger"
+            data-impact-trigger="i10-index"
+            aria-label={`Explore i10-index: ${metrics.i10Index.value}`}></a>
         </dd>
       </div>
-      <div class="citation-metric" data-citation-metric>
+      <div class="citation-metric impact-metric" data-citation-metric>
         <dt>Publications</dt>
         <dd>
           <span class="citation-metric__value"
             >{metrics.publicationCount.value}</span
           >
+          <a
+            href="#impact-data"
+            class="impact-trigger"
+            data-impact-trigger="publications"
+            aria-label={`Explore publications: ${metrics.publicationCount.value}`}
+          ></a>
         </dd>
       </div>
     </dl>
+    <ImpactExplorer
+      publications={publications}
+      snapshot={snapshot}
+      copy={copy}
+    />
   </div>
 </section>

@@ -1,0 +1,187 @@
+.impact-metric {
+  position: relative;
+}
+
+.impact-trigger {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.impact-metrics__list .impact-metric:is(:hover, :focus-within) {
+  border-color: var(--color-annotation);
+  background: var(--color-subtle);
+}
+
+.impact-metric:is(:hover, :focus-within) dt,
+.impact-metric:is(:hover, :focus-within) .citation-metric__value {
+  color: var(--color-link-hover);
+}
+
+.impact-dialog {
+  width: min(48rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.impact-dialog::backdrop {
+  background: rgb(0 0 0 / 45%);
+}
+
+.impact-dialog__close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+}
+
+[data-impact-panel] > h2 {
+  min-height: 2.75rem;
+  padding-inline-end: 3rem;
+  align-content: center;
+}
+
+.impact-dialog__body,
+.impact-static-data {
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-6);
+}
+
+.impact-static-data h3 {
+  font-size: var(--type-entry-heading);
+  font-weight: 550;
+}
+
+[data-impact-panel] {
+  display: grid;
+  gap: var(--space-5);
+}
+
+[data-impact-panel][hidden] {
+  display: none;
+}
+
+.impact-bar-chart,
+.impact-line-chart {
+  margin: 0;
+}
+
+.impact-bar-chart figcaption {
+  margin-bottom: var(--space-4);
+  color: var(--color-muted);
+}
+
+.impact-bars {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.impact-bars__label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
+  font-size: 0.875rem;
+}
+
+.impact-bars__label span {
+  overflow-wrap: anywhere;
+}
+
+.impact-bars__track {
+  height: 0.5rem;
+  background: var(--color-rule);
+}
+
+.impact-bars__track span {
+  display: block;
+  height: 100%;
+  background: var(--color-annotation);
+}
+
+.impact-rank-chart {
+  margin: 0;
+}
+
+.impact-rank-chart figcaption {
+  color: var(--color-muted);
+  margin-bottom: var(--space-8);
+}
+
+.impact-rank-plot {
+  position: relative;
+  height: 13rem;
+  margin-bottom: var(--space-6);
+}
+
+.impact-rank-bars {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.25rem, 1vw, 0.75rem);
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.impact-rank-bars li {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  min-width: 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.impact-rank-bars__bar {
+  position: relative;
+  width: 100%;
+  background: var(--color-control-rule);
+}
+
+.impact-rank-bars__bar--core {
+  background: var(--color-annotation);
+}
+
+.impact-rank-bars__value,
+.impact-rank-bars__rank {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.impact-rank-bars__value {
+  bottom: calc(100% + 0.25rem);
+}
+
+.impact-rank-bars__rank {
+  top: calc(100% + 0.25rem);
+}
+
+.impact-rank-threshold {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-top: 1px dashed var(--color-ink);
+  pointer-events: none;
+}
+
+@media (max-width: 29rem) {
+  .impact-dialog__body {
+    padding: var(--space-4);
+  }
+}

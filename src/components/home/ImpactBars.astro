@@ -1,0 +1,28 @@
+---
+const { rows, label } = Astro.props as {
+  rows: { label: string; title?: string; value: number }[];
+  label: string;
+};
+const maximum = Math.max(1, ...rows.map((row) => row.value));
+---
+
+<figure class="impact-bar-chart" aria-label={label}>
+  <figcaption class="type-label">{label}</figcaption>
+  <ol class="impact-bars">
+    {
+      rows.map((row) => (
+        <li>
+          <div class="impact-bars__label">
+            <>
+              <span title={row.title}>{row.label}</span>
+              <strong>{row.value}</strong>
+            </>
+          </div>
+          <div class="impact-bars__track" aria-hidden="true">
+            <span style={`width:${(row.value / maximum) * 100}%`} />
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</figure>

@@ -1,0 +1,81 @@
+---
+import type { NormalizedMetrics } from '../../lib/metrics/contract';
+import { buildImpactData } from '../../lib/ui/impact-data';
+import CloseIcon from '../shared/CloseIcon.astro';
+import ImpactBars from './ImpactBars.astro';
+import ImpactRankChart from './ImpactRankChart.astro';
+const { publications, snapshot, copy } = Astro.props as {
+  publications: { id: string; title: string; year: number }[];
+  snapshot: NormalizedMetrics;
+  copy: { data: { title: string; summary: string }; body: string };
+};
+const data = buildImpactData(publications, snapshot);
+---
+
+<dialog
+  class="impact-dialog"
+  id="impact-dialog"
+  aria-labelledby="impact-citations-title"
+  aria-description={copy.body}
+  data-impact-dialog
+>
+  <button
+    class="control icon-control impact-dialog__close"
+    type="button"
+    data-impact-close
+    aria-label="Close impact details"><CloseIcon /></button
+  >
+  <div class="impact-dialog__body">
+    <section data-impact-panel="citations">
+      <h2 class="type-heading-md" id="impact-citations-title">
+        Citations by publication year
+      </h2>
+      <ImpactBars
+        rows={data.citationsByYear}
+        label="Publication year · current citations"
+      />
+    </section>
+    <section data-impact-panel="h-index" hidden>
+      <h2 class="type-heading-md" id="impact-h-index-title">
+        h-index citation profile
+      </h2>
+      <ImpactRankChart
+        papers={data.papers}
+        hIndex={snapshot.author.hIndex.value}
+      />
+    </section>
+    <section data-impact-panel="i10-index" hidden>
+      <h2 class="type-heading-md" id="impact-i10-index-title">
+        Papers by citation threshold
+      </h2>
+      <ImpactBars rows={data.thresholds} label="i10 threshold · paper counts" />
+    </section>
+    <section data-impact-panel="publications" hidden>
+      <h2 class="type-heading-md" id="impact-publications-title">
+        Publications by year
+      </h2>
+      <ImpactBars rows={data.byYear} label="Catalogue year · paper counts" />
+    </section>
+  </div>
+</dialog>
+<noscript>
+  <section id="impact-data" class="impact-static-data">
+    <h3>Citations by publication year</h3>
+    <ImpactBars
+      rows={data.citationsByYear}
+      label="Publication year · current citations"
+    />
+    <h3>h-index citation profile</h3>
+    <ImpactRankChart
+      papers={data.papers}
+      hIndex={snapshot.author.hIndex.value}
+    />
+    <h3>Papers by citation threshold</h3>
+    <ImpactBars rows={data.thresholds} label="i10 threshold · paper counts" />
+    <h3>Publications by year</h3>
+    <ImpactBars rows={data.byYear} label="Catalogue year · paper counts" />
+  </section>
+</noscript>
+<script>
+  import '../../lib/ui/impact-dialog';
+</script>

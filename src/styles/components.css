@@ -249,6 +249,15 @@
   min-height: 2.75rem;
 }
 
+.site-dialog__actions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.site-dialog__actions .action {
+  text-align: center;
+}
+
 .site-footer {
   border-top: 1px solid var(--color-rule);
   padding-block: var(--space-8);
@@ -339,6 +348,57 @@
   .site-footer__links {
     margin-inline-start: 0;
   }
+}
+
+.site-footer__copyright {
+  max-width: none;
+  text-align: left;
+  margin-block-start: var(--space-6);
+  margin-block-end: 0;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+.icon-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 1px solid var(--color-rule);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.icon-control svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-control:is(:hover, :focus-visible) {
+  color: var(--color-link-hover);
+  border-color: currentcolor;
+}
+
+.theme-toggle svg {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle__sun,
+[data-theme='dark'] .theme-toggle__moon {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle__sun {
+  display: block;
 }
 
 .back-to-top {

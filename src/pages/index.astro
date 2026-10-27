@@ -13,14 +13,6 @@ import { loadValidatedContent } from '../lib/content/query';
 import { loadBuildMetrics } from '../lib/metrics/loader';
 import { homepageJsonLd, socialLinks } from '../lib/ui/site';
 
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': 'https://farhansheth.com/#website',
-  url: 'https://farhansheth.com/',
-  name: 'Farhan Sheth',
-  alternateName: ['Farhan Sheth | AI Researcher', 'farhansheth.com']
-};
 const content = await loadValidatedContent(resolve('src/content'));
 const siteEntry = (id: string) => {
   const entry = content.site.find(({ data }) => data.id === id);
@@ -42,7 +34,12 @@ const domains = [...content.research].sort(
 const featuredPublications = content.publications
   .filter(({ data }) => data.homeFeatured)
   .sort((left, right) => left.data.displayOrder - right.data.displayOrder);
-const metrics = loadBuildMetrics().author;
+const snapshot = loadBuildMetrics();
+const impactCopy = content.site.find(
+  ({ data }) => data.id === 'impact-explorer'
+);
+if (!impactCopy)
+  throw new Error('Required site content is missing: impact-explorer');
 ---
 
 <BaseLayout
@@ -64,7 +61,12 @@ const metrics = loadBuildMetrics().author;
   </Fragment>
   <HomeHero identity={siteEntry('identity')} socialLinks={socialLinks} />
   <OpportunityStrip opportunity={siteEntry('opportunity')} />
-  <ImpactMetrics metrics={metrics} />
+  <ImpactMetrics
+    metrics={snapshot.author}
+    snapshot={snapshot}
+    publications={content.publications.map(({ data }) => data)}
+    copy={impactCopy}
+  />
   <HomeUpdates
     updates={content.updates.sort(
       (left, right) =>

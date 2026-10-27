@@ -1,5 +1,6 @@
 ---
 import ProjectCaseStudy from './ProjectCaseStudy.astro';
+import DomainRelationshipIndex from '../shared/DomainRelationshipIndex.astro';
 
 const { introduction, projects, publications } = Astro.props as {
   introduction: { body: string; data: { summary: string; title: string } };
@@ -34,14 +35,35 @@ const { introduction, projects, publications } = Astro.props as {
   </div>
 </section>
 <section
-  class="projects-case-studies section-band-evidence"
+  class="projects-case-studies research-chapter section-band-evidence"
   data-projects-section="case-studies"
+  data-chapter="projects"
+  data-chapter-path="/projects/"
 >
-  <div class="frame">
-    {
-      projects.map((project) => (
-        <ProjectCaseStudy project={project} publications={publications} />
-      ))
-    }
+  <div class="frame research-composition research-chapter__grid">
+    <aside class="research-chapter__atlas">
+      <DomainRelationshipIndex
+        compact
+        currentDomain={projects[0]?.data.slug ?? ''}
+        domains={projects.map(({ data }) => ({
+          category: data.title,
+          slug: data.slug,
+          summary: data.summary,
+          title: data.title
+        }))}
+        id="project-index"
+        route="projects"
+      />
+    </aside>
+    <div class="research-chapter__domains">
+      {
+        projects.map((project) => (
+          <ProjectCaseStudy project={project} publications={publications} />
+        ))
+      }
+    </div>
   </div>
 </section>
+<script>
+  import '../../lib/ui/chapter-tabs';
+</script>

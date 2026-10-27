@@ -1,0 +1,48 @@
+---
+import type { ImpactPaper } from '../../lib/ui/impact-data';
+const { papers, hIndex } = Astro.props as {
+  papers: ImpactPaper[];
+  hIndex: number;
+};
+const shown = papers.slice(0, 12);
+const maximum = Math.max(1, hIndex, ...shown.map((paper) => paper.citations));
+---
+
+<figure
+  class="impact-rank-chart"
+  aria-label={`h-index ${hIndex}: papers ordered by citation count`}
+>
+  <figcaption class="type-label">
+    Top {shown.length} papers · citations · h = {hIndex}
+  </figcaption>
+  <div class="impact-rank-plot">
+    <div
+      class="impact-rank-threshold"
+      style={`bottom:${(hIndex / maximum) * 100}%`}
+      aria-hidden="true"
+    >
+    </div>
+    <ol class="impact-rank-bars">
+      {
+        shown.map((paper, index) => (
+          <li aria-label={`Rank ${index + 1}: ${paper.citations} citations`}>
+            <div
+              class:list={[
+                'impact-rank-bars__bar',
+                { 'impact-rank-bars__bar--core': index < hIndex }
+              ]}
+              style={`height:${(paper.citations / maximum) * 100}%`}
+            >
+              <span class="impact-rank-bars__value" aria-hidden="true">
+                {paper.citations}
+              </span>
+            </div>
+            <span class="impact-rank-bars__rank" aria-hidden="true">
+              {index + 1}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</figure>

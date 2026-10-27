@@ -2,6 +2,7 @@
 const { updates } = Astro.props as {
   updates: {
     data: {
+      id: string;
       date: string;
       paper: string;
       summary: string;
@@ -53,7 +54,7 @@ const asContinuation = (value: string) =>
               entry.data.venue
             );
             return (
-              <li>
+              <li id={`news-${entry.data.id}`}>
                 <time class="type-metadata" datetime={entry.data.date}>
                   {formatDate(entry.data.date)}
                 </time>

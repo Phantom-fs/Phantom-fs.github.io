@@ -107,7 +107,7 @@ test.describe('Home and Research routes', () => {
         )
     ).toEqual(requiredHomeSections);
     await expect(
-      page.getByRole('link', { name: 'Explore publications' })
+      page.getByRole('link', { name: 'Explore publications', exact: true })
     ).toHaveAttribute('href', '/publications/');
     await expect(
       page.getByRole('link', { name: 'View research agenda' })
@@ -385,15 +385,21 @@ test.describe('Home and Research routes', () => {
 
     const impact = page.locator('[data-home-section="impact"]');
     await expect(impact.locator('[data-citation-metric]')).toHaveCount(4);
-    await expect(impact.getByRole('link')).toHaveCount(0);
+    await expect(
+      impact.locator('.impact-metrics__list').getByRole('link')
+    ).toHaveCount(4);
     await expect(impact).toContainText('Google Scholar metrics');
-    await expect(impact).not.toContainText(
+    await expect(impact.locator('.impact-metrics__list')).not.toContainText(
       /build-time|updated|stale|openalex/i
     );
     await expect(impact.getByText('Total citations')).toBeVisible();
-    await expect(impact.getByText('h-index')).toBeVisible();
+    await expect(
+      impact.locator('dt').getByText('h-index', { exact: true })
+    ).toBeVisible();
     await expect(impact.getByText('i10-index')).toBeVisible();
-    await expect(impact.getByText('Publications')).toBeVisible();
+    await expect(
+      impact.locator('dt').getByText('Publications', { exact: true })
+    ).toBeVisible();
     await page.goto('/research/');
     await expect(
       page.getByText(
@@ -761,7 +767,10 @@ test.describe('Home and Research routes', () => {
     await expect(portrait).toHaveAttribute('data-motion-paused', 'true');
     await expect(portrait).toHaveCSS('animation-play-state', 'paused');
 
-    await page.getByRole('link', { name: 'Research', exact: true }).click();
+    await page
+      .getByRole('navigation', { name: 'Primary navigation' })
+      .getByRole('link', { name: 'Research', exact: true })
+      .click();
     await expect(page.locator('[data-research-chapter]')).toHaveAttribute(
       'data-research-enhanced',
       'true'

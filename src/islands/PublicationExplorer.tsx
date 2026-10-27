@@ -162,7 +162,10 @@ export default function PublicationExplorer({
   }, []);
 
   useEffect(() => {
-    if (!browserStateRestored) return;
+    // Deferred effects can run after popstate changes the URL but before Astro
+    // disconnects this island. Only the catalogue may own its query/history.
+    if (!browserStateRestored || window.location.pathname !== '/publications/')
+      return;
     const change = { ids: results.map(({ id }) => id), state };
     onResultsChange?.(change);
     const params = serializeExplorerState(state);
@@ -262,7 +265,8 @@ export default function PublicationExplorer({
           class="publication-explorer__filter-scope"
           id="publication-filter-scope"
         >
-          Research category · Year · Rank evidence
+          Research category · Year
+          {lists.ranks.length > 0 ? ' · Rank evidence' : ''}
         </p>
       </div>
       <aside
@@ -296,17 +300,28 @@ export default function PublicationExplorer({
           <div class="publication-filter-dialog__heading">
             <h2 id="publication-filter-title">Filter publications</h2>
             <button
-              class="control"
+              class="control icon-control"
+              aria-label="Close filters"
               onClick={() => closeFilters(false)}
               type="button"
             >
-              Cancel
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="m6 6 12 12M18 6 6 18" />
+              </svg>
             </button>
           </div>
           <FilterFields lists={lists} state={draft} update={setDraft} />
           <div class="publication-filter-dialog__actions">
             <button
-              class="action action--utility"
+              class="action action--secondary filter-reset"
               onClick={() => setDraft(defaultExplorerState())}
               type="button"
             >

@@ -1,4 +1,5 @@
 ---
+import CloseIcon from '../shared/CloseIcon.astro';
 import { primaryNavigation } from '../../lib/ui/site';
 import ThemeToggle from './ThemeToggle.astro';
 
@@ -6,13 +7,10 @@ const { currentPath } = Astro.props;
 const isCurrent = (href: string) =>
   href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 const isOverview = currentPath === '/overview/' || currentPath === '/overview';
-const navigation = isOverview
-  ? [
-      { href: '/', label: 'Full site' },
-      ...primaryNavigation.filter(({ href }) => href !== '/')
-    ]
-  : [...primaryNavigation, { href: '/overview/', label: 'Scholar view' }];
-const desktopNavigation = isOverview ? navigation : primaryNavigation;
+const navigation = primaryNavigation;
+const readingMode = isOverview
+  ? { href: '/', label: 'Full site' }
+  : { href: '/overview/', label: 'Scholar view' };
 ---
 
 <header class="site-header">
@@ -26,33 +24,21 @@ const desktopNavigation = isOverview ? navigation : primaryNavigation;
       aria-label="Primary navigation"
     >
       {
-        desktopNavigation.map(({ href, label }) => (
-          <a
-            href={href}
-            class={href === '/' && isOverview ? 'site-nav__return' : undefined}
-            aria-current={isCurrent(href) ? 'page' : undefined}
-            data-alternate-route={href === '/overview/' ? 'true' : undefined}
-            data-full-site-return={
-              href === '/' && isOverview ? 'true' : undefined
-            }
-          >
+        navigation.map(({ href, label }) => (
+          <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>
             {label}
           </a>
         ))
       }
     </nav>
     <div class="site-header__actions">
-      {
-        !isOverview && (
-          <a
-            class="control site-header__scholar-view"
-            data-header-scholar-view
-            href="/overview/"
-          >
-            Scholar view
-          </a>
-        )
-      }
+      <a
+        class="control site-header__scholar-view"
+        data-header-scholar-view={!isOverview ? '' : undefined}
+        data-header-full-site={isOverview ? '' : undefined}
+        data-full-site-return={isOverview ? 'true' : undefined}
+        href={readingMode.href}>{readingMode.label}</a
+      >
       <ThemeToggle />
       <a
         class="action action--utility"
@@ -80,34 +66,37 @@ const desktopNavigation = isOverview ? navigation : primaryNavigation;
     <div class="site-dialog__inner">
       <div class="site-dialog__heading">
         <h2 class="type-heading-md" id="mobile-menu-title">Navigation</h2>
-        <button class="control" type="button" data-nav-close>Close menu</button>
+        <button
+          class="control icon-control"
+          type="button"
+          data-nav-close
+          aria-label="Close menu"><CloseIcon /></button
+        >
       </div>
       <nav class="site-nav" aria-label="Mobile primary navigation">
         {
           navigation.map(({ href, label }) => (
-            <a
-              href={href}
-              class={
-                href === '/' && isOverview ? 'site-nav__return' : undefined
-              }
-              aria-current={isCurrent(href) ? 'page' : undefined}
-              data-alternate-route={href === '/overview/' ? 'true' : undefined}
-              data-full-site-return={
-                href === '/' && isOverview ? 'true' : undefined
-              }
-            >
+            <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>
               {label}
             </a>
           ))
         }
       </nav>
-      <a
-        class="action action--secondary"
-        href="/files/Farhan_Sheth_CV.pdf"
-        download
-      >
-        Download CV
-      </a>
+      <div class="site-dialog__actions">
+        <a
+          class="action action--secondary"
+          data-mobile-reading-mode
+          data-full-site-return={isOverview ? 'true' : undefined}
+          href={readingMode.href}>{readingMode.label}</a
+        >
+        <a
+          class="action action--secondary"
+          href="/files/Farhan_Sheth_CV.pdf"
+          download
+        >
+          Download CV
+        </a>
+      </div>
     </div>
   </dialog>
 </header>

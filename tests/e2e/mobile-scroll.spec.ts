@@ -101,7 +101,7 @@ for (const width of [320, 390, 767, 768, 1440]) {
 }
 
 for (const theme of ['light', 'dark']) {
-  test(`scrollbars reveal only during scrolling or keyboard focus in ${theme}`, async ({
+  test(`scrollbars reveal only over their gutter in ${theme}`, async ({
     page
   }) => {
     await page.addInitScript(
@@ -119,20 +119,23 @@ for (const theme of ['light', 'dark']) {
                 .backgroundColor
         );
       await region.hover();
-      await expect(region).not.toHaveAttribute('data-scrolling');
       const idle = await readColor();
-      await region.click({ position: { x: 10, y: 10 } });
-      await expect.poll(readColor).toBe(idle);
+      expect(idle).toContain('0.08');
       await page.mouse.wheel(0, 180);
-      await expect(region).toHaveAttribute('data-scrolling', 'true');
+      await expect
+        .poll(() => region.evaluate((element) => element.scrollTop))
+        .toBeGreaterThan(0);
+      await expect.poll(readColor).toBe(idle);
+      await region.focus();
+      await expect.poll(readColor).toBe(idle);
+      await region.hover({
+        position: { x: (await region.boundingBox())!.width - 3, y: 20 }
+      });
       const revealed =
         theme === 'light' ? 'rgb(131, 147, 162)' : 'rgb(154, 169, 182)';
       await expect.poll(readColor).toContain(revealed);
-      await expect(region).not.toHaveAttribute('data-scrolling');
+      await region.hover({ position: { x: 20, y: 20 } });
       await expect.poll(readColor).toBe(idle);
-      await page.keyboard.press('Tab');
-      await region.focus();
-      await expect.poll(readColor).toContain(revealed);
       await region.blur();
     }
   });
@@ -183,13 +186,11 @@ for (const theme of ['light', 'dark']) {
         ? getComputedStyle(element).scrollbarColor
         : getComputedStyle(element, '::-webkit-scrollbar-thumb').backgroundColor
     );
-    expect(color).toContain(
-      theme === 'light' ? 'rgb(131, 147, 162)' : 'rgb(154, 169, 182)'
-    );
+    expect(color).toContain('0.08');
   });
 }
 
-test('scroll activity cleans up and rebinds across client navigation', async ({
+test('scrollbar pointer activity cleans up and rebinds across client navigation', async ({
   page
 }) => {
   await page.goto('/');
@@ -198,22 +199,29 @@ test('scroll activity cleans up and rebinds across client navigation', async ({
     exact: true
   });
   const old = (await region.elementHandle())!;
-  await region.evaluate((element) => (element.scrollTop = 100));
-  await expect(region).toHaveAttribute('data-scrolling', 'true');
+  await region.hover({
+    position: { x: (await region.boundingBox())!.width - 3, y: 20 }
+  });
+  await expect(region).toHaveAttribute('data-scrollbar-hover', 'true');
   await page
     .getByRole('navigation', { name: 'Primary navigation' })
     .getByRole('link', { name: 'Research', exact: true })
     .click();
   await expect(page.locator('main')).toHaveAttribute('data-route', 'research');
   expect(
-    await old.evaluate((element) => (element as HTMLElement).dataset.scrolling)
+    await old.evaluate(
+      (element) => (element as HTMLElement).dataset.scrollbarHover
+    )
   ).toBeUndefined();
   await page
     .getByRole('navigation', { name: 'Primary navigation' })
     .getByRole('link', { name: 'Home', exact: true })
     .click();
   await expect(page.locator('main')).toHaveAttribute('data-route', 'home');
-  await region.evaluate((element) => (element.scrollTop = 100));
-  await expect(region).toHaveAttribute('data-scrolling', 'true');
-  await expect(region).not.toHaveAttribute('data-scrolling');
+  await region.hover({
+    position: { x: (await region.boundingBox())!.width - 3, y: 20 }
+  });
+  await expect(region).toHaveAttribute('data-scrollbar-hover', 'true');
+  await region.hover({ position: { x: 20, y: 20 } });
+  await expect(region).not.toHaveAttribute('data-scrollbar-hover');
 });

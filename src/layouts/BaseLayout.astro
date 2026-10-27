@@ -5,6 +5,7 @@ import SiteFooter from '../components/global/SiteFooter.astro';
 import SiteHeader from '../components/global/SiteHeader.astro';
 import { buildPageMetadata } from '../lib/ui/system';
 import '../styles/global.css';
+import '../styles/impact.css';
 
 interface Props {
   description: string;
@@ -112,7 +113,7 @@ const metadata = buildPageMetadata({
     <title>{metadata.title}</title>
     <ClientRouter />
   </head>
-  <body>
+  <body id="page-top">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <SiteHeader currentPath={Astro.url.pathname} />
     <main class="page-main" data-route={route} id="main-content" tabindex="-1">

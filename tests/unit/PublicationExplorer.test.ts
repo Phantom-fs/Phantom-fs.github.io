@@ -2,7 +2,7 @@
 import { h } from 'preact';
 import { render, screen } from '@testing-library/preact';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import PublicationExplorer from '../../src/islands/PublicationExplorer';
 import type { ExplorerPublication } from '../../src/lib/publications/explorer';
 
@@ -38,6 +38,9 @@ const records: ExplorerPublication[] = [
 ];
 
 describe('PublicationExplorer', () => {
+  beforeEach(() =>
+    window.history.replaceState({ index: 1 }, '', '/publications/')
+  );
   it('publishes a filtered result set from a labeled search control', async () => {
     const user = userEvent.setup();
     const onResultsChange = vi.fn();

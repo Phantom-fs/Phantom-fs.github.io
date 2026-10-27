@@ -1,5 +1,13 @@
 ---
 import { publicEmail, socialLinks } from '../../lib/ui/site';
+import { resolve } from 'node:path';
+import { loadValidatedContent } from '../../lib/content/query';
+import ExternalLinkIcon from '../shared/ExternalLinkIcon.astro';
+
+const footer = (await loadValidatedContent(resolve('src/content'))).site.find(
+  ({ data }) => data.id === 'footer'
+);
+if (!footer) throw new Error('Required site content is missing: footer');
 
 const { currentPath = '' } = Astro.props as { currentPath?: string };
 const isOverview = currentPath === '/overview/' || currentPath === '/overview';
@@ -8,14 +16,11 @@ const isOverview = currentPath === '/overview/' || currentPath === '/overview';
 <footer class="site-footer">
   <div class="frame site-footer__grid">
     <div class="site-footer__identity">
-      <p class="type-label">Farhan Sheth</p>
+      <p class="type-label">{footer.data.title}</p>
       <a
         class="site-footer__contact link-underlined"
         href={`mailto:${publicEmail}?subject=Research%20conversation`}
       >
-        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-          <path d="M3 5.5h18v13H3zM3.5 6l8.5 6.7L20.5 6"></path>
-        </svg>
         <span class="site-footer__contact-label">Get in touch</span>
         <span class="site-footer__contact-email">{publicEmail}</span>
       </a>
@@ -30,6 +35,7 @@ const isOverview = currentPath === '/overview/' || currentPath === '/overview';
             target="_blank"
           >
             {label}
+            <ExternalLinkIcon />
           </a>
         ))
       }
@@ -43,8 +49,10 @@ const isOverview = currentPath === '/overview/' || currentPath === '/overview';
           href="/"
         >
           Return to full site
+          <ExternalLinkIcon />
         </a>
       )
     }
   </div>
+  <p class="frame site-footer__copyright">{footer.body}</p>
 </footer>

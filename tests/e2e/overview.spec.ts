@@ -26,7 +26,7 @@ test.describe('Scholar overview reading mode', () => {
     ).toBeVisible();
     await expect(page.locator('[data-back-to-top]')).toHaveAttribute(
       'href',
-      '#main-content'
+      '#page-top'
     );
     await expect(page.locator('[data-back-to-top]')).toBeHidden();
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -199,22 +199,20 @@ test.describe('Scholar overview reading mode', () => {
 
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/overview/');
-    await expect(
-      page
-        .getByRole('navigation', { name: 'Primary navigation' })
-        .getByRole('link', { name: 'Full site', exact: true })
-    ).toHaveAttribute('href', '/');
-    await expect(
-      page
-        .getByRole('navigation', { name: 'Primary navigation' })
-        .getByRole('link', { name: 'Full site', exact: true })
-    ).toHaveCSS('min-height', '44px');
+    await expect(page.locator('[data-header-full-site]')).toHaveAttribute(
+      'href',
+      '/'
+    );
+    await expect(page.locator('[data-header-full-site]')).toHaveCSS(
+      'min-height',
+      '44px'
+    );
     expect(
       await page
         .getByRole('navigation', { name: 'Primary navigation' })
         .locator('a')
         .evaluateAll((links) => links.map((link) => link.textContent?.trim()))
-    ).toEqual(['Full site', 'Research', 'Publications', 'Projects', 'About']);
+    ).toEqual(['Home', 'Research', 'Publications', 'Projects', 'About']);
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.getByRole('button', { name: 'Menu', exact: true }).click();
@@ -224,7 +222,7 @@ test.describe('Scholar overview reading mode', () => {
         .getByRole('navigation', { name: 'Mobile primary navigation' })
         .locator('a')
         .evaluateAll((links) => links.map((link) => link.textContent?.trim()))
-    ).toEqual(['Full site', 'Research', 'Publications', 'Projects', 'About']);
+    ).toEqual(['Home', 'Research', 'Publications', 'Projects', 'About']);
   });
 
   test('renders a restrained footer identity and contact utility on every route', async ({
@@ -255,7 +253,7 @@ test.describe('Scholar overview reading mode', () => {
         footer.getByText('Farhan Sheth', { exact: true })
       ).toBeVisible();
       await expect(contact).toContainText('Get in touch');
-      await expect(contact.locator('svg')).toHaveCount(1);
+      await expect(contact.locator('svg')).toHaveCount(0);
       await expect(contact).toHaveCSS('min-height', '44px');
       await expect(
         footer
@@ -263,7 +261,7 @@ test.describe('Scholar overview reading mode', () => {
           .locator('a')
       ).toHaveCount(7);
 
-      await expect(backToTop).toHaveAttribute('href', '#main-content');
+      await expect(backToTop).toHaveAttribute('href', '#page-top');
       await expect(
         backToTop,
         `Back-to-top should be hidden at the top of ${route}`
@@ -281,14 +279,14 @@ test.describe('Scholar overview reading mode', () => {
         footer.getByText('Farhan Sheth', { exact: true })
       ).toBeVisible();
       await expect(contact).toContainText('Get in touch');
-      await expect(contact.locator('svg')).toHaveCount(1);
+      await expect(contact.locator('svg')).toHaveCount(0);
       await expect(contact).toHaveCSS('min-height', '44px');
       await expect(
         footer
           .getByRole('navigation', { name: 'Research profiles' })
           .locator('a')
       ).toHaveCount(7);
-      await expect(backToTop).toHaveAttribute('href', '#main-content');
+      await expect(backToTop).toHaveAttribute('href', '#page-top');
       await expect(backToTop).toBeHidden();
     }
     */

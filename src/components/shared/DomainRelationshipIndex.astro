@@ -10,12 +10,12 @@ const {
   currentDomain: string;
   domains: { category: string; slug: string; summary: string; title: string }[];
   id: string;
-  route?: 'home' | 'research';
+  route?: 'home' | 'research' | 'projects';
 };
 
-if (domains.length !== 6) {
+if (route === 'projects' ? domains.length === 0 : domains.length !== 6) {
   throw new Error(
-    `Domain relationship index requires exactly six domains; received ${domains.length}`
+    `Relationship index received an invalid ${route} entry count: ${domains.length}`
   );
 }
 
@@ -35,10 +35,11 @@ const Heading = route === 'home' ? 'h3' : 'h2';
   data-current-domain={currentDomain || undefined}
   data-domain-relationship-index
   data-research-atlas
+  data-chapter-index={route !== 'home' ? '' : undefined}
 >
   <header class="domain-relationship-index__heading">
     <Heading class="type-heading-md" id={`${id}-title`}>
-      Research areas
+      {route === 'projects' ? 'Project index' : 'Research areas'}
     </Heading>
   </header>
   <div
@@ -52,7 +53,7 @@ const Heading = route === 'home' ? 'h3' : 'h2';
         domains.map((domain, index) => (
           <li
             aria-current={
-              route === 'research' && domain.slug === currentDomain
+              route !== 'home' && domain.slug === currentDomain
                 ? 'true'
                 : undefined
             }
@@ -66,7 +67,7 @@ const Heading = route === 'home' ? 'h3' : 'h2';
                 {String(index + 1).padStart(2, '0')}
               </span>
               <div>
-                {route === 'research' ? (
+                {route !== 'home' ? (
                   <a
                     class="domain-relationship-index__selector"
                     data-domain-selector={domain.slug}
