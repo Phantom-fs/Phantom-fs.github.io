@@ -245,6 +245,7 @@ export default function PublicationExplorer({
             aria-expanded={filterDialogOpen ? 'true' : 'false'}
             aria-describedby="publication-filter-scope"
             class="control"
+            disabled={!browserStateRestored}
             onClick={openFilters}
             ref={triggerRef}
             type="button"

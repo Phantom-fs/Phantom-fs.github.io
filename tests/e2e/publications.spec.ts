@@ -2,6 +2,36 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Publications catalog and approved detail routes', () => {
+  test('waits for client readiness before accepting the first mobile filter click', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    let releaseHydration!: () => void;
+    const hydration = new Promise<void>((resolve) => {
+      releaseHydration = resolve;
+    });
+    await page.route(
+      /\/_astro\/PublicationExplorer\.[^/]+\.js$/,
+      async (route) => {
+        await hydration;
+        await route.continue();
+      }
+    );
+    await page.goto('/publications/', { waitUntil: 'domcontentloaded' });
+    const trigger = page.getByRole('button', { name: /Filters/ });
+    try {
+      await expect(trigger).toBeDisabled();
+      await expect(page.locator('[data-publication-record]')).toHaveCount(18);
+    } finally {
+      releaseHydration();
+    }
+    await expect(trigger).toBeEnabled();
+    await trigger.click();
+    await expect(
+      page.getByRole('dialog', { name: 'Filter publications' })
+    ).toBeVisible();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  });
   test('restores the filtered catalog after leaving and using browser back', async ({
     page
   }) => {
