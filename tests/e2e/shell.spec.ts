@@ -8,6 +8,12 @@ const expectTheme = async (page: Page, theme: 'light' | 'dark') => {
       name: theme === 'dark' ? 'Use light theme' : 'Use dark theme'
     })
   ).toHaveAttribute('aria-pressed', String(theme === 'dark'));
+  // URL/theme updates precede native transition completion; do not interrupt it
+  // with the next history action in this state-persistence test.
+  await expect(page.locator('html')).not.toHaveAttribute(
+    'data-astro-transition',
+    /.+/
+  );
 };
 
 const researchRoute = /\/research\/(?:#healthcare-clinical-ai)?$/;
