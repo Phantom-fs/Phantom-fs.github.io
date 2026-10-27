@@ -85,14 +85,58 @@ for (const width of [320, 390, 767, 768, 1440]) {
         expect(titles[0]).toEqual(titles[1]);
         expect(titles[1]).toEqual(titles[2]);
         expect(
-          (await page.locator('.visitor-map__frame').boundingBox())!.width
+          (await page.locator('.visitor-map__widget').boundingBox())!.width
         ).toBeLessThanOrEqual(640);
+        const frame = (await page
+          .locator('.visitor-map__frame')
+          .boundingBox())!;
+        const heading = (await page
+          .locator('.visitor-map__heading')
+          .boundingBox())!;
+        expect(frame.x).toBeCloseTo(heading.x, 0);
+        expect(frame.width).toBeCloseTo(heading.width, 0);
       }
     }
   });
 }
 
 for (const theme of ['light', 'dark']) {
+  test(`scrollbars reveal only during scrolling or keyboard focus in ${theme}`, async ({
+    page
+  }) => {
+    await page.addInitScript(
+      (value) => localStorage.setItem('atlas-theme', value),
+      theme
+    );
+    await page.goto('/');
+    for (const label of ['Research news', 'Research areas list']) {
+      const region = page.getByRole('region', { name: label, exact: true });
+      const readColor = () =>
+        region.evaluate((element) =>
+          CSS.supports('scrollbar-color', 'red transparent')
+            ? getComputedStyle(element).scrollbarColor
+            : getComputedStyle(element, '::-webkit-scrollbar-thumb')
+                .backgroundColor
+        );
+      await region.hover();
+      await expect(region).not.toHaveAttribute('data-scrolling');
+      const idle = await readColor();
+      await region.click({ position: { x: 10, y: 10 } });
+      await expect.poll(readColor).toBe(idle);
+      await page.mouse.wheel(0, 180);
+      await expect(region).toHaveAttribute('data-scrolling', 'true');
+      const revealed =
+        theme === 'light' ? 'rgb(131, 147, 162)' : 'rgb(154, 169, 182)';
+      await expect.poll(readColor).toContain(revealed);
+      await expect(region).not.toHaveAttribute('data-scrolling');
+      await expect.poll(readColor).toBe(idle);
+      await page.keyboard.press('Tab');
+      await region.focus();
+      await expect.poll(readColor).toContain(revealed);
+      await region.blur();
+    }
+  });
+
   test(`Home research list scrolls independently and retains its rules in ${theme}`, async ({
     page
   }) => {
@@ -144,3 +188,32 @@ for (const theme of ['light', 'dark']) {
     );
   });
 }
+
+test('scroll activity cleans up and rebinds across client navigation', async ({
+  page
+}) => {
+  await page.goto('/');
+  const region = page.getByRole('region', {
+    name: 'Research news',
+    exact: true
+  });
+  const old = (await region.elementHandle())!;
+  await region.evaluate((element) => (element.scrollTop = 100));
+  await expect(region).toHaveAttribute('data-scrolling', 'true');
+  await page
+    .getByRole('navigation', { name: 'Primary navigation' })
+    .getByRole('link', { name: 'Research', exact: true })
+    .click();
+  await expect(page.locator('main')).toHaveAttribute('data-route', 'research');
+  expect(
+    await old.evaluate((element) => (element as HTMLElement).dataset.scrolling)
+  ).toBeUndefined();
+  await page
+    .getByRole('navigation', { name: 'Primary navigation' })
+    .getByRole('link', { name: 'Home', exact: true })
+    .click();
+  await expect(page.locator('main')).toHaveAttribute('data-route', 'home');
+  await region.evaluate((element) => (element.scrollTop = 100));
+  await expect(region).toHaveAttribute('data-scrolling', 'true');
+  await expect(region).not.toHaveAttribute('data-scrolling');
+});

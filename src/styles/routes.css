@@ -609,12 +609,24 @@
 }
 
 .content-scroll {
+  --scroll-thumb-current: color-mix(
+    in srgb,
+    var(--color-scroll-thumb) 8%,
+    transparent
+  );
   max-height: 20rem;
   overflow-y: auto;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-scroll-thumb) transparent;
+  scrollbar-color: var(--scroll-thumb-current) transparent;
+  transition: scrollbar-color var(--motion-standard) var(--motion-ease);
   padding-inline-end: var(--space-3);
+}
+
+.content-scroll[data-scrolling='true'],
+.content-scroll:focus-visible,
+.content-scroll:has(:focus-visible) {
+  --scroll-thumb-current: var(--color-scroll-thumb);
 }
 
 .content-scroll::-webkit-scrollbar {
@@ -623,11 +635,22 @@
 
 .content-scroll::-webkit-scrollbar-thumb {
   border-radius: 999px;
-  background: var(--color-scroll-thumb);
+  background: var(--scroll-thumb-current);
+  transition: background-color var(--motion-standard) var(--motion-ease);
 }
 
 .content-scroll::-webkit-scrollbar-track {
   background: transparent;
+}
+
+@media (forced-colors: active) {
+  .content-scroll {
+    scrollbar-color: auto;
+  }
+
+  .content-scroll::-webkit-scrollbar-thumb {
+    background: CanvasText;
+  }
 }
 
 .home-atlas__scroll {
@@ -743,15 +766,20 @@
 
 .visitor-map__frame {
   width: 100%;
-  max-width: 40rem;
-  margin-inline: auto;
   min-height: 14rem;
   border: 1px solid var(--color-rule);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
   overflow: hidden;
   place-content: center;
   padding: var(--space-4);
+}
+
+.visitor-map__widget {
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
 }
 
 .visitor-map__frame [class*='mapmyvisitors'] {
