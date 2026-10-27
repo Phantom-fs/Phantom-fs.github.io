@@ -3,11 +3,14 @@ import { resolve } from 'node:path';
 import sharp from 'sharp';
 
 const root = resolve(import.meta.dirname, '../..');
-const source = resolve(root, 'public/images/profile-img.jpg');
+const source = resolve(root, 'src/assets/portrait-selected.png');
 const output = resolve(root, 'public/images');
 const faviconSource = resolve(root, 'public/favicon.svg');
 
 await mkdir(output, { recursive: true });
+await sharp(source)
+  .jpeg({ mozjpeg: true, quality: 94 })
+  .toFile(resolve(output, 'profile-img.jpg'));
 await Promise.all(
   [
     '.asset-generation-complete',
@@ -17,22 +20,23 @@ await Promise.all(
   ].map((file) => rm(resolve(output, file), { force: true }))
 );
 
-for (const width of [320, 487]) {
+for (const width of [320, 487, 960]) {
   const height = Math.round((width * 617) / 487);
   await sharp(source)
-    .resize({ height, width, withoutEnlargement: width > 487 })
+    .resize({ height, width, withoutEnlargement: true })
     .avif({ quality: 72 })
     .toFile(resolve(output, `profile-img-${width}.avif`));
   await sharp(source)
-    .resize({ height, width, withoutEnlargement: width > 487 })
+    .resize({ height, width, withoutEnlargement: true })
     .webp({ quality: 82 })
     .toFile(resolve(output, `profile-img-${width}.webp`));
+  if (width >= 487) {
+    await sharp(source)
+      .resize({ height, width, withoutEnlargement: true })
+      .jpeg({ mozjpeg: true, quality: 88 })
+      .toFile(resolve(output, `profile-img-${width}.jpg`));
+  }
 }
-
-await sharp(source)
-  .resize({ height: 617, width: 487, withoutEnlargement: true })
-  .jpeg({ mozjpeg: true, quality: 88 })
-  .toFile(resolve(output, 'profile-img-487.jpg'));
 
 const favicon = await readFile(faviconSource);
 await Promise.all([

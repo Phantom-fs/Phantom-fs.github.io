@@ -15,6 +15,29 @@ const mapSource =
   'https://mapmyvisitors.com/map.js?cl=fafaf8&w=a&t=n&d=SzcqKBhYOxcswX8VUvRDsvom-yprDjopW-HDcS5Msx8&co=dfe7ee&cmo=8a99a8&cmn=4c6a92&ct=303234';
 
 test.describe('Home and Research routes', () => {
+  test('uses the selected high-density portrait without changing its layout', async ({
+    browser
+  }) => {
+    const context = await browser.newContext({
+      deviceScaleFactor: 2,
+      viewport: { width: 1440, height: 900 }
+    });
+    const page = await context.newPage();
+    await page.goto('/');
+    const portrait = page.locator('.portrait-frame img');
+    await portrait.evaluate((image: HTMLImageElement) => image.decode());
+    expect(
+      await portrait.evaluate((image: HTMLImageElement) => image.currentSrc)
+    ).toMatch(/profile-img-960\.(avif|webp)$/);
+    await expect(portrait).toHaveAttribute('width', '487');
+    await expect(portrait).toHaveAttribute('height', '617');
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth
+      )
+    ).toBe(true);
+    await context.close();
+  });
   test('renders the approved Home sequence, hierarchy, and evidence', async ({
     page
   }) => {

@@ -13,8 +13,16 @@ describe('Editorial Research Atlas assets', () => {
     const social = await sharp(
       publicPath('images', 'og-research-atlas.jpg')
     ).metadata();
+    const retina = await sharp(
+      publicPath('images', 'profile-img-960.webp')
+    ).metadata();
+    const master = await sharp(
+      resolve('src/assets/portrait-selected.png')
+    ).metadata();
 
     expect(portrait).toMatchObject({ height: 617, width: 487 });
+    expect(retina).toMatchObject({ height: 1216, width: 960 });
+    expect(master.width).toBeGreaterThanOrEqual(960);
     expect(social).toMatchObject({ height: 630, width: 1200 });
   });
 
