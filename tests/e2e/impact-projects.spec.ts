@@ -100,13 +100,17 @@ test('impact cards show hover feedback, survive client navigation and retain no-
     border: getComputedStyle(element).borderColor
   }));
   await card.hover();
-  const hovered = await card.evaluate((element) => ({
-    color: getComputedStyle(element.querySelector('dt')!).color,
-    background: getComputedStyle(element).backgroundColor,
-    border: getComputedStyle(element).borderColor
-  }));
   for (const key of ['color', 'background', 'border'] as const)
-    expect(hovered[key]).not.toBe(initial[key]);
+    await expect
+      .poll(async () => {
+        const hovered = await card.evaluate((element) => ({
+          color: getComputedStyle(element.querySelector('dt')!).color,
+          background: getComputedStyle(element).backgroundColor,
+          border: getComputedStyle(element).borderColor
+        }));
+        return hovered[key];
+      })
+      .not.toBe(initial[key]);
   await page
     .getByRole('navigation', { name: 'Primary navigation' })
     .getByRole('link', { name: 'About', exact: true })
