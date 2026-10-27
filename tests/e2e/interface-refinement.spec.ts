@@ -126,8 +126,11 @@ for (const width of [390, 1440]) {
             (element) => element.getBoundingClientRect()
           );
           return (
-            Math.abs(inner.right - actions[1].right) < 1 &&
-            Math.abs(actions[0].top - actions[1].top) < 1 &&
+            (innerWidth < 768
+              ? Math.abs(inner.left - actions[0].left) < 1 &&
+                actions.every((action) => action.width < inner.width)
+              : Math.abs(inner.right - actions[1].right) < 1 &&
+                Math.abs(actions[0].top - actions[1].top) < 1) &&
             section.querySelectorAll('h2').length === 0
           );
         });
@@ -198,7 +201,7 @@ test('Home alignment and Home/About opportunities share the same rhythm', async 
     );
   }
   expect(opportunityMeasurements[0]).toEqual(opportunityMeasurements[1]);
-  expect(opportunityMeasurements[0].gap).toBeCloseTo(16, 0);
+  expect(opportunityMeasurements[0].gap).toBeCloseTo(8, 0);
   expect(opportunityMeasurements[0].aligned).toBe(true);
   await page.goto('/');
   const alignment = await page.evaluate(() => {
@@ -218,8 +221,12 @@ test('Home alignment and Home/About opportunities share the same rhythm', async 
       domain: Math.abs(
         title.getBoundingClientRect().x - link.getBoundingClientRect().x
       ),
-      collaboration: Math.abs(copy.x - action.x),
-      below: action.top > copy.bottom,
+      collaboration: Math.abs(
+        collaboration.getBoundingClientRect().right -
+          collaboration.querySelector('.action-group')!.getBoundingClientRect()
+            .right
+      ),
+      beside: action.left > copy.right,
       newsSize: getComputedStyle(
         document.querySelector('.home-updates__list p')!
       ).fontSize,
@@ -235,7 +242,7 @@ test('Home alignment and Home/About opportunities share the same rhythm', async 
   });
   expect(alignment.domain).toBeLessThan(1);
   expect(alignment.collaboration).toBeLessThan(1);
-  expect(alignment.below).toBe(true);
+  expect(alignment.beside).toBe(true);
   expect(alignment.newsSize).toBe(alignment.domainSize);
   const researchGate = alignment.iconSizes.find(
     ({ label }) => label === 'ResearchGate'
@@ -372,7 +379,8 @@ test('mobile filters align with sort and Back to top is a circular target', asyn
     height: element.getBoundingClientRect().height,
     radius: parseFloat(getComputedStyle(element).borderRadius)
   }));
-  expect(shape.height).toBeGreaterThanOrEqual(44);
+  expect(shape.height).toBeGreaterThanOrEqual(56);
+  await expect(top.locator('svg')).toHaveCSS('width', '24px');
   expect(shape.width).toBeCloseTo(shape.height, 1);
   expect(shape.radius).toBeGreaterThanOrEqual(shape.height / 2);
 });

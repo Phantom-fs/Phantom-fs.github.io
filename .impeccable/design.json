@@ -24,6 +24,14 @@
         "role": "neutral",
         "displayName": "Light Rule"
       },
+      "light-scroll-thumb": {
+        "role": "neutral",
+        "displayName": "Light blue-gray scrollbar"
+      },
+      "dark-scroll-thumb": {
+        "role": "neutral",
+        "displayName": "Dark blue-gray scrollbar"
+      },
       "light-control-rule": {
         "role": "neutral",
         "displayName": "Light Control Rule"
@@ -280,7 +288,7 @@
       "**Do** use the conditional native sticky Research atlas to preserve domain context on sufficiently wide and tall viewports, with a normal-flow fallback everywhere else.",
       "**Do** vary section composition through proportion, measure, rhythm bands, and evidence density while preserving semantic order.",
       "**Do** use shared symmetric section and introduction spacing, with the role below the Home identity heading.",
-      "Use graphite/cool-gray 28–32px section headings and 18–22px subordinate headings. Home domain headings and scrollable compact News use 16–18px. Links and Research summaries change to the dedicated slate hover token. Home/About opportunities share a centered-left heading and right-aligned copy/action. About block headings use 550, matching Research areas. Research/Projects closings omit a heading and place wrapped copy beside right-aligned paired actions. Back-to-top is a 44px circle with a static up arrow and accessible label; decorative CTA arrows stay removed. Publication Filters and sort controls share full width and 44px height."
+      "Use graphite/cool-gray 28–32px section headings and 18–22px subordinate headings. Home domain headings and compact News use 16–18px, with matching lighter blue-gray native scrollbars. Research list headings and introductory copy stay outside its keyboard/wheel scroll area. Home/About opportunities keep centered-left headings and right-side actions on desktop, switch all content left on mobile, and use an 8px copy/action gap. Discuss research uses the same section heading role, with right-side desktop actions and natural-width left-side mobile actions. Research/Projects closing actions follow the same responsive alignment. Back-to-top is a 56px circle with a 24px static up arrow and accessible label. The responsive flat map is centered and capped at 640px."
     ],
     "donts": [
       "**Don't** reuse the reference site's layouts, structure, or styling.",

@@ -608,13 +608,31 @@
   list-style: none;
 }
 
-.home-updates__scroll {
+.content-scroll {
   max-height: 20rem;
   overflow-y: auto;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-control-rule) var(--color-subtle);
+  scrollbar-color: var(--color-scroll-thumb) transparent;
   padding-inline-end: var(--space-3);
+}
+
+.content-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--color-scroll-thumb);
+}
+
+.content-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.home-atlas__scroll {
+  max-height: 24rem;
+  min-width: 0;
 }
 
 .home-updates__list li {
@@ -680,12 +698,17 @@
 
 .opportunity-layout__contact {
   display: grid;
-  justify-items: end;
-  gap: var(--space-4);
-  text-align: right;
+  justify-items: start;
+  gap: var(--space-2);
+  text-align: left;
 }
 
 .opportunity-layout h2 {
+  font-weight: 550;
+}
+
+.collaboration-callout__inner h2 {
+  font-size: var(--type-section-heading);
   font-weight: 550;
 }
 
@@ -698,11 +721,7 @@
 }
 
 .research-cta__inner .action-group {
-  display: grid;
-  align-items: stretch;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  justify-self: end;
-  width: 100%;
+  justify-self: start;
 }
 
 .visitor-map__heading {
@@ -723,6 +742,9 @@
 }
 
 .visitor-map__frame {
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
   min-height: 14rem;
   border: 1px solid var(--color-rule);
   display: grid;
@@ -820,11 +842,29 @@
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   }
 
+  .opportunity-layout__contact {
+    justify-items: end;
+    text-align: right;
+  }
+
+  .collaboration-callout__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .collaboration-callout__inner .action-group {
+    justify-self: end;
+  }
+
   .research-cta__inner {
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .research-cta__inner .action-group {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-self: end;
     width: auto;
   }
 

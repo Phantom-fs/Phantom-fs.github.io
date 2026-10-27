@@ -56,6 +56,7 @@
   --color-on-signal: #fff;
   --color-focus: #4c6a92;
   --color-subtle: #eef1f4;
+  --color-scroll-thumb: #8393a2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -75,6 +76,7 @@
     --color-on-signal: #202325;
     --color-focus: #a4bad4;
     --color-subtle: #303940;
+    --color-scroll-thumb: #9aa9b6;
   }
 }
 
@@ -94,6 +96,7 @@
   --color-on-signal: #202325;
   --color-focus: #a4bad4;
   --color-subtle: #303940;
+  --color-scroll-thumb: #9aa9b6;
 }
 
 @font-face {

@@ -89,7 +89,7 @@ test('Research actions and About opportunities have symmetric section spacing', 
           copy.getBoundingClientRect().bottom
         );
       });
-    expect(contentGap).toBeCloseTo(16, 0);
+    expect(contentGap).toBeCloseTo(8, 0);
   }
 });
 
