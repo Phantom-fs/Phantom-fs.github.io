@@ -200,9 +200,14 @@ test('Home alignment and Home/About opportunities share the same rhythm', async 
       })
     );
   }
-  expect(opportunityMeasurements[0]).toEqual(opportunityMeasurements[1]);
-  expect(opportunityMeasurements[0].gap).toBeCloseTo(8, 0);
-  expect(opportunityMeasurements[0].aligned).toBe(true);
+  const [{ gap: homeGap, ...homeRhythm }, { gap: aboutGap, ...aboutRhythm }] =
+    opportunityMeasurements;
+  expect(homeRhythm).toEqual(aboutRhythm);
+  // DOMRect differences carry engine-specific subpixel rounding at different Y positions.
+  expect(homeGap).toBeCloseTo(aboutGap, 2);
+  expect(homeGap).toBeCloseTo(8, 2);
+  expect(aboutGap).toBeCloseTo(8, 2);
+  expect(homeRhythm.aligned).toBe(true);
   await page.goto('/');
   const alignment = await page.evaluate(() => {
     const domain = document.querySelector(

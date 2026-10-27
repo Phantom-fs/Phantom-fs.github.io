@@ -10,7 +10,17 @@ overrides:
   # Previous security fixes
   'js-yaml@>=3.0.0 <3.15.2': '3.15.2'
   'js-yaml@>=4.0.0 <4.3.2': '4.3.2'
-  'undici@>=8.0.0 <8.10.2': '8.10.2'
+  'undici@>=8.0.0 <8.12.2': '8.12.2'
+
+  # Release-blocking advisories, patched within the existing dependency majors.
+  'sharp@>=0.35.0 <0.35.5': '0.35.5'
+  'source-map-js@>=1.0.0 <1.2.2': '1.2.2'
+  '@astrojs/preact>vite': '6.4.4'
+  '@preact/preset-vite>vite': '6.4.4'
+  '@prefresh/vite>vite': '6.4.4'
+  'vite-prerender-plugin>vite': '6.4.4'
+  'astro>vite': '8.2.4'
+  'zod@>=4.0.0 <4.6.6': '4.6.6'
 
   # Current audit fixes
   'fast-uri@>=3.0.0 <3.1.8': '3.1.8'
