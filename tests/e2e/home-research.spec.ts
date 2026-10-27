@@ -878,11 +878,21 @@ test.describe('Home and Research routes', () => {
     browser,
     page
   }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/research/#not-a-domain');
     const chapter = page.locator('[data-research-chapter]');
     const selected = () => chapter.getByRole('tab', { selected: true });
     await expect(selected()).toHaveText('Healthcare & Clinical AI');
     await expect(page).toHaveURL(/#healthcare-clinical-ai$/);
+    // Hash normalization and font loading can move the sidebar after navigation.
+    // Settle that geometry before exercising a click near the card's border.
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      await new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      );
+    });
 
     const tabs = chapter.getByRole('tab');
     await tabs.nth(1).hover();
