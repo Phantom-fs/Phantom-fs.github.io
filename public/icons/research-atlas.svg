@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="atlas-title atlas-description">
-  <style>:root{--background:#FCFAF5;--ink:#161A1D;--muted:#59636B;--rule:#C8CED1;--annotation:#24557A;--signal:#A95738}@media(prefers-color-scheme:dark){:root{--background:#1D2124;--ink:#F2EEE5;--muted:#A7B0B5;--rule:#394147;--annotation:#86A8BE;--signal:#D08A68}}</style>
+  <style>:root{--background:#FFFFFF;--ink:#2B2B2B;--muted:#56616A;--rule:#D9D9D6;--annotation:#4C6A92;--signal:#7B8E78}@media(prefers-color-scheme:dark){:root{--background:#2A2E31;--ink:#E2E1DD;--muted:#B4BDC3;--rule:#4B5359;--annotation:#A4BAD4;--signal:#A3B89E}}</style>
   <title id="atlas-title">Research atlas</title>
   <desc id="atlas-description">Six research domains are connected by shared methods, data stewardship, and applied evaluation.</desc>
   <rect width="720" height="480" fill="var(--background)"/>

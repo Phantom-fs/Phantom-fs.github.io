@@ -158,6 +158,17 @@ test.describe('approved responsive visual baselines', () => {
         visualCase.colorScheme
       );
 
+      // Capture the route opening after Research's hash normalization settles.
+      await page.evaluate(async () => {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        await new Promise<void>((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+        );
+      });
+
       await expect(page).toHaveScreenshot(`${visualCase.name}.png`, {
         animations: 'disabled',
         caret: 'hide',

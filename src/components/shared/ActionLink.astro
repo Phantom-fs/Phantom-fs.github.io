@@ -21,11 +21,6 @@ const external = target === '_blank';
   disabled ? (
     <span class:list={['action', `action--${kind}`]} aria-disabled="true">
       <span>{label}</span>
-      {kind !== 'utility' && (
-        <span class="action__arrow" aria-hidden="true">
-          →
-        </span>
-      )}
     </span>
   ) : (
     <a
@@ -35,11 +30,6 @@ const external = target === '_blank';
       rel={external ? 'noopener noreferrer' : undefined}
     >
       <span>{label}</span>
-      {kind !== 'utility' && (
-        <span class="action__arrow" aria-hidden="true">
-          →
-        </span>
-      )}
     </a>
   )
 }

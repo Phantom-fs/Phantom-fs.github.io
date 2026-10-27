@@ -3,15 +3,22 @@
   --font-display: 'Newsreader Atlas', Georgia, 'Times New Roman', serif;
   --font-body: 'Manrope Atlas', Arial, Helvetica, sans-serif;
   --font-mono: 'IBM Plex Mono Atlas', 'Courier New', monospace;
+  --type-body-md: 1rem;
+  --type-heading-sm: clamp(1.25rem, 2vw, 1.5rem);
+  --type-heading-md: clamp(1.375rem, 2.5vw, 1.75rem);
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
+  --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
+  --section-space: clamp(var(--space-8), 5vw, var(--space-16));
+  --introduction-space: clamp(var(--space-12), 6vw, var(--space-16));
+  --heading-gap: var(--space-6);
   --frame-max: 72rem;
   --radius-sm: 0.375rem;
   --radius-md: 0.625rem;
@@ -31,47 +38,53 @@
 
 :root,
 :root[data-theme='light'] {
-  --color-background: #f4f1e8;
-  --color-surface: #fcfaf5;
-  --color-ink: #161a1d;
-  --color-muted: #59636b;
-  --color-rule: #c8ced1;
-  --color-annotation: #24557a;
-  --color-signal: #a95738;
-  --color-fresh: #426957;
-  --color-on-signal: #fcfaf5;
-  --color-focus: #24557a;
-  --color-subtle: color-mix(in srgb, #f4f1e8 82%, #24557a);
+  color-scheme: light;
+  --color-background: #fafaf8;
+  --color-surface: #fff;
+  --color-ink: #2b2b2b;
+  --color-muted: #56616a;
+  --color-rule: #d9d9d6;
+  --color-control-rule: #8a8985;
+  --color-annotation: #4c6a92;
+  --color-signal: #4c6a92;
+  --color-fresh: #526b57;
+  --color-on-signal: #fff;
+  --color-focus: #4c6a92;
+  --color-subtle: #eef1f4;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --color-background: #141719;
-    --color-surface: #1d2124;
-    --color-ink: #f2eee5;
-    --color-muted: #a7b0b5;
-    --color-rule: #394147;
-    --color-annotation: #86a8be;
-    --color-signal: #d08a68;
-    --color-fresh: #82a892;
-    --color-on-signal: #141719;
-    --color-focus: #86a8be;
-    --color-subtle: color-mix(in srgb, #141719 82%, #86a8be);
+    color-scheme: dark;
+    --color-background: #202325;
+    --color-surface: #2a2e31;
+    --color-ink: #e2e1dd;
+    --color-muted: #b4bdc3;
+    --color-rule: #4b5359;
+    --color-control-rule: #7f8b94;
+    --color-annotation: #a4bad4;
+    --color-signal: #a4bad4;
+    --color-fresh: #a3b89e;
+    --color-on-signal: #202325;
+    --color-focus: #a4bad4;
+    --color-subtle: #303940;
   }
 }
 
 :root[data-theme='dark'] {
-  --color-background: #141719;
-  --color-surface: #1d2124;
-  --color-ink: #f2eee5;
-  --color-muted: #a7b0b5;
-  --color-rule: #394147;
-  --color-annotation: #86a8be;
-  --color-signal: #d08a68;
-  --color-fresh: #82a892;
-  --color-on-signal: #141719;
-  --color-focus: #86a8be;
-  --color-subtle: color-mix(in srgb, #141719 82%, #86a8be);
+  color-scheme: dark;
+  --color-background: #202325;
+  --color-surface: #2a2e31;
+  --color-ink: #e2e1dd;
+  --color-muted: #b4bdc3;
+  --color-rule: #4b5359;
+  --color-control-rule: #7f8b94;
+  --color-annotation: #a4bad4;
+  --color-signal: #a4bad4;
+  --color-fresh: #a3b89e;
+  --color-on-signal: #202325;
+  --color-focus: #a4bad4;
+  --color-subtle: #303940;
 }
 
 @font-face {

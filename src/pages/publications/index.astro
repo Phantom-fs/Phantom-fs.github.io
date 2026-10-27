@@ -42,8 +42,8 @@ const initialExplorerState = parseExplorerState(Astro.url.searchParams);
   description={introduction.data.summary}
   route="publications"
 >
-  <section class="section-band-orientation publications-introduction">
-    <div class="frame prose">
+  <section class="page-introduction publications-introduction">
+    <div class="frame page-introduction__content">
       <h1>{introduction.data.title}</h1>
       <p class="type-body-lg">{introduction.data.summary}</p>
       <p>{introduction.body}</p>

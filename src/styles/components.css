@@ -197,15 +197,6 @@
   text-underline-offset: 0.15em;
 }
 
-.action__arrow {
-  transition: transform var(--motion-fast) var(--motion-ease);
-}
-
-.action:hover .action__arrow,
-.action:focus-visible .action__arrow {
-  transform: translateX(0.1875rem);
-}
-
 .site-header__actions .action {
   min-height: 2.5rem;
   padding-inline: var(--space-3);
@@ -285,8 +276,6 @@
   align-items: flex-start;
   flex-direction: column;
   gap: var(--space-1);
-  border-inline-start: 0.1875rem solid var(--color-signal);
-  padding-inline-start: var(--space-3);
 }
 
 .site-footer__contact {
@@ -353,11 +342,9 @@
   align-items: center;
   gap: var(--space-1);
   border: 1px solid var(--color-rule);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   padding-inline: var(--space-3);
   background: var(--color-surface);
-  box-shadow: 0 0.25rem 0.75rem
-    color-mix(in srgb, var(--color-ink) 12%, transparent);
   color: var(--color-ink);
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -372,16 +359,6 @@
 .back-to-top:focus-visible {
   border-color: var(--color-signal);
   color: var(--color-signal);
-}
-
-.back-to-top svg {
-  width: 1rem;
-  height: 1rem;
-  fill: none;
-  stroke: currentcolor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.75;
 }
 
 .publication-record {

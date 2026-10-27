@@ -435,7 +435,10 @@ test.describe('Publications catalog and approved detail routes', () => {
           (state.atlasPublicationSwapCount ?? 0) + 1;
       });
     });
-    await page.goto('/research/');
+    await page.goto('/research/#privacy-trust-safety');
+    await expect(
+      page.getByRole('tab', { name: 'Privacy, Trust & Safety', selected: true })
+    ).toBeVisible();
 
     await page
       .getByLabel('Privacy, Trust & Safety')

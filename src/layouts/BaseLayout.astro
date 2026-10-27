@@ -38,7 +38,7 @@ const metadata = buildPageMetadata({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={metadata.description} />
     {robots && <meta name="robots" content={robots} />}
-    <meta name="theme-color" content="#F4F1E8" />
+    <meta name="theme-color" content="#FAFAF8" />
     <link rel="canonical" href={metadata.canonical} />
     <link
       rel="preload"
@@ -95,6 +95,14 @@ const metadata = buildPageMetadata({
           storedTheme === 'dark' || storedTheme === 'light'
             ? storedTheme
             : 'light';
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute(
+            'content',
+            document.documentElement.dataset.theme === 'dark'
+              ? '#202325'
+              : '#FAFAF8'
+          );
       };
 
       applyStoredTheme();

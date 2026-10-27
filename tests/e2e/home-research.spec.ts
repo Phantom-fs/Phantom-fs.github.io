@@ -198,7 +198,7 @@ test.describe('Home and Research routes', () => {
       );
       await expect(hero.locator('[data-portrait-frame]')).toHaveCSS(
         'border-left-width',
-        '4px'
+        '1px'
       );
       const geometry = await hero.evaluate((element) => {
         const identity = element.querySelector<HTMLElement>(
@@ -497,7 +497,7 @@ test.describe('Home and Research routes', () => {
     const opportunity = page.locator('[data-home-section="opportunity"]');
     await expect(
       opportunity.getByText('Research opportunities', { exact: true })
-    ).toBeVisible();
+    ).toHaveCount(0);
     await expect(
       opportunity.getByRole('heading', {
         level: 2,
@@ -586,7 +586,7 @@ test.describe('Home and Research routes', () => {
     );
     await expect(impact.locator('[data-citation-metric]').first()).toHaveCSS(
       'background-image',
-      /linear-gradient/
+      'none'
     );
 
     const atlas = page.locator('[data-home-section="atlas"]');
@@ -608,7 +608,7 @@ test.describe('Home and Research routes', () => {
         .locator('[data-domain-relationship]')
         .nth(1)
         .evaluate((element) => getComputedStyle(element).backgroundColor)
-    ).not.toBe('rgba(0, 0, 0, 0)');
+    ).toBe('rgba(0, 0, 0, 0)');
 
     await expect(
       page.getByRole('heading', { level: 2, name: 'Selected publications' })

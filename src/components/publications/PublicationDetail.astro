@@ -67,13 +67,13 @@ const bibtex = createBibTeX({
     data-publication-back
     href="/publications/"
   >
-    ← Back to publications
+    Back to publications
   </a>
   <header class="publication-detail__header">
-    <p class="type-metadata">{publication.status} · {publication.type}</p>
     <h1 transition:name={`publication-${publication.id}`}>
       {publication.title}
     </h1>
+    <p class="type-metadata">{publication.status} · {publication.type}</p>
     <ol aria-label="Ordered authors" class="publication-identity__authors">
       {
         authors.map((author) => (

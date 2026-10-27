@@ -30,7 +30,6 @@ const relatedPublications = domain.data.representativePublicationIds.flatMap(
   id={domain.data.slug}
   aria-labelledby={`${domain.data.slug}-title`}
 >
-  <p class="type-metadata">{domain.data.category}</p>
   <h2 id={`${domain.data.slug}-title`}>{domain.data.title}</h2>
   <p class="type-body-lg">{domain.data.summary}</p>
   <p>{domain.body}</p>

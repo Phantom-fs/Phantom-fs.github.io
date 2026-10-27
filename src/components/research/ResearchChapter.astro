@@ -120,7 +120,7 @@ const { domains, introduction, publications } = Astro.props as {
         selector.tabIndex = selected ? 0 : -1;
         selector
           .closest<HTMLElement>('[data-domain-relationship]')
-          ?.setAttribute('aria-current', String(selected));
+          ?.setAttribute('data-selected', String(selected));
         if (selected && moveFocus) selector.focus();
       });
       domains.forEach((domain) => {
@@ -141,6 +141,11 @@ const { domains, introduction, publications } = Astro.props as {
       }
       setSelection(slug);
     };
+
+    cards.forEach((card) => {
+      card!.setAttribute('role', 'presentation');
+      card!.removeAttribute('aria-current');
+    });
 
     selectors.forEach((selector, index) => {
       const slug = selector.dataset.domainSelector;

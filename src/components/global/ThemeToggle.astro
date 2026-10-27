@@ -42,6 +42,9 @@ const { id = 'theme-toggle' } = Astro.props;
     button.addEventListener('click', () => {
       const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
       root.dataset.theme = nextTheme;
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', nextTheme === 'dark' ? '#202325' : '#FAFAF8');
       try {
         localStorage.setItem(storageKey, nextTheme);
       } catch {

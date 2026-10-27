@@ -89,6 +89,10 @@ test.describe('global academic atlas shell', () => {
   test('keeps a manual theme override through client navigation, history, and reload', async ({
     page
   }) => {
+    // External widget availability is exercised separately from theme lifecycle.
+    await page.route('https://mapmyvisitors.com/**', (route) =>
+      route.fulfill({ body: '', contentType: 'application/javascript' })
+    );
     const consoleErrors: string[] = [];
     const pageErrors: string[] = [];
     page.on('console', (message) => {
@@ -171,7 +175,7 @@ test.describe('global academic atlas shell', () => {
     });
     await expect(heading).toHaveCSS('font-size', '48px');
     const home = page.locator('.action-group .action--primary');
-    await expect(home).toHaveCSS('background-color', 'rgb(169, 87, 56)');
+    await expect(home).toHaveCSS('background-color', 'rgb(76, 106, 146)');
 
     const restingBackground = await home.evaluate(
       (element) => getComputedStyle(element).backgroundColor
@@ -190,9 +194,9 @@ test.describe('global academic atlas shell', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(page.locator('body')).toHaveCSS(
       'background-color',
-      'rgb(20, 23, 25)'
+      'rgb(32, 35, 37)'
     );
-    await expect(home).toHaveCSS('background-color', 'rgb(208, 138, 104)');
+    await expect(home).toHaveCSS('background-color', 'rgb(164, 186, 212)');
   });
 
   test('keeps navigation selection and expanded state semantic at the mobile boundary', async ({

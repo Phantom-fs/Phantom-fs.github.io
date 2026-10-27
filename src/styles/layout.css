@@ -5,19 +5,41 @@
 
 .page-main {
   min-height: 60vh;
-  padding-block: var(--space-12) var(--space-24);
+  padding-block: 0;
 }
 
 .section-band-orientation {
-  padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+  padding-block: var(--section-space);
 }
 
 .section-band-evidence {
-  padding-block: clamp(var(--space-8), 6vw, var(--space-16));
+  padding-block: var(--section-space);
 }
 
 .section-band-utility {
   padding-block: clamp(var(--space-6), 4vw, var(--space-12));
+}
+
+.page-introduction {
+  padding-block: var(--introduction-space);
+}
+
+.page-introduction__content {
+  display: grid;
+  gap: var(--heading-gap);
+}
+
+.page-introduction__content > p {
+  max-width: 70ch;
+}
+
+.page-introduction__content > p + p + p {
+  margin-block-start: calc(var(--space-4) - var(--heading-gap));
+}
+
+.page-introduction__content > .type-body-lg {
+  max-width: 65ch;
+  color: var(--color-muted);
 }
 
 .grid-12,

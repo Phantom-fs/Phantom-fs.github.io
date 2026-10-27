@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T05:09:47.756Z",
+  "title": "Design System: Editorial Research Atlas",
+  "extensions": {
+    "colorMeta": {
+      "light-background": {
+        "role": "neutral",
+        "displayName": "Light Background"
+      },
+      "light-surface": {
+        "role": "neutral",
+        "displayName": "Light Surface"
+      },
+      "light-ink": {
+        "role": "neutral",
+        "displayName": "Light Ink"
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Light Muted"
+      },
+      "light-rule": {
+        "role": "neutral",
+        "displayName": "Light Rule"
+      },
+      "light-control-rule": {
+        "role": "neutral",
+        "displayName": "Light Control Rule"
+      },
+      "light-annotation": {
+        "role": "primary",
+        "displayName": "Light Slate Annotation"
+      },
+      "light-signal": {
+        "role": "primary",
+        "displayName": "Light Slate Signal"
+      },
+      "light-fresh": {
+        "role": "secondary",
+        "displayName": "Light Sage Freshness"
+      },
+      "light-on-signal": {
+        "role": "neutral",
+        "displayName": "Light On Slate Signal"
+      },
+      "light-focus": {
+        "role": "primary",
+        "displayName": "Light Focus"
+      },
+      "light-subtle": {
+        "role": "neutral",
+        "displayName": "Light Subtle"
+      },
+      "dark-background": {
+        "role": "neutral",
+        "displayName": "Dark Background"
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Surface"
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Ink"
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Muted"
+      },
+      "dark-rule": {
+        "role": "neutral",
+        "displayName": "Dark Rule"
+      },
+      "dark-control-rule": {
+        "role": "neutral",
+        "displayName": "Dark Control Rule"
+      },
+      "dark-annotation": {
+        "role": "primary",
+        "displayName": "Dark Slate Annotation"
+      },
+      "dark-signal": {
+        "role": "primary",
+        "displayName": "Dark Slate Signal"
+      },
+      "dark-fresh": {
+        "role": "secondary",
+        "displayName": "Dark Sage Freshness"
+      },
+      "dark-on-signal": {
+        "role": "neutral",
+        "displayName": "Dark On Slate Signal"
+      },
+      "dark-focus": {
+        "role": "primary",
+        "displayName": "Dark Focus"
+      },
+      "dark-subtle": {
+        "role": "neutral",
+        "displayName": "Dark Subtle"
+      }
+    },
+    "typographyMeta": {
+      "display-lg": {
+        "displayName": "Home identity",
+        "purpose": "Newsreader for the Home identity heading; existing 72px ceiling."
+      },
+      "display-md": {
+        "displayName": "Editorial display",
+        "purpose": "Newsreader for editorial titles; preserve the approved hierarchy."
+      },
+      "body-md": {
+        "displayName": "Reading and interface",
+        "purpose": "Manrope for body and interface copy."
+      },
+      "metadata": {
+        "displayName": "Bibliographic metadata",
+        "purpose": "IBM Plex Mono for short dates, ranks and identifiers."
+      }
+    },
+    "shadows": [
+      {
+        "name": "dialog",
+        "value": "0 0.5rem 0.5rem rgb(0 0 0 / 18%)",
+        "purpose": "Compact native navigation-dialog separation; not a card treatment."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Shared state easing."
+      },
+      {
+        "name": "fast",
+        "value": "160ms",
+        "purpose": "Link, border and disclosure feedback."
+      },
+      {
+        "name": "standard",
+        "value": "240ms",
+        "purpose": "Standard state transition token."
+      },
+      {
+        "name": "slow",
+        "value": "320ms",
+        "purpose": "Coordinated Home entrance token."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "Global animation/transition duration reduction; portrait animation is removed."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "48rem"
+      },
+      {
+        "name": "desktop",
+        "value": "64rem"
+      },
+      {
+        "name": "wide",
+        "value": "90rem"
+      },
+      {
+        "name": "research-sticky-min-height",
+        "value": "45rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Explore publications action",
+      "kind": "button",
+      "refersTo": "button-primary-light",
+      "description": "Filled slate-blue primary action; plain label and a 44px minimum target.",
+      "html": "<a class=\"ds-action-primary\" href=\"#\">Explore publications</a>",
+      "css": ".ds-action-primary{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0.625rem 0.875rem;border:1px solid var(--color-rule,#d9d9d6);border-radius:var(--radius-sm,0.375rem);background:transparent;color:var(--color-ink,#2b2b2b);font-size:0.875rem;font-weight:650;line-height:1.2;text-decoration:none;cursor:pointer;font-family:var(--font-body,Arial,sans-serif);border-color:var(--color-signal,#4c6a92);background:var(--color-signal,#4c6a92);color:var(--color-on-signal,#fff);}.ds-action-primary:hover{background:color-mix(in srgb,var(--color-signal,#4c6a92) 88%,var(--color-ink,#2b2b2b));color:var(--color-on-signal,#fff);}.ds-action-primary:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}.ds-action-primary:active{transform:translateY(0.0625rem)}"
+    },
+    {
+      "name": "View research agenda action",
+      "kind": "button",
+      "description": "Neutral bordered secondary action with slate feedback.",
+      "html": "<a class=\"ds-action-secondary\" href=\"#\">View research agenda</a>",
+      "css": ".ds-action-secondary{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0.625rem 0.875rem;border:1px solid var(--color-rule,#d9d9d6);border-radius:var(--radius-sm,0.375rem);background:transparent;color:var(--color-ink,#2b2b2b);font-size:0.875rem;font-weight:650;line-height:1.2;text-decoration:none;cursor:pointer;font-family:var(--font-body,Arial,sans-serif);}.ds-action-secondary:hover{border-color:var(--color-annotation,#4c6a92);color:var(--color-annotation,#4c6a92);}.ds-action-secondary:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}.ds-action-secondary:active{transform:translateY(0.0625rem)}"
+    },
+    {
+      "name": "Download CV action",
+      "kind": "button",
+      "description": "Underlined utility link subordinate to the filled action.",
+      "html": "<a class=\"ds-action-utility\" href=\"#\">Download CV</a>",
+      "css": ".ds-action-utility{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0.625rem 0.875rem;border:1px solid var(--color-rule,#d9d9d6);border-radius:var(--radius-sm,0.375rem);background:transparent;color:var(--color-ink,#2b2b2b);font-size:0.875rem;font-weight:650;line-height:1.2;text-decoration:none;cursor:pointer;font-family:var(--font-body,Arial,sans-serif);padding-inline:0.5rem;border-color:transparent;color:var(--color-annotation,#4c6a92);text-decoration:underline;text-decoration-thickness:0.08em;text-underline-offset:0.15em;}.ds-action-utility:hover{color:var(--color-signal,#4c6a92);}.ds-action-utility:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}.ds-action-utility:active{transform:translateY(0.0625rem)}"
+    },
+    {
+      "name": "Publication search",
+      "kind": "input",
+      "refersTo": "control",
+      "description": "Persistent label, strong neutral input boundary, full-opacity muted placeholder and visible keyboard focus.",
+      "html": "<label class=\"ds-search-label\">Search publications<input class=\"ds-search\" type=\"search\" placeholder=\"Title, author or keyword\"></label>",
+      "css": ".ds-search-label{display:grid;gap:0.25rem;color:var(--color-ink,#2b2b2b);font-size:0.875rem;font-weight:650;font-family:var(--font-body,Arial,sans-serif);}.ds-search{min-height:2.75rem;width:100%;border:1px solid var(--color-control-rule,#8a8985);border-radius:var(--radius-sm,0.375rem);padding:0.5rem 0.75rem;background:var(--color-surface,#fff);color:var(--color-ink,#2b2b2b);font:inherit}.ds-search::placeholder{color:var(--color-muted,#56616a);opacity:1}.ds-search:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
+    },
+    {
+      "name": "Route navigation",
+      "kind": "nav",
+      "description": "Compact inline navigation with an underlined current route.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a href=\"#\" aria-current=\"page\">Research</a><a href=\"#\">Publications</a><a href=\"#\">About</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:0.75rem;font-family:var(--font-body,Arial,sans-serif);}.ds-nav a{display:inline-flex;align-items:center;min-height:2.75rem;color:var(--color-ink,#2b2b2b);font-size:0.875rem;font-weight:650;text-decoration:none;transition:color var(--motion-fast,160ms) var(--motion-ease,ease-out)}.ds-nav a[aria-current=\"page\"]{color:var(--color-signal,#4c6a92);text-decoration:underline;text-decoration-thickness:0.125em;text-underline-offset:0.35em}.ds-nav a:hover{color:var(--color-signal,#4c6a92)}.ds-nav a:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
+    },
+    {
+      "name": "Research hashtag",
+      "kind": "chip",
+      "description": "An underlined mono filter action rather than a decorative pill.",
+      "html": "<button class=\"ds-hashtag\" type=\"button\">#multimodal-learning</button>",
+      "css": ".ds-hashtag{border:0;border-bottom:1px solid var(--color-rule,#d9d9d6);padding:0;background:transparent;color:var(--color-annotation,#4c6a92);cursor:pointer;font-family:var(--font-mono,monospace);font-size:0.75rem;line-height:1.5;overflow-wrap:anywhere}.ds-hashtag:hover{border-bottom-color:currentColor;color:var(--color-signal,#4c6a92)}.ds-hashtag:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
+    },
+    {
+      "name": "Publication record",
+      "kind": "card",
+      "refersTo": "publication-entry",
+      "description": "Compact flat bibliography boundary; no stripe or shadow. Placeholder title demonstrates hierarchy only.",
+      "html": "<article class=\"ds-record\"><h3><a href=\"#\">Publication title</a></h3><p>Author list</p><span class=\"ds-record-meta\">Venue and verified rank</span></article>",
+      "css": ".ds-record{display:grid;gap:0.75rem;border:1px solid var(--color-rule,#d9d9d6);border-radius:var(--radius-md,0.625rem);padding:1rem;background:var(--color-surface,#fff);color:var(--color-ink,#2b2b2b);transition:background-color var(--motion-fast,160ms) var(--motion-ease,ease-out),border-color var(--motion-fast,160ms) var(--motion-ease,ease-out);font-family:var(--font-body,Arial,sans-serif);}.ds-record h3{margin:0;font-family:var(--font-display,Georgia,serif);font-size:clamp(1.25rem,2.2vw,1.5rem);font-weight:550;letter-spacing:-0.015em;line-height:1.16}.ds-record a{color:var(--color-annotation,#4c6a92);text-underline-offset:0.15em}.ds-record p,.ds-record-meta{margin:0;color:var(--color-muted,#56616a);font-size:0.75rem;line-height:1.4}.ds-record-meta{font-family:var(--font-mono,monospace)}.ds-record:hover,.ds-record:focus-within{border-color:var(--color-annotation,#4c6a92);background:color-mix(in srgb,var(--color-surface,#fff) 98%,var(--color-annotation,#4c6a92))}.ds-record a:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
+    },
+    {
+      "name": "Selected research domain",
+      "kind": "custom",
+      "description": "Text-led selector with an underlined selected state; no selection stripe.",
+      "html": "<div role=\"tablist\" aria-label=\"Research areas\"><button class=\"ds-domain\" type=\"button\" role=\"tab\" aria-selected=\"true\">Research area</button></div>",
+      "css": ".ds-domain{min-height:2.75rem;border:0;padding:0;background:transparent;color:var(--color-ink,#2b2b2b);cursor:pointer;font-family:var(--font-display,Georgia,serif);font-size:var(--type-heading-sm,clamp(1.25rem,2vw,1.5rem));font-weight:550;line-height:1.18;text-align:start}.ds-domain[aria-selected=\"true\"]{color:var(--color-signal,#4c6a92);text-decoration:underline;text-decoration-thickness:0.12em;text-underline-offset:0.24em}.ds-domain:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Editorial Research Atlas",
+    "overview": "The approved identity combines a carefully edited research monograph with an annotated scientific map. Its current expression is a quieter neutral scholarly reading system: graphite ink, slate-blue navigation and actions, sage status, flat surfaces and clear spacing. The existing three-family typography and research-oriented architecture remain intact.\n\nPhysical scene: a prospective advisor, collaborator, or reviewer reads the site on a laptop in a bright lab, office, or conference corridor, then returns later for focused paper discovery. The interface therefore favors high legibility, calm surfaces, fast bibliographic scanning, and a few precise cartographic gestures over immersive effects.",
+    "keyCharacteristics": [
+      "Labeled research relationships provide orientation without decorative framing.",
+      "Hairline rules and compact metadata create an annotated-bibliography rhythm.",
+      "Identity and bounded portrait form one asymmetric hero composition; the role sits below the identity heading.",
+      "Six research categories are distinguished by line pattern, geometry, and explicit labels—not a rainbow palette.",
+      "Publication entries are records in a continuous scholarly index, not interchangeable product cards."
+    ],
+    "rules": [
+      {
+        "name": "The Quiet Accent Rule",
+        "body": "Reserve slate blue for navigation, actions and meaningful state; let neutral text, space and hairlines carry the page.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shared Rhythm Rule",
+        "body": "Orientation and evidence sections use symmetric block padding from the shared section token (32–64px). Route introductions use symmetric introduction padding (48–64px). Utility bands use `clamp(24px, 4vw, 48px)`.",
+        "section": "layout"
+      }
+    ],
+    "dos": [
+      "**Do** preserve the approved palette, three-family type roles, bibliography rhythm, asymmetric hero, and atlas grammar.",
+      "**Do** let evidence, research assets, and explicit labels carry credibility.",
+      "**Do** keep prose constrained and controls comfortably targetable across viewports.",
+      "**Do** verify contrast for every actual token pairing and state, not only the base palette.",
+      "**Do** design unavailable, stale, empty, loading, failure, long-title, and missing-artifact states.",
+      "**Do** use the conditional native sticky Research atlas to preserve domain context on sufficiently wide and tall viewports, with a normal-flow fallback everywhere else.",
+      "**Do** vary section composition through proportion, measure, rhythm bands, and evidence density while preserving semantic order.",
+      "**Do** use shared symmetric section and introduction spacing, with the role below the Home identity heading."
+    ],
+    "donts": [
+      "**Don't** reuse the reference site's layouts, structure, or styling.",
+      "**Don't** turn the atlas into decorative background noise, a particle field, or an invented scientific figure.",
+      "**Don't** use purple/violet, neon gradients, gradient text, glow, glassmorphism, giant pills, stock AI imagery, or synthetic headshot retouching.",
+      "**Don't** repeat tiny uppercase eyebrows, numbered section labels, identical cards, or hero-metric templates as scaffolding.",
+      "**Don't** return to cream/terracotta by default or treat familiar colors and fonts as evidence of AI authorship; reference history establishes a human design process, not a current-site authorship guarantee.",
+      "**Don't** add decorative arrows to actions, footer utilities or back-to-top controls, or duplicate a research category above its heading.",
+      "**Don't** use side-stripe accents, decorative grid/stripe backgrounds, wide ghost-card shadows, over-rounding, or sketchy SVG illustrations.",
+      "**Don't** introduce a centered cinematic Hero, strict AIDA restructuring, bento grid, marquee, horizontal accordion, testimonial carousel, blanket alternating case studies, scroll-scrubbed text, card-stack reveal, or GSAP scroll pinning.",
+      "**Don't** replace an intentional decision because it appears on an Impeccable caution list; keep the exception visible and request approval for any future change."
+    ]
+  }
+}
