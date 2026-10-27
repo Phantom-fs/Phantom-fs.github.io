@@ -2,6 +2,48 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Publications catalog and approved detail routes', () => {
+  test('restores the filtered catalog after leaving and using browser back', async ({
+    page
+  }) => {
+    await page.goto('/publications/?q=herald');
+    await expect(
+      page.getByText('Total publications: 1', { exact: true })
+    ).toBeVisible();
+    for (const [name, route] of [
+      ['Research', 'research'],
+      ['About', 'about'],
+      ['Projects', 'projects']
+    ]) {
+      await page
+        .getByRole('navigation', { name: 'Primary navigation' })
+        .getByRole('link', { name, exact: true })
+        .click();
+      await expect(page.locator('main')).toHaveAttribute('data-route', route);
+      await page.goBack();
+      await expect(page).toHaveURL('/publications/?q=herald');
+      await expect(
+        page.getByRole('heading', {
+          level: 1,
+          name: 'Publications',
+          exact: true
+        })
+      ).toBeVisible();
+      await expect(page.getByRole('searchbox')).toHaveValue('herald');
+      await expect(
+        page.getByText('Total publications: 1', { exact: true })
+      ).toBeVisible();
+      expect(await page.evaluate(() => history.state?.index)).toEqual(
+        expect.any(Number)
+      );
+      await page.goForward();
+      await expect(page.locator('main')).toHaveAttribute('data-route', route);
+      await page.goBack();
+      await expect(page.getByRole('searchbox')).toHaveValue('herald');
+      await expect(
+        page.getByText('Total publications: 1', { exact: true })
+      ).toBeVisible();
+    }
+  });
   test('keeps every publication category and resource readable without island hydration', async ({
     browser
   }) => {

@@ -3,7 +3,7 @@ id: contact
 slug: contact
 title: Contact
 order: 5
-summary: Contact Farhan Sheth at farhansheth.jb@gmail.com for research and collaboration.
+summary: Contact for research and collaboration.
 socialLinks:
   - label: Google Scholar
     url: https://scholar.google.com/citations?user=ZeKCtQQAAAAJ

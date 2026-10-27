@@ -41,6 +41,14 @@ a {
   color: var(--color-annotation);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.15em;
+  transition:
+    color var(--motion-fast) var(--motion-ease),
+    text-decoration-color var(--motion-fast) var(--motion-ease);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-link-hover);
 }
 
 button {

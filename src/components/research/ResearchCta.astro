@@ -1,12 +1,21 @@
 ---
 import ActionGroup from '../shared/ActionGroup.astro';
+
+const { nextSteps, project = false } = Astro.props as {
+  nextSteps: { title: string; summary: string };
+  project?: boolean;
+};
 ---
 
 <section
   class="research-cta section-band-evidence"
   aria-label="Research next steps"
+  data-projects-section={project ? 'collaboration' : undefined}
 >
   <div class="frame research-cta__inner">
+    <div class="research-cta__copy">
+      <p class="prose">{nextSteps.summary}</p>
+    </div>
     <ActionGroup
       label="Research next steps"
       actions={[

@@ -53,7 +53,7 @@ test.describe('Scholar overview reading mode', () => {
         .evaluate((element) =>
           Number.parseFloat(getComputedStyle(element).fontSize)
         )
-    ).toBeGreaterThanOrEqual(34);
+    ).toBeGreaterThanOrEqual(28);
 
     const impact = page.getByLabel('Google Scholar impact');
     for (const label of [
@@ -137,14 +137,17 @@ test.describe('Scholar overview reading mode', () => {
         (element) => getComputedStyle(element).color
       )
     );
-    expect(
-      await publicationGroupHeading.evaluate((element) =>
-        Number.parseFloat(getComputedStyle(element).fontSize)
-      )
-    ).toBeLessThan(
-      await publicationLink.evaluate((element) =>
-        Number.parseFloat(getComputedStyle(element).fontSize)
-      )
+    const publicationGroupHeadingSize = await publicationGroupHeading.evaluate(
+      (element) => Number.parseFloat(getComputedStyle(element).fontSize)
+    );
+    expect(publicationGroupHeadingSize).toBeGreaterThanOrEqual(18);
+    expect(publicationGroupHeadingSize).toBeLessThanOrEqual(22);
+    expect(publicationGroupHeadingSize).toBeLessThan(
+      await page
+        .getByRole('heading', { level: 2, name: 'Selected publications' })
+        .evaluate((element) =>
+          Number.parseFloat(getComputedStyle(element).fontSize)
+        )
     );
 
     const contactAction = page.locator('[data-overview-contact-email]');

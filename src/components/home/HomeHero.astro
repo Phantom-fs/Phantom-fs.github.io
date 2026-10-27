@@ -11,6 +11,17 @@ const curatedVenues = [
   'ICHMT'
 ] as const;
 
+// Optional hero profiles stay commented here; the footer retains the full list.
+const heroProfileLabels: readonly string[] = [
+  'Google Scholar',
+  'ORCID',
+  'GitHub',
+  'LinkedIn',
+  'ResearchGate'
+  // 'DBLP',
+  // 'Hugging Face'
+];
+
 const { identity, socialLinks } = Astro.props as {
   identity: { summary: string; title: string };
   socialLinks: readonly { href: string; label: string }[];
@@ -64,17 +75,19 @@ const { identity, socialLinks } = Astro.props as {
         aria-label="Researcher profiles"
       >
         {
-          socialLinks.map(({ href, label }) => (
-            <a
-              class="home-hero__profile link-underlined"
-              href={href}
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-              <ProfileServiceIcon label={label} />
-              {label}
-            </a>
-          ))
+          socialLinks
+            .filter(({ label }) => heroProfileLabels.includes(label))
+            .map(({ href, label }) => (
+              <a
+                class="home-hero__profile link-underlined"
+                href={href}
+                rel="me noopener noreferrer"
+                target="_blank"
+              >
+                <ProfileServiceIcon label={label} />
+                {label}
+              </a>
+            ))
         }
       </nav>
     </div>

@@ -39,30 +39,37 @@ const asContinuation = (value: string) =>
     <div class="home-updates__heading">
       <h2 class="type-heading-md" id="updates-title">News</h2>
     </div>
-    <ol class="home-updates__list">
-      {
-        updates.map((entry) => {
-          const { beforeVenue, afterVenue } = splitTitleAtVenue(
-            entry.data.title,
-            entry.data.venue
-          );
-          return (
-            <li>
-              <time class="type-metadata" datetime={entry.data.date}>
-                {formatDate(entry.data.date)}
-              </time>
-              <p>
-                <span class="home-updates__paper" data-home-update-paper>
-                  {entry.data.paper}
-                </span>{' '}
-                {asContinuation(beforeVenue)}
-                <strong>{entry.data.venue}</strong>
-                {afterVenue}
-              </p>
-            </li>
-          );
-        })
-      }
-    </ol>
+    <div
+      class="home-updates__scroll"
+      role="region"
+      aria-label="Research news"
+      tabindex="0"
+    >
+      <ol class="home-updates__list">
+        {
+          updates.map((entry) => {
+            const { beforeVenue, afterVenue } = splitTitleAtVenue(
+              entry.data.title,
+              entry.data.venue
+            );
+            return (
+              <li>
+                <time class="type-metadata" datetime={entry.data.date}>
+                  {formatDate(entry.data.date)}
+                </time>
+                <p>
+                  <span class="home-updates__paper" data-home-update-paper>
+                    {entry.data.paper}
+                  </span>{' '}
+                  {asContinuation(beforeVenue)}
+                  <strong>{entry.data.venue}</strong>
+                  {afterVenue}
+                </p>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
   </div>
 </section>

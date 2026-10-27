@@ -133,7 +133,7 @@
 .link-underlined:focus-visible,
 .site-nav a:hover,
 .site-nav a:focus-visible {
-  color: var(--color-signal);
+  color: var(--color-link-hover);
 }
 
 .control,
@@ -195,6 +195,11 @@
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.15em;
+}
+
+.action--utility:hover,
+.action--utility:focus-visible {
+  color: var(--color-link-hover);
 }
 
 .site-header__actions .action {
@@ -290,8 +295,12 @@
 
 .site-footer__contact:hover,
 .site-footer__contact:focus-visible {
-  border-color: var(--color-signal);
-  color: var(--color-signal);
+  border-color: var(--color-link-hover);
+  color: var(--color-link-hover);
+}
+
+.site-footer__contact:is(:hover, :focus-visible) .site-footer__contact-email {
+  color: inherit;
 }
 
 .site-footer__contact-label {
@@ -339,15 +348,18 @@
   z-index: 2;
   display: inline-flex;
   min-height: 2.75rem;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  justify-content: center;
   align-items: center;
   gap: var(--space-1);
   border: 1px solid var(--color-rule);
-  border-radius: var(--radius-sm);
-  padding-inline: var(--space-3);
+  border-radius: 999px;
+  padding-inline: 0;
   background: var(--color-surface);
   color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 650;
   text-decoration: none;
 }
 
@@ -355,10 +367,21 @@
   display: none;
 }
 
+.back-to-top svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  border-color: var(--color-signal);
-  color: var(--color-signal);
+  border-color: var(--color-link-hover);
+  background: var(--color-subtle);
+  color: var(--color-link-hover);
 }
 
 .publication-record {
@@ -612,12 +635,13 @@
   font-size: 0.75rem;
   line-height: 1.5;
   overflow-wrap: anywhere;
+  transition: color var(--motion-fast) var(--motion-ease);
 }
 
 .publication-hashtag:hover,
 .publication-hashtag:focus-visible {
   border-bottom-color: currentcolor;
-  color: var(--color-signal);
+  color: var(--color-link-hover);
 }
 
 @media (forced-colors: active) {

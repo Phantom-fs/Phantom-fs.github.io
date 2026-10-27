@@ -61,8 +61,6 @@ const formatDate = (date: string) =>
       <p class="type-label">{identity.data.title}</p>
       <p class="type-body-lg">{identity.data.summary}</p>
       <p>{opportunity.data.summary}</p>
-    </div>
-    <aside class="overview-opening__aside" aria-label="Profile links">
       <a
         class="action action--primary overview-return"
         data-overview-return
@@ -70,6 +68,8 @@ const formatDate = (date: string) =>
       >
         Full site
       </a>
+    </div>
+    <aside class="overview-opening__aside" aria-label="Profile links">
       <nav
         class="overview-profile-links"
         aria-label="Scholar and research profiles"
@@ -154,14 +154,25 @@ const formatDate = (date: string) =>
     </div>
     <ol class="overview-news-list">
       {
-        updates.map((entry) => (
-          <li data-overview-news-item>
-            <time class="type-metadata" datetime={entry.data.date}>
-              {formatDate(entry.data.date)}
-            </time>
-            <p>{entry.data.title}</p>
-          </li>
-        ))
+        updates.map((entry) => {
+          const index = entry.data.title.indexOf(entry.data.venue);
+          if (index === -1)
+            throw new Error(
+              `Update title must include its venue: ${entry.data.title}`
+            );
+          return (
+            <li data-overview-news-item>
+              <time class="type-metadata" datetime={entry.data.date}>
+                {formatDate(entry.data.date)}
+              </time>
+              <p>
+                {entry.data.title.slice(0, index)}
+                <strong>{entry.data.venue}</strong>
+                {entry.data.title.slice(index + entry.data.venue.length)}
+              </p>
+            </li>
+          );
+        })
       }
     </ol>
   </div>

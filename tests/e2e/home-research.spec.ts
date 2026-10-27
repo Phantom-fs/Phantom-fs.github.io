@@ -12,7 +12,7 @@ const requiredHomeSections = [
   'visitor-map'
 ];
 const mapSource =
-  'https://mapmyvisitors.com/map.js?cl=e8e4e4&w=350&t=tt&d=B66x2QoETm-rNLiPfNrv2mAeGKYz5sFIJhRl8zGpbBg&co=2786c9&cmo=d92e2e&cmn=2cad2c';
+  'https://mapmyvisitors.com/map.js?cl=fafaf8&w=a&t=n&d=SzcqKBhYOxcswX8VUvRDsvom-yprDjopW-HDcS5Msx8&co=dfe7ee&cmo=8a99a8&cmn=4c6a92&ct=303234';
 
 test.describe('Home and Research routes', () => {
   test('renders the approved Home sequence, hierarchy, and evidence', async ({
@@ -176,7 +176,7 @@ test.describe('Home and Research routes', () => {
       await page.goto('/');
       const hero = page.locator('[data-home-hero]');
       await expect(hero.locator('.portrait-frame__atlas')).toHaveCount(0);
-      await expect(hero.locator('[data-profile-icon]')).toHaveCount(7);
+      await expect(hero.locator('[data-profile-icon]')).toHaveCount(5);
       await expect(
         hero
           .locator('[data-profile-icon]')
@@ -188,9 +188,7 @@ test.describe('Home and Research routes', () => {
         'ORCID',
         'GitHub',
         'LinkedIn',
-        'ResearchGate',
-        'DBLP',
-        'Hugging Face'
+        'ResearchGate'
       ]);
       await expect(hero.locator('[data-portrait-frame]')).toHaveCSS(
         'border-top-left-radius',
@@ -281,6 +279,11 @@ test.describe('Home and Research routes', () => {
   test('keeps portrait motion optional without hiding the semantic opening', async ({
     page
   }) => {
+    // Portrait/reflow checks must not wait on the external visitor service.
+    // The dedicated visitor-map test below verifies its loading contract.
+    await page.route('https://mapmyvisitors.com/**', (route) =>
+      route.fulfill({ body: '', contentType: 'application/javascript' })
+    );
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
     await expect(page.locator('[data-portrait-frame]')).toHaveCSS(
@@ -567,7 +570,7 @@ test.describe('Home and Research routes', () => {
         .evaluate((element) =>
           Number.parseFloat(getComputedStyle(element).fontSize)
         )
-    ).toBeGreaterThanOrEqual(34);
+    ).toBeGreaterThanOrEqual(28);
     await expect(newsHeading).toHaveCSS(
       'font-size',
       await impact

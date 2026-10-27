@@ -1,11 +1,17 @@
 ---
 import { resolve } from 'node:path';
 import ProjectIndex from '../components/projects/ProjectIndex.astro';
+import ProjectsCta from '../components/projects/ProjectsCta.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadValidatedContent } from '../lib/content/query';
 import { deploymentOrigin } from '../lib/ui/system';
 
 const content = await loadValidatedContent(resolve('src/content'));
+const nextSteps = content.site.find(
+  ({ data }) => data.id === 'research-next-steps'
+);
+if (!nextSteps)
+  throw new Error('Required site content is missing: research-next-steps');
 const introduction = content.site.find(
   ({ data }) => data.id === 'projects-introduction'
 );
@@ -80,6 +86,7 @@ const jsonLd = {
     projects={projects}
     publications={publications}
   />
+  <ProjectsCta nextSteps={nextSteps.data} />
   <script
     is:inline
     type="application/ld+json"

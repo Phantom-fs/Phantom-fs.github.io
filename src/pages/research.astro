@@ -7,6 +7,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadValidatedContent } from '../lib/content/query';
 
 const content = await loadValidatedContent(resolve('src/content'));
+const nextSteps = content.site.find(
+  ({ data }) => data.id === 'research-next-steps'
+);
+if (!nextSteps)
+  throw new Error('Required site content is missing: research-next-steps');
 const introduction = content.site.find(
   ({ data }) => data.id === 'research-introduction'
 );
@@ -34,5 +39,5 @@ const publications = new Map(
     introduction={introduction.data}
     publications={publications}
   />
-  <ResearchCta />
+  <ResearchCta nextSteps={nextSteps.data} />
 </BaseLayout>

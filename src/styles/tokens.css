@@ -4,8 +4,11 @@
   --font-body: 'Manrope Atlas', Arial, Helvetica, sans-serif;
   --font-mono: 'IBM Plex Mono Atlas', 'Courier New', monospace;
   --type-body-md: 1rem;
-  --type-heading-sm: clamp(1.25rem, 2vw, 1.5rem);
-  --type-heading-md: clamp(1.375rem, 2.5vw, 1.75rem);
+  --type-heading-sm: clamp(1.125rem, 1.8vw, 1.375rem);
+  --type-heading-md: clamp(1.25rem, 2vw, 1.5rem);
+  --type-section-heading: clamp(1.75rem, 3vw, 2rem);
+  --type-entry-heading: clamp(1.125rem, 2vw, 1.375rem);
+  --type-home-item: clamp(1rem, 1.4vw, 1.125rem);
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -46,8 +49,10 @@
   --color-rule: #d9d9d6;
   --color-control-rule: #8a8985;
   --color-annotation: #4c6a92;
+  --color-link-hover: #304f73;
+  --color-heading: #303234;
   --color-signal: #4c6a92;
-  --color-fresh: #526b57;
+  --color-fresh: #56616a;
   --color-on-signal: #fff;
   --color-focus: #4c6a92;
   --color-subtle: #eef1f4;
@@ -63,8 +68,10 @@
     --color-rule: #4b5359;
     --color-control-rule: #7f8b94;
     --color-annotation: #a4bad4;
+    --color-link-hover: #c8d8eb;
+    --color-heading: #d7dce0;
     --color-signal: #a4bad4;
-    --color-fresh: #a3b89e;
+    --color-fresh: #b4bdc3;
     --color-on-signal: #202325;
     --color-focus: #a4bad4;
     --color-subtle: #303940;
@@ -80,8 +87,10 @@
   --color-rule: #4b5359;
   --color-control-rule: #7f8b94;
   --color-annotation: #a4bad4;
+  --color-link-hover: #c8d8eb;
+  --color-heading: #d7dce0;
   --color-signal: #a4bad4;
-  --color-fresh: #a3b89e;
+  --color-fresh: #b4bdc3;
   --color-on-signal: #202325;
   --color-focus: #a4bad4;
   --color-subtle: #303940;
@@ -90,7 +99,7 @@
 @font-face {
   font-family: 'Newsreader Atlas';
   font-style: normal;
-  font-weight: 400 550;
+  font-weight: 400 700;
   font-display: swap;
   src: url('/fonts/newsreader-latin.woff2') format('woff2');
 }

@@ -32,7 +32,7 @@ test.describe('Projects and About routes', () => {
     );
     await expect(
       page.locator('[data-projects-section="collaboration"]')
-    ).toHaveCount(0);
+    ).toHaveCount(1);
     await expect(page.getByRole('link', { name: 'Email Farhan' })).toHaveCount(
       0
     );

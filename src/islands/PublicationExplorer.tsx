@@ -167,7 +167,8 @@ export default function PublicationExplorer({
     onResultsChange?.(change);
     const params = serializeExplorerState(state);
     const next = `${window.location.pathname}${params.size ? `?${params}` : ''}${window.location.hash}`;
-    window.history.replaceState(null, '', next);
+    // Keep Astro's navigation index/scroll state so popstate can restore this page.
+    window.history.replaceState(window.history.state, '', next);
     window.dispatchEvent(
       new CustomEvent<ExplorerResultChange>('publicationexplorerstatechange', {
         detail: change

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-27T05:09:47.756Z",
+  "generatedAt": "2026-10-27T06:30:42.931Z",
   "title": "Design System: Editorial Research Atlas",
   "extensions": {
     "colorMeta": {
@@ -37,8 +37,8 @@
         "displayName": "Light Slate Signal"
       },
       "light-fresh": {
-        "role": "secondary",
-        "displayName": "Light Sage Freshness"
+        "role": "neutral",
+        "displayName": "light status text"
       },
       "light-on-signal": {
         "role": "neutral",
@@ -85,8 +85,8 @@
         "displayName": "Dark Slate Signal"
       },
       "dark-fresh": {
-        "role": "secondary",
-        "displayName": "Dark Sage Freshness"
+        "role": "neutral",
+        "displayName": "dark status text"
       },
       "dark-on-signal": {
         "role": "neutral",
@@ -99,6 +99,22 @@
       "dark-subtle": {
         "role": "neutral",
         "displayName": "Dark Subtle"
+      },
+      "light-heading": {
+        "role": "neutral",
+        "displayName": "light section heading"
+      },
+      "light-link-hover": {
+        "role": "primary",
+        "displayName": "light link hover"
+      },
+      "dark-heading": {
+        "role": "neutral",
+        "displayName": "dark section heading"
+      },
+      "dark-link-hover": {
+        "role": "primary",
+        "displayName": "dark link hover"
       }
     },
     "typographyMeta": {
@@ -193,7 +209,7 @@
       "kind": "button",
       "description": "Underlined utility link subordinate to the filled action.",
       "html": "<a class=\"ds-action-utility\" href=\"#\">Download CV</a>",
-      "css": ".ds-action-utility{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0.625rem 0.875rem;border:1px solid var(--color-rule,#d9d9d6);border-radius:var(--radius-sm,0.375rem);background:transparent;color:var(--color-ink,#2b2b2b);font-size:0.875rem;font-weight:650;line-height:1.2;text-decoration:none;cursor:pointer;font-family:var(--font-body,Arial,sans-serif);padding-inline:0.5rem;border-color:transparent;color:var(--color-annotation,#4c6a92);text-decoration:underline;text-decoration-thickness:0.08em;text-underline-offset:0.15em;}.ds-action-utility:hover{color:var(--color-signal,#4c6a92);}.ds-action-utility:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}.ds-action-utility:active{transform:translateY(0.0625rem)}"
+      "css": ".ds-action-utility{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0.625rem 0.875rem;border:1px solid var(--color-rule,#d9d9d6);border-radius:var(--radius-sm,0.375rem);background:transparent;color:var(--color-ink,#2b2b2b);font-size:0.875rem;font-weight:650;line-height:1.2;text-decoration:none;cursor:pointer;font-family:var(--font-body,Arial,sans-serif);padding-inline:0.5rem;border-color:transparent;color:var(--color-annotation,#4c6a92);text-decoration:underline;text-decoration-thickness:0.08em;text-underline-offset:0.15em;}.ds-action-utility:hover{color:var(--color-link-hover,#304f73);}.ds-action-utility:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}.ds-action-utility:active{transform:translateY(0.0625rem)}"
     },
     {
       "name": "Publication search",
@@ -215,7 +231,7 @@
       "kind": "chip",
       "description": "An underlined mono filter action rather than a decorative pill.",
       "html": "<button class=\"ds-hashtag\" type=\"button\">#multimodal-learning</button>",
-      "css": ".ds-hashtag{border:0;border-bottom:1px solid var(--color-rule,#d9d9d6);padding:0;background:transparent;color:var(--color-annotation,#4c6a92);cursor:pointer;font-family:var(--font-mono,monospace);font-size:0.75rem;line-height:1.5;overflow-wrap:anywhere}.ds-hashtag:hover{border-bottom-color:currentColor;color:var(--color-signal,#4c6a92)}.ds-hashtag:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
+      "css": ".ds-hashtag{border:0;border-bottom:1px solid var(--color-rule,#d9d9d6);padding:0;background:transparent;color:var(--color-annotation,#4c6a92);cursor:pointer;font-family:var(--font-mono,monospace);font-size:0.75rem;line-height:1.5;overflow-wrap:anywhere}.ds-hashtag:hover{border-bottom-color:currentColor;color:var(--color-link-hover,#304f73)}.ds-hashtag:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
     },
     {
       "name": "Publication record",
@@ -230,12 +246,12 @@
       "kind": "custom",
       "description": "Text-led selector with an underlined selected state; no selection stripe.",
       "html": "<div role=\"tablist\" aria-label=\"Research areas\"><button class=\"ds-domain\" type=\"button\" role=\"tab\" aria-selected=\"true\">Research area</button></div>",
-      "css": ".ds-domain{min-height:2.75rem;border:0;padding:0;background:transparent;color:var(--color-ink,#2b2b2b);cursor:pointer;font-family:var(--font-display,Georgia,serif);font-size:var(--type-heading-sm,clamp(1.25rem,2vw,1.5rem));font-weight:550;line-height:1.18;text-align:start}.ds-domain[aria-selected=\"true\"]{color:var(--color-signal,#4c6a92);text-decoration:underline;text-decoration-thickness:0.12em;text-underline-offset:0.24em}.ds-domain:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}"
+      "css": ".ds-domain{min-height:2.75rem;border:0;padding:0;background:transparent;color:var(--color-ink,#2b2b2b);cursor:pointer;font-family:var(--font-display,Georgia,serif);font-size:clamp(1rem,1.4vw,1.125rem);font-weight:550;line-height:1.18;text-align:start}.ds-domain[aria-selected=\"true\"]{color:var(--color-signal,#4c6a92);text-decoration:underline;text-decoration-thickness:0.12em;text-underline-offset:0.24em}.ds-domain:focus-visible{outline:0.1875rem solid var(--color-focus,#4c6a92);outline-offset:0.1875rem;}.ds-domain:is(:hover,:focus-visible){color:var(--color-link-hover,#304f73)}"
     }
   ],
   "narrative": {
     "northStar": "Editorial Research Atlas",
-    "overview": "The approved identity combines a carefully edited research monograph with an annotated scientific map. Its current expression is a quieter neutral scholarly reading system: graphite ink, slate-blue navigation and actions, sage status, flat surfaces and clear spacing. The existing three-family typography and research-oriented architecture remain intact.\n\nPhysical scene: a prospective advisor, collaborator, or reviewer reads the site on a laptop in a bright lab, office, or conference corridor, then returns later for focused paper discovery. The interface therefore favors high legibility, calm surfaces, fast bibliographic scanning, and a few precise cartographic gestures over immersive effects.",
+    "overview": "The approved identity combines a carefully edited research monograph with an annotated scientific map. Its current expression is a quieter neutral scholarly reading system: graphite ink, slate-blue navigation and actions, neutral status text, flat surfaces and clear spacing. The existing three-family typography and research-oriented architecture remain intact.\n\nPhysical scene: a prospective advisor, collaborator, or reviewer reads the site on a laptop in a bright lab, office, or conference corridor, then returns later for focused paper discovery. The interface therefore favors high legibility, calm surfaces, fast bibliographic scanning, and a few precise cartographic gestures over immersive effects.",
     "keyCharacteristics": [
       "Labeled research relationships provide orientation without decorative framing.",
       "Hairline rules and compact metadata create an annotated-bibliography rhythm.",
@@ -263,7 +279,8 @@
       "**Do** design unavailable, stale, empty, loading, failure, long-title, and missing-artifact states.",
       "**Do** use the conditional native sticky Research atlas to preserve domain context on sufficiently wide and tall viewports, with a normal-flow fallback everywhere else.",
       "**Do** vary section composition through proportion, measure, rhythm bands, and evidence density while preserving semantic order.",
-      "**Do** use shared symmetric section and introduction spacing, with the role below the Home identity heading."
+      "**Do** use shared symmetric section and introduction spacing, with the role below the Home identity heading.",
+      "Use graphite/cool-gray 28–32px section headings and 18–22px subordinate headings. Home domain headings and scrollable compact News use 16–18px. Links and Research summaries change to the dedicated slate hover token. Home/About opportunities share a centered-left heading and right-aligned copy/action. About block headings use 550, matching Research areas. Research/Projects closings omit a heading and place wrapped copy beside right-aligned paired actions. Back-to-top is a 44px circle with a static up arrow and accessible label; decorative CTA arrows stay removed. Publication Filters and sort controls share full width and 44px height."
     ],
     "donts": [
       "**Don't** reuse the reference site's layouts, structure, or styling.",
@@ -274,7 +291,8 @@
       "**Don't** add decorative arrows to actions, footer utilities or back-to-top controls, or duplicate a research category above its heading.",
       "**Don't** use side-stripe accents, decorative grid/stripe backgrounds, wide ghost-card shadows, over-rounding, or sketchy SVG illustrations.",
       "**Don't** introduce a centered cinematic Hero, strict AIDA restructuring, bento grid, marquee, horizontal accordion, testimonial carousel, blanket alternating case studies, scroll-scrubbed text, card-stack reveal, or GSAP scroll pinning.",
-      "**Don't** replace an intentional decision because it appears on an Impeccable caution list; keep the exception visible and request approval for any future change."
+      "**Don't** replace an intentional decision because it appears on an Impeccable caution list; keep the exception visible and request approval for any future change.",
+      "Do not use green text for headings or current-role status. Keep optional DBLP/Hugging Face hero entries commented while preserving the full footer list."
     ]
   }
 }

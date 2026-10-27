@@ -100,6 +100,7 @@ const { domains, introduction, publications } = Astro.props as {
     }
 
     const controller = new AbortController();
+    const chapterPathname = window.location.pathname;
     chapter.researchChapterCleanup = () => {
       controller.abort();
       delete chapter.researchChapterCleanup;
@@ -132,12 +133,14 @@ const { domains, introduction, publications } = Astro.props as {
     };
 
     const normalizeHash = () => {
+      // popstate fires before Astro swaps the old Research DOM on route changes.
+      if (window.location.pathname !== chapterPathname) return;
       const requestedSlug = window.location.hash.slice(1);
       const slug = domains.some((domain) => domain.id === requestedSlug)
         ? requestedSlug
         : defaultSlug;
       if (window.location.hash !== `#${slug}`) {
-        window.history.replaceState(null, '', `#${slug}`);
+        window.history.replaceState(window.history.state, '', `#${slug}`);
       }
       setSelection(slug);
     };
@@ -164,7 +167,7 @@ const { domains, introduction, publications } = Astro.props as {
           event.preventDefault();
           setSelection(slug, false, true);
           if (window.location.hash !== `#${slug}`) {
-            window.history.pushState(null, '', `#${slug}`);
+            window.history.pushState(window.history.state, '', `#${slug}`);
           }
         },
         { signal: controller.signal }
@@ -187,14 +190,18 @@ const { domains, introduction, publications } = Astro.props as {
             const nextSlug = selectors[nextIndex].dataset.domainSelector;
             if (nextSlug) {
               setSelection(nextSlug, true);
-              window.history.pushState(null, '', `#${nextSlug}`);
+              window.history.pushState(
+                window.history.state,
+                '',
+                `#${nextSlug}`
+              );
             }
           }
           if (event.key === ' ') {
             event.preventDefault();
             setSelection(slug, true);
             if (window.location.hash !== `#${slug}`) {
-              window.history.pushState(null, '', `#${slug}`);
+              window.history.pushState(window.history.state, '', `#${slug}`);
             }
           }
         },

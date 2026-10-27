@@ -99,26 +99,31 @@ const breadcrumbJsonLd = {
 </BaseLayout>
 
 <script>
-  const backLink = document.querySelector<HTMLAnchorElement>(
-    '[data-publication-back]'
-  );
-  const returnQuery = new URLSearchParams(window.location.search).get('return');
-  if (backLink && returnQuery && returnQuery.length <= 2048) {
-    const allowedKeys = new Set([
-      'q',
-      'category',
-      'year',
-      'type',
-      'status',
-      'rank',
-      'artifacts',
-      'openAccess',
-      'sort'
-    ]);
-    const restored = new URLSearchParams(returnQuery);
-    if ([...restored.keys()].every((key) => allowedKeys.has(key))) {
-      backLink.href = `/publications/?${restored.toString()}`;
+  const updatePublicationReturnLink = () => {
+    const backLink = document.querySelector<HTMLAnchorElement>(
+      '[data-publication-back]'
+    );
+    const returnQuery = new URLSearchParams(window.location.search).get(
+      'return'
+    );
+    if (backLink && returnQuery && returnQuery.length <= 2048) {
+      const allowedKeys = new Set([
+        'q',
+        'category',
+        'year',
+        'type',
+        'status',
+        'rank',
+        'artifacts',
+        'openAccess',
+        'sort'
+      ]);
+      const restored = new URLSearchParams(returnQuery);
+      if ([...restored.keys()].every((key) => allowedKeys.has(key))) {
+        backLink.href = `/publications/?${restored.toString()}`;
+      }
     }
-  }
-  document.querySelector<HTMLElement>('#main-content')?.focus();
+  };
+  document.addEventListener('astro:after-swap', updatePublicationReturnLink);
+  updatePublicationReturnLink();
 </script>

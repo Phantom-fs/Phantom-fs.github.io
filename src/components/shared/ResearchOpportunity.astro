@@ -1,0 +1,46 @@
+---
+import ActionGroup from './ActionGroup.astro';
+import { publicEmail } from '../../lib/ui/site';
+
+const { opportunity, context } = Astro.props as {
+  opportunity: { summary: string; title: string };
+  context: 'home' | 'about';
+};
+const headingId =
+  context === 'home' ? 'opportunity-title' : 'about-opportunity-title';
+---
+
+<section
+  class:list={[
+    'research-opportunity',
+    context === 'home' ? 'opportunity-strip' : 'about-opportunity'
+  ]}
+  data-home-section={context === 'home' ? 'opportunity' : undefined}
+  data-about-section={context === 'about' ? 'opportunity' : undefined}
+  aria-labelledby={headingId}
+>
+  <div
+    class:list={[
+      'frame',
+      'opportunity-layout',
+      context === 'home' ? 'opportunity-strip__grid' : 'about-opportunity__grid'
+    ]}
+  >
+    <div>
+      <h2 id={headingId}>{opportunity.title}</h2>
+    </div>
+    <div class="opportunity-layout__contact">
+      <p class="prose">{opportunity.summary}</p>
+      <ActionGroup
+        label="Research opportunity contact"
+        actions={[
+          {
+            href: `mailto:${publicEmail}?subject=2026%E2%80%932027%20research%20opportunity`,
+            kind: 'primary',
+            label: 'Discuss 2026–2027 opportunities'
+          }
+        ]}
+      />
+    </div>
+  </div>
+</section>

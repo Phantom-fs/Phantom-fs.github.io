@@ -57,7 +57,7 @@ test('Research actions and About opportunities have symmetric section spacing', 
     const actionSpacing = await page
       .locator('.research-cta')
       .evaluate((section) => {
-        const actions = section.querySelector('.action-group')!;
+        const actions = section.querySelector('.research-cta__inner')!;
         const bounds = section.getBoundingClientRect();
         const actionBounds = actions.getBoundingClientRect();
         return {
@@ -89,7 +89,7 @@ test('Research actions and About opportunities have symmetric section spacing', 
           copy.getBoundingClientRect().bottom
         );
       });
-    expect(contentGap).toBeCloseTo(24, 0);
+    expect(contentGap).toBeCloseTo(16, 0);
   }
 });
 
