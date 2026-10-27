@@ -49,6 +49,10 @@
   height: 1.75rem;
 }
 
+:root[data-theme='dark'] .site-mark img {
+  filter: brightness(0) invert(1);
+}
+
 .site-nav,
 .site-header__actions,
 .action-group,

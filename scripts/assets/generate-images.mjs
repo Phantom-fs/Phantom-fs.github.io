@@ -1,11 +1,11 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import sharp from 'sharp';
+import { generateBrandAssets } from './generate-brand-assets.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const source = resolve(root, 'src/assets/portrait-selected.png');
 const output = resolve(root, 'public/images');
-const faviconSource = resolve(root, 'public/favicon.svg');
 
 await mkdir(output, { recursive: true });
 await sharp(source)
@@ -38,67 +38,7 @@ for (const width of [320, 487, 960]) {
   }
 }
 
-const favicon = await readFile(faviconSource);
-await Promise.all([
-  sharp(favicon)
-    .resize(16, 16)
-    .png()
-    .toFile(resolve(root, 'public/favicon-16.png')),
-  sharp(favicon)
-    .resize(32, 32)
-    .png()
-    .toFile(resolve(root, 'public/favicon-32.png')),
-  sharp(favicon)
-    .resize(96, 96)
-    .png()
-    .toFile(resolve(root, 'public/favicon-96.png')),
-  sharp(favicon)
-    .resize(180, 180)
-    .png()
-    .toFile(resolve(root, 'public/apple-touch-icon.png'))
-]);
-
-// ICO supports a PNG payload; keep the legacy icon in sync with the SVG source.
-const faviconPng = await sharp(favicon).resize(32, 32).png().toBuffer();
-const icoHeader = Buffer.alloc(22);
-icoHeader.writeUInt16LE(1, 2);
-icoHeader.writeUInt16LE(1, 4);
-icoHeader[6] = 32;
-icoHeader[7] = 32;
-icoHeader.writeUInt16LE(1, 10);
-icoHeader.writeUInt16LE(32, 12);
-icoHeader.writeUInt32LE(faviconPng.length, 14);
-icoHeader.writeUInt32LE(22, 18);
-await writeFile(
-  resolve(root, 'public/favicon.ico'),
-  Buffer.concat([icoHeader, faviconPng])
-);
-
-const portrait = await sharp(source)
-  .resize({ height: 630, width: 430, fit: 'cover', position: 'attention' })
-  .jpeg({ mozjpeg: true, quality: 88 })
-  .toBuffer();
-const ogSvg = Buffer.from(`
-  <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="630" fill="#FAFAF8"/>
-    <path d="M72 484C278 360 410 544 642 403S842 167 1088 259" fill="none" stroke="#4C6A92" stroke-width="4"/>
-    <path d="M70 522C291 392 438 572 686 447" fill="none" stroke="#D9D9D6" stroke-width="3"/>
-    <circle cx="645" cy="402" r="10" fill="#7B8E78"/>
-    <text x="72" y="128" fill="#2B2B2B" font-family="Georgia, serif" font-size="76">Farhan Sheth</text>
-    <text x="77" y="188" fill="#56616A" font-family="Arial, sans-serif" font-size="30">Early-career AI researcher</text>
-    <text x="77" y="250" fill="#4C6A92" font-family="Arial, sans-serif" font-size="24">Editorial Research Atlas</text>
-  </svg>
-`);
-
-await sharp({
-  create: { background: '#FAFAF8', channels: 3, height: 630, width: 1200 }
-})
-  .composite([
-    { input: ogSvg, top: 0, left: 0 },
-    { input: portrait, top: 0, left: 770 }
-  ])
-  .jpeg({ mozjpeg: true, quality: 88 })
-  .toFile(resolve(output, 'og-research-atlas.jpg'));
+await generateBrandAssets({ root, portraitSource: source });
 
 await writeFile(
   resolve(output, 'visitor-map-fallback.svg'),

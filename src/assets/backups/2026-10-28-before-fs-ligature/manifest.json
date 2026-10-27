@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-28",
+  "sourceRevision": "1be4e43",
+  "files": [
+    {
+      "original": "public/apple-touch-icon.png",
+      "backup": "public/apple-touch-icon.png",
+      "sha256": "386578469c16850098bda09f73b0290fa9ba2c3c69cd3bbed636f6ce39fad281"
+    },
+    {
+      "original": "public/favicon-16.png",
+      "backup": "public/favicon-16.png",
+      "sha256": "c41021737374a9303734673e10871eff1ead3358796ce0b169505f7d1128a549"
+    },
+    {
+      "original": "public/favicon-32.png",
+      "backup": "public/favicon-32.png",
+      "sha256": "7a1c371aa327c29d52caff31a10cd006a81938a98b5f56ec677c127fc3de8a04"
+    },
+    {
+      "original": "public/favicon-96.png",
+      "backup": "public/favicon-96.png",
+      "sha256": "3a670753ada7e99c426429fc12d3fc3bf1e20d7398ef4335a25f58dcd500776e"
+    },
+    {
+      "original": "public/favicon-96x96.png",
+      "backup": "public/favicon-96x96.png",
+      "sha256": "12117be5b888fda37540d9e675ad29b209fdf48878d9a33808dbe72d5265b7a7"
+    },
+    {
+      "original": "public/favicon.ico",
+      "backup": "public/favicon.ico",
+      "sha256": "8205b9af00d6191b6e639600fbdf8907ab17e20f8adc8dab090ebd71ec85a563"
+    },
+    {
+      "original": "public/favicon.png",
+      "backup": "public/favicon.png",
+      "sha256": "20047885084fcd871230aa844dc0bda58c6795b604ebcc3babcce35c6e3d6379"
+    },
+    {
+      "original": "public/favicon.svg",
+      "backup": "public/favicon.svg",
+      "sha256": "ed649894ebacea705ec11f6d331b17a3e2a98cc0e2855e2eeea44070c96ad870"
+    },
+    {
+      "original": "public/icons/fs-atlas-mark.svg",
+      "backup": "public/icons/fs-atlas-mark.svg",
+      "sha256": "1e5e8bb5fb4056b390358133d9a027508063b046d085658101d08d4d7b6dcadb"
+    },
+    {
+      "original": "public/images/og-research-atlas.jpg",
+      "backup": "public/images/og-research-atlas.jpg",
+      "sha256": "416e2d9afe2fd96f3ef0725573d5fd1285c05826b25b7bc752b70dc9e6b6cbb4"
+    },
+    {
+      "original": "public/images/profile-img.jpg",
+      "backup": "portraits-before-selection/profile-img.jpg",
+      "gitRevision": "3402d99",
+      "sha256": "3b8df00a05e5a3c4f057348bc358abe2c9c99bbd4c5e19289b67094b8791815c"
+    },
+    {
+      "original": "public/images/profile-img-320.avif",
+      "backup": "portraits-before-selection/profile-img-320.avif",
+      "gitRevision": "3402d99",
+      "sha256": "f2087fcd25623f0022689cbdd33f223147dca22a3bc2750765d43303a5448f0a"
+    },
+    {
+      "original": "public/images/profile-img-320.webp",
+      "backup": "portraits-before-selection/profile-img-320.webp",
+      "gitRevision": "3402d99",
+      "sha256": "e787a7206d38c80dc71d5534f717ba0faf7dc79b8fb2537ff419fd0708db8d0b"
+    },
+    {
+      "original": "public/images/profile-img-487.avif",
+      "backup": "portraits-before-selection/profile-img-487.avif",
+      "gitRevision": "3402d99",
+      "sha256": "bcd9128f14685aac5af6fc6e0e40d85601549b299ba5dd14e8f80b0ef69fe49b"
+    },
+    {
+      "original": "public/images/profile-img-487.webp",
+      "backup": "portraits-before-selection/profile-img-487.webp",
+      "gitRevision": "3402d99",
+      "sha256": "77838967ec164607f308ca0aa0603fd0f1f4c884e371f893954442c2a54ad504"
+    },
+    {
+      "original": "public/images/profile-img-487.jpg",
+      "backup": "portraits-before-selection/profile-img-487.jpg",
+      "gitRevision": "3402d99",
+      "sha256": "6e567291ac973e7347fedafd246483e3624eef897d8e5d436071569d1698319e"
+    },
+    {
+      "original": "public/images/og-research-atlas.jpg",
+      "backup": "portraits-before-selection/og-research-atlas.jpg",
+      "gitRevision": "3402d99",
+      "sha256": "93341ba40837dacc4f833b7d19dbed9f6080572b5051900a41253afc1509ba54"
+    }
+  ]
+}

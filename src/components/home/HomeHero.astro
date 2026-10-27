@@ -1,6 +1,7 @@
 ---
 import ActionGroup from '../shared/ActionGroup.astro';
 import ProfileServiceIcon from '../shared/ProfileServiceIcon.astro';
+import HeroPortrait from './HeroPortrait.astro';
 
 const curatedVenues = [
   'EACL',
@@ -37,7 +38,10 @@ const { identity, socialLinks } = Astro.props as {
     <div class="home-hero__identity">
       <p class="home-hero__role type-label">{identity.title}</p>
       <h1 class="type-display-home">Farhan Sheth</h1>
-      <p class="home-hero__statement type-body-lg">{identity.summary}</p>
+      <div class="home-hero__summary">
+        <HeroPortrait />
+        <p class="home-hero__statement type-body-lg">{identity.summary}</p>
+      </div>
       <div data-home-actions>
         <ActionGroup
           label="Research discovery"
@@ -90,31 +94,6 @@ const { identity, socialLinks } = Astro.props as {
             ))
         }
       </nav>
-    </div>
-    <div class="portrait-frame" data-portrait-frame>
-      <picture>
-        <source
-          media="(max-width: 30rem)"
-          srcset="/images/profile-img-320.avif"
-          type="image/avif"
-        />
-        <source
-          srcset="/images/profile-img-487.avif 1x, /images/profile-img-960.avif 2x"
-          type="image/avif"
-        />
-        <source
-          srcset="/images/profile-img-487.webp 1x, /images/profile-img-960.webp 2x"
-          type="image/webp"
-        />
-        <img
-          alt="Farhan Sheth"
-          height="617"
-          loading="eager"
-          src="/images/profile-img-487.jpg"
-          srcset="/images/profile-img-487.jpg 1x, /images/profile-img-960.jpg 2x"
-          width="487"
-        />
-      </picture>
     </div>
   </div>
 </section>

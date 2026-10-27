@@ -15,6 +15,69 @@ const mapSource =
   'https://mapmyvisitors.com/map.js?cl=fafaf8&w=a&t=n&d=SzcqKBhYOxcswX8VUvRDsvom-yprDjopW-HDcS5Msx8&co=dfe7ee&cmo=8a99a8&cmn=4c6a92&ct=303234';
 
 test.describe('Home and Research routes', () => {
+  test('wraps the mobile summary around a larger single portrait below the name', async ({
+    page,
+    browser
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.route('https://mapmyvisitors.com/**', (route) =>
+      route.fulfill({ body: '', contentType: 'application/javascript' })
+    );
+    for (const width of [320, 390, 480, 767]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      const summary = page.locator('.home-hero__summary');
+      await expect(summary.locator('img')).toHaveCount(1);
+      const geometry = await page
+        .locator('[data-home-hero]')
+        .evaluate((element) => {
+          const portrait = element.querySelector<HTMLElement>(
+            '[data-portrait-frame]'
+          )!;
+          const heading = element.querySelector('h1')!.getBoundingClientRect();
+          const summary = element
+            .querySelector('.home-hero__summary')!
+            .getBoundingClientRect();
+          const actions = element
+            .querySelector('[data-home-actions]')!
+            .getBoundingClientRect();
+          const image = portrait.getBoundingClientRect();
+          return {
+            float: getComputedStyle(portrait).cssFloat,
+            width: image.width,
+            imageTop: image.top,
+            imageBottom: image.bottom,
+            headingBottom: heading.bottom,
+            summaryTop: summary.top,
+            actionsTop: actions.top,
+            summaryWidth: summary.width
+          };
+        });
+      expect(geometry.float).toBe('right');
+      expect(geometry.width).toBeGreaterThanOrEqual(width === 320 ? 132 : 150);
+      expect(geometry.width).toBeLessThanOrEqual(geometry.summaryWidth * 0.48);
+      expect(geometry.imageTop).toBeGreaterThan(geometry.headingBottom);
+      expect(Math.abs(geometry.imageTop - geometry.summaryTop)).toBeLessThan(4);
+      expect(geometry.actionsTop).toBeGreaterThanOrEqual(geometry.imageBottom);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth
+        )
+      ).toBe(true);
+    }
+    const context = await browser.newContext({
+      javaScriptEnabled: false,
+      viewport: { width: 390, height: 844 }
+    });
+    const staticPage = await context.newPage();
+    await staticPage.goto('/');
+    await expect(staticPage.locator('.home-hero__summary img')).toBeVisible();
+    await expect(staticPage.locator('[data-portrait-frame]')).toHaveCSS(
+      'float',
+      'right'
+    );
+    await context.close();
+  });
   test('uses the selected high-density portrait without changing its layout', async ({
     browser
   }) => {
@@ -252,14 +315,16 @@ test.describe('Home and Research routes', () => {
           portraitWidth: portraitBox.width
         };
       });
-      expect(
-        geometry.identityRight < geometry.portraitLeft,
-        `${viewport.width}px opening should remain side-by-side`
-      ).toBe(true);
+      if (viewport.width >= 768) {
+        expect(
+          geometry.identityRight < geometry.portraitLeft,
+          `${viewport.width}px desktop opening should remain side-by-side`
+        ).toBe(true);
+      }
       expect(geometry.identityOrder).toBe('0');
       expect(geometry.portraitOrder).toBe('0');
       expect(geometry.portraitWidth).toBeLessThanOrEqual(
-        viewport.width <= 390 ? 132 : 420
+        viewport.width < 768 ? 192 : 420
       );
       expect(geometry.portraitHeight).toBeGreaterThan(0);
       expect(geometry.portraitHeight / geometry.portraitWidth).toBeGreaterThan(
