@@ -1,0 +1,2 @@
+# Archived originals must retain their exact bytes and checksum across platforms.
+src/assets/backups/** -text

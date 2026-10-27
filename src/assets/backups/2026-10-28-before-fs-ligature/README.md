@@ -3,6 +3,8 @@
 These are byte-for-byte backups, kept outside `public/` so the obsolete marks
 do not become crawlable alternate branding. `manifest.json` records SHA-256
 hashes and original paths for every file.
+The root `.gitattributes` disables line-ending conversion for this archive, so
+SVG checksums also remain stable across Windows and Unix checkouts.
 
 `public/` contains all eight favicon/touch files, the header mark, and the
 sharing card as they stood immediately before the 2026-10-28 replacement.
