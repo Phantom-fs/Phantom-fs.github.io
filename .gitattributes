@@ -1,2 +1,2 @@
 # Archived originals must retain their exact bytes and checksum across platforms.
-src/assets/backups/** -text
+src/assets/backups/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
