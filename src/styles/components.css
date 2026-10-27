@@ -258,6 +258,18 @@
   text-align: center;
 }
 
+.site-dialog__actions .reading-mode-action {
+  border-color: var(--color-annotation);
+  background: var(--color-subtle);
+  color: var(--color-annotation);
+  font-weight: 700;
+}
+
+.site-dialog__actions .reading-mode-action:is(:hover, :focus-visible) {
+  border-color: var(--color-link-hover);
+  color: var(--color-link-hover);
+}
+
 .site-footer {
   border-top: 1px solid var(--color-rule);
   padding-block: var(--space-8);

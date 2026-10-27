@@ -210,7 +210,9 @@
     "footer": "Original compact layout, copyright aligned to the left frame edge, static box/diagonal-arrow icons on profile and return links; email button is text only.",
     "themeControl": "44px circular icon-only sun/moon button with accessible dynamic action label and persistent theme choice.",
     "backToTop": "56px circular up arrow; scroll to exact zero, focus main without scrolling and preserve chapter/query hash. Home opportunity/impact boundary is one neutral 1px rule.",
-    "readingModeNavigation": "Home first in primary navigation for all routes. In the mobile menu, Scholar view / Full site is a centered full-width action directly above Download CV with a 12px gap. Overview desktop uses Home in navigation and Full site as its separate header utility."
+    "readingModeNavigation": "Home first in primary navigation for all routes. In the mobile menu, Scholar view / Full site is a centered full-width action directly above Download CV with a 12px gap. Overview desktop uses Home in navigation and Full site as its separate header utility.",
+    "readingModeEmphasis": "Mobile reading-mode action uses a pale slate surface, slate border/text and 700 weight; CV retains its plain secondary styling. Centered 44px targets preserved.",
+    "portraitOptions": "User explicitly authorized generated retouching/background/lighting options on 2026-10-27. Three previews are saved outside public assets; preserve the live photo until a choice is supplied. Preview output is about 1.1k x 1.4k, not native UHD."
   },
   "components": [
     {
