@@ -25,6 +25,14 @@ artifactAvailable: false
 homeFeatured: false
 detailPage: false
 displayOrder: 14
+figure:
+  src: '/images/publications/mango-leaf-disease.webp'
+  width: 996
+  height: 460
+  alt: 'Mango-leaf dataset preparation workflow showing collection, image preprocessing and training, validation and test splits.'
+  caption: 'Sequential Steps in Data Preparation.'
+  label: 'Figure 1'
+  page: 4
 ---
 
 This paper presents a comprehensive investigation into mathematical modelling and statistical analysis of mango leaf disease classification using deep learning models. The methodology includes preprocessing, hyperparameter tuning, and fine-tuning of pretrained Inception V3, MobileNet V3 Small, MobileNet V3 Large, and ResNet50 models. The reported results show 100% accuracy on validation and test datasets during initial training, while k-fold cross-validation affirms consistency and identifies Inception V3 as the leading model. Training and loss graphs and confusion matrices provide further analysis, including remaining distinctions among healthy leaf, Gall Midge, and Anthracnose classes.

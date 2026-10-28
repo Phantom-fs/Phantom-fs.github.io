@@ -27,6 +27,14 @@ artifactAvailable: false
 homeFeatured: false
 detailPage: false
 displayOrder: 15
+figure:
+  src: '/images/publications/chest-xray-encryption.webp'
+  width: 1305
+  height: 378
+  alt: 'Chest X-ray preprocessing and CNN training pipeline showing input radiographs, preprocessing steps, model training and prediction.'
+  caption: 'Processing and training demonstration.'
+  label: 'Figure 1'
+  page: 4
 ---
 
 This research presents a privacy-preserving approach to chest X-ray image classification using deep-learning techniques integrated with Advanced Encryption Standard (AES) encryption and Fully Homomorphic Encryption (FHE). The methodology classifies normal, COVID-19 infected, and pneumonia infected images without decrypting the data and evaluates ResNet50, ResNet101, MobileNetV3 Small, MobileNetV3 Large, DenseNet121, and DenseNet161 after preprocessing, hyperparameter selection, and transfer-learning fine-tuning. DenseNet161 achieves the highest reported accuracy of 92.28%, followed by DenseNet121 at 91.41% and ResNet50 at 91.26%.

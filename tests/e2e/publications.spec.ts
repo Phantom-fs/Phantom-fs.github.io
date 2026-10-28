@@ -100,7 +100,7 @@ test.describe('Publications catalog and approved detail routes', () => {
     await expect(catalog.locator('.citation-metric__source')).toHaveCount(0);
     await expect(
       page.getByRole('link', {
-        name: /Selective Token-Level Cryptographic Redaction/
+        name: /^Selective Token-Level Cryptographic Redaction/
       })
     ).toHaveAttribute('href', '/publications/herald/');
     await expect(
@@ -144,9 +144,15 @@ test.describe('Publications catalog and approved detail routes', () => {
         Number.parseFloat(getComputedStyle(element).minHeight)
       )
     ).toBeGreaterThanOrEqual(44);
+    // A left-hand figure narrows the long title; preserve a compact bound for
+    // the illustrated layout while checking the requested 4:3 thumbnail.
+    const thumbnail = await firstRecord
+      .locator('.publication-figure')
+      .boundingBox();
+    expect(thumbnail!.width / thumbnail!.height).toBeCloseTo(4 / 3, 2);
     expect(
       await firstRecord.evaluate((element) => element.clientHeight)
-    ).toBeLessThanOrEqual(400);
+    ).toBeLessThanOrEqual(500);
     await expect(title).toHaveCSS('overflow-wrap', 'normal');
     await expect(firstRecord).toHaveCSS('border-top-width', '1px');
     await expect(firstRecord).toHaveCSS('border-radius', '10px');
@@ -800,7 +806,7 @@ test.describe('Publications catalog and approved detail routes', () => {
     await page.goto('/publications/?q=herald&sort=title');
 
     const detailLink = page.getByRole('link', {
-      name: /Selective Token-Level Cryptographic Redaction/
+      name: /^Selective Token-Level Cryptographic Redaction/
     });
     await expect(detailLink).toHaveAttribute(
       'href',
@@ -822,7 +828,7 @@ test.describe('Publications catalog and approved detail routes', () => {
     await page.goto('/publications/?category=Healthcare%20%26%20Clinical%20AI');
 
     const detailLink = page.getByRole('link', {
-      name: /Uc-PrUn: Uncertainty-Calibrated Machine Unlearning/
+      name: /^Uc-PrUn: Uncertainty-Calibrated Machine Unlearning/
     });
     await expect(detailLink).toHaveAttribute(
       'href',

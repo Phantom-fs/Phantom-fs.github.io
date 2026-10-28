@@ -28,6 +28,14 @@ artifactAvailable: false
 homeFeatured: false
 detailPage: false
 displayOrder: 18
+figure:
+  src: '/images/publications/data-efficient-neuroimaging.webp'
+  width: 1386
+  height: 1711
+  alt: 'Neuroimaging classification architecture comparing original, augmented and Wasserstein-autoencoder-augmented datasets across CNN, ensemble and hybrid models.'
+  caption: 'Basic methodological architecture employed in this research (Part 2).'
+  label: 'Figure 2'
+  page: 9
 ---
 
 Accurate detection of brain tumors from MRI images remains a critical challenge due to data imbalance and tumor variability. This research evaluates advanced hybrid and ensemble deep-learning models for binary brain-tumor classification. A publicly available dataset containing 253 images was expanded to 3,720 images using traditional augmentation and to 5,168 images through Wasserstein Autoencoder-based synthetic generation. The study introduces hybrid architectures including RSN50-ViTB and ensemble models including CVMR-ViT, integrating CNN, VGG, MobileNet, ResNet, and Vision Transformer architectures. Models were evaluated across original, simple-augmentation, combined, and WAE-augmentation datasets. CVMR-ViT achieved 95.0% accuracy on the original dataset, 95.92% with simple augmentation, 97.30% on the combined dataset, and approximately 97.0% with WAE-generated samples, alongside the reported precision, recall, and F1 measures.

@@ -2,6 +2,7 @@ import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import sharp from 'sharp';
 import { generateBrandAssets } from './generate-brand-assets.mjs';
+import { generatePublicationFigures } from './generate-publication-figures.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const source = resolve(root, 'src/assets/portrait-selected.png');
@@ -39,6 +40,7 @@ for (const width of [320, 487, 960]) {
 }
 
 await generateBrandAssets({ root, portraitSource: source });
+await generatePublicationFigures(root);
 
 await writeFile(
   resolve(output, 'visitor-map-fallback.svg'),

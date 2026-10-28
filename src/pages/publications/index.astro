@@ -1,6 +1,7 @@
 ---
 import { resolve } from 'node:path';
 import PublicationCatalog from '../../components/publications/PublicationCatalog.astro';
+import PublicationFigureDialog from '../../components/publications/PublicationFigureDialog.astro';
 import PublicationExplorer from '../../islands/PublicationExplorer';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { loadValidatedContent } from '../../lib/content/query';
@@ -62,4 +63,5 @@ const initialExplorerState = parseExplorerState(Astro.url.searchParams);
       />
     </div>
   </section>
+  <PublicationFigureDialog />
 </BaseLayout>

@@ -1,0 +1,39 @@
+---
+import CloseIcon from '../shared/CloseIcon.astro';
+---
+
+<dialog
+  class="publication-figure-dialog"
+  id="publication-figure-dialog"
+  aria-label="Publication figure"
+  aria-describedby="publication-figure-paper"
+  data-figure-dialog
+>
+  <div class="publication-figure-dialog__heading">
+    <div>
+      <p class="type-metadata" data-figure-label></p>
+      <h2
+        class="type-heading-md"
+        id="publication-figure-paper"
+        data-figure-paper
+      >
+      </h2>
+    </div>
+    <button
+      class="control icon-control"
+      type="button"
+      aria-label="Close figure"
+      data-figure-close><CloseIcon /></button
+    >
+  </div>
+  <figure>
+    <div class="publication-figure-dialog__image">
+      <img alt="" data-figure-image />
+    </div>
+    <figcaption data-figure-caption></figcaption>
+  </figure>
+  <a class="link-underlined" data-figure-original>Open full-size image</a>
+</dialog>
+<script>
+  import '../../lib/ui/publication-figure-dialog';
+</script>

@@ -59,6 +59,18 @@ const rankSchema = z
   })
   .strict();
 
+export const publicationFigureSchema = z
+  .object({
+    src: z.string().regex(/^\/images\/publications\/[a-z0-9-]+\.webp$/),
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+    alt: requiredText,
+    caption: requiredText,
+    label: requiredText,
+    page: z.number().int().positive()
+  })
+  .strict();
+
 export const contentSchemas = {
   site: commonSchema.extend({
     seoDescription: requiredText.optional(),
@@ -100,6 +112,7 @@ export const contentSchemas = {
       primaryCategory: z.enum(researchCategories),
       hashtags: z.array(identifier),
       tldr: requiredText,
+      figure: publicationFigureSchema.optional(),
       doi: z
         .string()
         .regex(/^10\.\d{4,9}\/.+$/i, 'Must be a DOI')

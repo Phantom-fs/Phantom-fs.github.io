@@ -25,6 +25,14 @@ artifactAvailable: false
 homeFeatured: false
 detailPage: false
 displayOrder: 13
+figure:
+  src: '/images/publications/phishing-discrete-models.webp'
+  width: 1091
+  height: 536
+  alt: 'Feature-importance chart ranking URL attributes used in the phishing-classification pipeline.'
+  caption: 'Important Features Map for Classification.'
+  label: 'Figure 1'
+  page: 9
 ---
 
 This paper presents a discrete mathematical modelling of cybersecurity phishing attack detection methodologies, emphasizing the need for continual advances in detection. Leveraging mathematical modelling and machine-learning algorithms, the study evaluates Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Random Forest, Gradient Boosting Machines, Neural Networks, CatBoost, and XGBoost on Mendeley, URL-tokenized, and merged datasets. In the original Mendeley dataset, XGBoost achieves 97.24% accuracy, while CatBoost leads after preprocessing with 97.28% accuracy. Tokenized URLs reach a highest accuracy of 91.95%. The combined dataset produces the highest overall accuracy of 97.68%, with SVM excelling in sensitivity and specificity and XGBoost in precision.

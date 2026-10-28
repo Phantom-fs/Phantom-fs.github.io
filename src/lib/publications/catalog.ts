@@ -8,6 +8,15 @@ interface Rank {
 }
 
 interface CatalogPublicationSource {
+  figure?: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+    caption: string;
+    label: string;
+    page: number;
+  };
   arxivId?: string;
   authors: Array<{ equalContribution?: boolean; name: string }>;
   detailPage: boolean;
@@ -41,6 +50,7 @@ export const toCatalogPublication = ({
   authors: data.authors,
   detailPage: data.detailPage,
   displayOrder: data.displayOrder,
+  ...(data.figure ? { figure: data.figure } : {}),
   hashtags: data.hashtags,
   id: data.id,
   links: data.links,

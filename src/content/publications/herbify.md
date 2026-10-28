@@ -29,6 +29,14 @@ artifactAvailable: true
 homeFeatured: false
 detailPage: true
 displayOrder: 10
+figure:
+  src: '/images/publications/herbify.webp'
+  width: 1906
+  height: 677
+  alt: 'Herbify workflow showing dataset preparation and leaf preprocessing, augmented data splits, model training, ensemble construction and application.'
+  caption: 'The overall two-phase workflow adopted in the study methodology.'
+  label: 'Figure 1'
+  page: 5
 ---
 
 Herbs have historically been central to medicinal practices, representing one of the earliest forms of therapeutic intervention. While synthetic drugs are often highly effective for acute conditions, their use is frequently accompanied by adverse side effects. In response to this need, the current study introduces a computer vision framework for accurate herb identification. A novel dataset, Herbify, was compiled from two different herb datasets and refined through rigorous cleaning, preprocessing, and quality control procedures. The resulting dataset underwent standardization via the Preprocessing Algorithm for Herb Detection (PAHD), producing a refined dataset of 6104 images, representing 91 distinct herb species, with an average of about 67 images per species. Utilizing transfer learning, the research harnessed pre-trained Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs), then integrated these models into an ensemble framework. EfficientNet v2-Large achieved an F1-score of 99.13%, while the ensemble of EfficientNet v2-Large and ViT-Large/16, termed EfficientL-ViTL, attained an F1-score of 99.56%. The research also introduces the Herbify application, an AI-driven framework designed to identify herbs using the developed model and return scientific names and resemblance probabilities.

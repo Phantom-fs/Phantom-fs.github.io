@@ -26,6 +26,14 @@ artifactAvailable: false
 homeFeatured: false
 detailPage: false
 displayOrder: 17
+figure:
+  src: '/images/publications/phishing-llm.webp'
+  width: 1274
+  height: 203
+  alt: 'Phishing-detection methodology showing dataset preparation, preprocessing, training, evaluation and external-dataset testing.'
+  caption: 'Overview of the methodology.'
+  label: 'Figure 1'
+  page: 5
 ---
 
 This study explores the efficacy of four Large Language Models (LLMs)—BERT, DistilBERT, RoBERTa, and DeBERTa—in classifying URLs as either legitimate or phishing. The methodology covers dataset processing, model fine-tuning, and performance evaluation on a primary dataset with extensive features and an external dataset with minimal features. The models consistently achieve high performance on the primary dataset, with AUC scores of 0.99. DistilBERT records F1-score 99.992%, accuracy 99.991%, and precision 99.985% on the primary evaluation. On an external test dataset containing 450,176 labelled URLs, BERT and DeBERTa show low F1-scores of 1.14% and 2.78%, while DistilBERT reaches 42.44% and RoBERTa 68.03%, exposing the sensitivity of results to feature availability.

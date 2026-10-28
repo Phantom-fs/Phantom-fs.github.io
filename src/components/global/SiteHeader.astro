@@ -39,14 +39,15 @@ const readingMode = isOverview
         data-full-site-return={isOverview ? 'true' : undefined}
         href={readingMode.href}>{readingMode.label}</a
       >
-      <ThemeToggle />
       <a
-        class="action action--utility"
+        class="control site-header__cv"
         href="/files/Farhan_Sheth_CV.pdf"
         download
+        aria-label="CV"
       >
-        Download CV
+        CV
       </a>
+      <ThemeToggle />
       <button
         class="control mobile-menu-trigger"
         type="button"

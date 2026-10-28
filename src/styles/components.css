@@ -211,6 +211,43 @@
   padding-inline: var(--space-3);
 }
 
+.site-header__scholar-view,
+.site-header__cv {
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.site-header__scholar-view {
+  border-color: color-mix(
+    in srgb,
+    var(--color-annotation) 50%,
+    var(--color-rule)
+  );
+  background: var(--color-subtle);
+  color: var(--color-annotation);
+}
+
+.site-header__cv {
+  min-width: 3.25rem;
+}
+
+@media (min-width: 64rem) {
+  .site-header__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .site-header__actions {
+    justify-self: end;
+    gap: var(--space-2);
+  }
+
+  .site-header__desktop-nav {
+    flex-wrap: nowrap;
+    gap: clamp(0.75rem, 1.3vw, 1.25rem);
+  }
+}
+
 .mobile-menu-trigger {
   display: none;
 }
@@ -476,6 +513,142 @@
   display: none;
 }
 
+.publication-record__overview {
+  min-width: 0;
+}
+
+.publication-record__overview--illustrated {
+  display: grid;
+  grid-template-columns: clamp(10rem, 18vw, 14rem) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-5);
+}
+
+.publication-record__summary {
+  min-width: 0;
+}
+
+.publication-figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-annotation);
+  text-decoration: none;
+}
+
+.publication-figure img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: var(--space-2);
+  object-fit: contain;
+}
+
+.publication-figure__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.375rem var(--space-2);
+  border-top: 1px solid var(--color-rule);
+  background: var(--color-subtle);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.publication-figure:is(:hover, :focus-visible) {
+  border-color: var(--color-link-hover);
+  color: var(--color-link-hover);
+}
+
+.publication-figure-dialog {
+  width: min(76rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: var(--space-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.publication-figure-dialog::backdrop {
+  background: rgb(0 0 0 / 48%);
+}
+
+.publication-figure-dialog__heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.publication-figure-dialog__heading > div {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.publication-figure-dialog__heading button {
+  flex: 0 0 auto;
+}
+
+.publication-figure-dialog figure {
+  margin: 0 0 var(--space-4);
+}
+
+.publication-figure-dialog__image {
+  display: grid;
+  place-items: center;
+  padding: var(--space-3);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.publication-figure-dialog__image img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 65dvh;
+  object-fit: contain;
+}
+
+.publication-figure-dialog figcaption {
+  margin-top: var(--space-3);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 39.99rem) {
+  .publication-record__overview--illustrated {
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .publication-figure-dialog {
+    padding: var(--space-4);
+  }
+}
+
+@media (max-width: 22.49rem) {
+  .publication-record__overview--illustrated {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .publication-figure {
+    width: min(100%, 14rem);
+  }
+}
+
 .publication-record:hover,
 .publication-record:focus-within {
   border-color: var(--color-annotation);
@@ -730,7 +903,7 @@
 
 @media (max-width: 63.99rem) {
   .site-header__desktop-nav,
-  .site-header__actions .action--utility,
+  .site-header__cv,
   .site-header__scholar-view {
     display: none;
   }

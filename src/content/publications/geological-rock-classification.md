@@ -27,6 +27,14 @@ artifactAvailable: true
 homeFeatured: false
 detailPage: false
 displayOrder: 11
+figure:
+  src: '/images/publications/geological-rock-classification.webp'
+  width: 1844
+  height: 1064
+  alt: 'Rock-classification workflow showing image collection, preprocessing and data splits leading to a deep-learning model and rock prediction.'
+  caption: 'Overview of complete methodology workflow.'
+  label: 'Figure 1'
+  page: 3
 ---
 
 This study aims to tackle the obstacles linked with geological image segmentation by employing sophisticated deep learning techniques. Geological formations, characterized by diverse forms, sizes, textures, and colors, present a complex landscape for traditional image processing techniques. Drawing inspiration from recent advancements in image segmentation, particularly in medical imaging and object recognition, this research proposed a comprehensive methodology tailored to the specific requirements of geological image datasets. To establish the dataset, a minimum of 50 images per rock type was deemed essential, with the majority captured at the University of Las Palmas of Gran Canaria and during a field expedition to La Isla de La Palma, Spain. This dual-source approach ensures diversity in geological formations, enriching the dataset with a comprehensive range of visual characteristics. The study involves the identification of 19 distinct rock types, each documented with 50 samples, resulting in a comprehensive database containing 950 images. The methodology involves two crucial phases: initial preprocessing, followed by transfer learning and fine-tuning of ResNet, Inception V3, DenseNet, MobileNet V3, and EfficientNet V2 large models. DenseNet201 and InceptionV3 attained the highest accuracy of 98.49% on the original dataset; in five-fold cross-validation, MobileNet V3 large reached 99.15% accuracy. The authors report faster convergence without overfitting after preprocessing and minimal misclassifications among specific classes.

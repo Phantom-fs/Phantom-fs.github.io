@@ -29,6 +29,14 @@ artifactAvailable: true
 homeFeatured: false
 detailPage: false
 displayOrder: 12
+figure:
+  src: '/images/publications/nanofluid-density.webp'
+  width: 942
+  height: 2569
+  alt: 'Nanofluid-density workflow combining dataset collection, preprocessing, augmentation, model training, optimization and evaluation.'
+  caption: 'General workflow of the methodology.'
+  label: 'Figure 1'
+  page: 4
 ---
 
 This research presents a robust and comprehensive framework for predicting the density of hybrid nanofluids using state-of-the-art machine learning and deep learning techniques. The study used a curated dataset of 436 samples and nine input parameters, with preprocessing through outlier removal and augmentation using autoencoder-based or Gaussian-noise injection. Fourteen predictive models were analyzed, with Grey Wolf Optimization and Particle Swarm Optimization used for hyperparameter search. Autoencoder-based augmentation combined with hyperparameter optimization improved predictive accuracy across models. Gradient Boosting achieved an R2 score of 0.99999 and MSE of 0.00091 among machine-learning models, while a stacked RNN with Linear Regression achieved an R2 of 0.9999, MSE of 0.0014, and MAE of 0.012 among deep-learning models.

@@ -32,6 +32,14 @@ artifactAvailable: false
 homeFeatured: true
 detailPage: true
 displayOrder: 3
+figure:
+  src: '/images/publications/alzheimer-detection.webp'
+  width: 1179
+  height: 495
+  alt: 'ORBIT architecture showing audio and text encoders, language-invariant representations, spherical and hyperbolic branches and consensus prediction.'
+  caption: 'Proposed ORBIT framework.'
+  label: 'Figure 1'
+  page: 3
 ---
 
 In this work, we study zero-shot cross-lingual speech-based Alzheimer’s disease detection (SADD). We hypothesize that learning language-invariant multimodal representations by fusing multilingual speech and text pretrained models is essential for reliable transfer to unseen languages, while adversarial learning suppresses language-specific confounds. Empirical results in zero-shot cross-lingual evaluation show that multimodal fusion consistently outperforms unimodal baselines. We propose ORBIT, a framework combining cross-attentive fusion, multi-tap language adversaries, and complementary spherical-hyperbolic geometric learning with consensus clustering. Across settings, ORBIT achieves the strongest performance compared with unimodal models and simple concatenation-based fusion baselines. This work is recorded as accepted to Interspeech 2026; its arXiv record remains the accessible source.

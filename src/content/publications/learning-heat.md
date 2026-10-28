@@ -37,6 +37,14 @@ artifactAvailable: true
 homeFeatured: false
 detailPage: true
 displayOrder: 8
+figure:
+  src: '/images/publications/learning-heat.webp'
+  width: 1001
+  height: 1943
+  alt: 'Thermal-conductivity methodology with dataset processing, training and test splits, augmentation, model training, optimization and evaluation.'
+  caption: 'Methodology overview for predicting nanofluid thermal conductivity.'
+  label: 'Figure 1'
+  page: 3
 ---
 
 The precise forecasting of thermal conductivity in nanofluids is essential for enhancement of thermal management systems within industrial contexts. This research establishes a framework that combines machine learning, deep learning, advanced augmentation, and optimization to predict experimental thermal conductivity (Exp-TC) and effective thermal conductivity based on the Koo-Kleinstreuer-Li model (KKL-TC). The dataset contains 278 samples with nanoparticle materials, base fluids, particle size, temperature, volume fraction, and thermal conductivity parameters. Polynomial and Fourier expansion-inspired augmentation and conditional variational autoencoders improve data diversity. Fourteen ML and DL models are evaluated as standalone and stacked ensembles, with Grey Wolf and Particle Swarm Optimization used for hyperparameters. CatBoost delivers the best Exp-TC performance (R2 = 0.99964, RMSE = 0.00464) and KKL-TC performance (R2 = 0.99782, RMSE = 0.00391).

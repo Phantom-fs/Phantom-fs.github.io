@@ -27,7 +27,7 @@ export const buildImpactData = (
     label: String(year),
     value: papers.filter((paper) => paper.year === year).length
   }));
-  const citationsByYear = years.map((year) => ({
+  const citationsByYear = [...years].reverse().map((year) => ({
     label: String(year),
     value: papers
       .filter((paper) => paper.year === year)

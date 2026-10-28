@@ -27,6 +27,14 @@ artifactAvailable: true
 homeFeatured: false
 detailPage: true
 displayOrder: 4
+figure:
+  src: '/images/publications/uc-prun.webp'
+  width: 984
+  height: 1482
+  alt: 'Training and testing workflow linking vision-language model uncertainty estimation, high-uncertainty sample selection and targeted unlearning.'
+  caption: 'Workflow of the proposed Uc-PrUn framework.'
+  label: 'Figure 3'
+  page: 12
 ---
 
 In this study, we introduce Uc-PrUn, a principled framework designed to improve the reliability of Vision–Language Models (VLMs) in clinical decision-support systems. The first stage focuses on Bayesian-inspired zero-shot uncertainty quantification using Monte Carlo dropout, while the second stage introduces an uncertainty-aware machine-unlearning strategy. Leveraging the Harvard-FairVLMed dataset, which comprises paired SLO fundus images and clinical notes for glaucoma detection, we evaluate VLMs to quantify epistemic uncertainty and identify high-variance training samples. The pruning and unlearning mechanism selectively removes uncertain samples to enhance model calibration and downstream performance. Experiments show that Uc-PrUn reduces predictive uncertainty and yields consistent gains in accuracy and F1 scores across multiple VLMs, supporting uncertainty-aware pruning in medical AI pipelines.

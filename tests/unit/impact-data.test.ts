@@ -31,9 +31,11 @@ describe('impact explorer data', () => {
       '2025',
       '2026'
     ]);
-    expect(data.citationsByYear.map(({ label }) => label)).toEqual(
-      data.byYear.map(({ label }) => label)
-    );
+    expect(data.citationsByYear.map(({ label }) => label)).toEqual([
+      '2026',
+      '2025',
+      '2024'
+    ]);
     expect(data.citationsByYear.reduce((sum, row) => sum + row.value, 0)).toBe(
       snapshot.author.totalCitations.value
     );

@@ -29,6 +29,14 @@ artifactAvailable: true
 homeFeatured: true
 detailPage: true
 displayOrder: 1
+figure:
+  src: '/images/publications/herald.webp'
+  width: 2002
+  height: 1138
+  alt: 'HERALD pipeline from medical datasets and sensitive-word identification to cryptographic transformation, language-model training and evaluation.'
+  caption: 'Overview of the HERALD workflow.'
+  label: 'Figure 4'
+  page: 4
 ---
 
 While large language models (LLMs) are increasingly used for clinical applications, many existing pipelines require sending raw sensitive health information to remote servers, heightening the risk of privacy leakage. Encrypting an entire dataset introduces prohibitive computational, alignment, and communication overheads. To preserve privacy while maintaining usability, we present Healthcare Encryption & Redaction via Adaptive Linguistic Decomposition (HERALD), a token-level cryptographic redaction framework designed to encrypt only sensitive tokens while preserving surrounding context for downstream model utility. HERALD combines medical named-entity recognition with part-of-speech-driven policies to select candidate tokens, performs targeted lemmatization to stabilize surface forms, and substitutes each protected token with deterministic ciphertext wrapped in explicit delimiters. The model-agnostic framework operates entirely on the client side, keeping sensitive content encrypted during storage, transmission, and processing without changes to downstream models. Evaluation on public classification and medical question-answering datasets shows that fully secured baselines suffer substantial utility loss, whereas HERALD consistently recovers performance close to plaintext. This record remains under review and is not presented as accepted or published.

@@ -29,6 +29,14 @@ artifactAvailable: true
 homeFeatured: false
 detailPage: false
 displayOrder: 16
+figure:
+  src: '/images/publications/nanofluid-specific-heat.webp'
+  width: 796
+  height: 1383
+  alt: 'Specific-heat prediction workflow combining nanofluid data processing, augmented training data, model fitting, optimization and evaluation.'
+  caption: 'Workflow of the methodology implemented.'
+  label: 'Figure 1'
+  page: 4
 ---
 
 Accurately predicting the specific heat capacity of nanofluids is critical for optimizing their performance in engineering and industrial applications. This study explores twelve machine learning and deep learning models using conventional and stacking ensemble techniques, with linear regression as a meta-learner. Particle Swarm Optimization and Grey Wolf Optimization fine-tune machine-learning hyperparameters. The research uses 1,269 experimental nanofluid samples, with inputs including nanofluid type, temperature, and volume concentration. Polynomial/Fourier expansion-inspired and autoencoder-based augmentation strategies improve generalization. The stacked multi-layer perceptron with linear regression achieves the highest predictive accuracy, with an R2 score of 0.99927, MSE of 466.06, and RMSE of 21.58. CatBoost is the best standalone machine-learning model, with an R2 score of 0.99923, MSE of 487.71, and RMSE of 22.08. Grey Wolf Optimization reduces the LightGBM MSE from 29386.43 to 6549.006.
