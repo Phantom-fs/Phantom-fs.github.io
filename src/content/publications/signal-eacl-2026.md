@@ -40,7 +40,7 @@ figure:
   width: 1875
   height: 690
   alt: 'SIGNAL framework combining speech representations, graph attention and nearest-neighbor reasoning with an ensemble head and open-set routing.'
-  caption: 'Proposed SIGNAL framework.'
+  caption: 'SIGNAL architecture for synthetic speech detection and attribution'
   label: 'Figure 1'
   page: 3
 ---

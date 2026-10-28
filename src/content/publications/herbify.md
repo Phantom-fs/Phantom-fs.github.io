@@ -34,7 +34,7 @@ figure:
   width: 1906
   height: 677
   alt: 'Herbify workflow showing dataset preparation and leaf preprocessing, augmented data splits, model training, ensemble construction and application.'
-  caption: 'The overall two-phase workflow adopted in the study methodology.'
+  caption: 'Herbify workflow for herb image classification'
   label: 'Figure 1'
   page: 5
 ---

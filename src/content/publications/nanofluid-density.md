@@ -34,7 +34,7 @@ figure:
   width: 942
   height: 2569
   alt: 'Nanofluid-density workflow combining dataset collection, preprocessing, augmentation, model training, optimization and evaluation.'
-  caption: 'General workflow of the methodology.'
+  caption: 'Workflow for predicting hybrid nanofluid density'
   label: 'Figure 1'
   page: 4
 ---

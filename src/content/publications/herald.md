@@ -34,7 +34,7 @@ figure:
   width: 2002
   height: 1138
   alt: 'HERALD pipeline from medical datasets and sensitive-word identification to cryptographic transformation, language-model training and evaluation.'
-  caption: 'Overview of the HERALD workflow.'
+  caption: 'HERALD workflow for clinical text redaction'
   label: 'Figure 4'
   page: 4
 ---

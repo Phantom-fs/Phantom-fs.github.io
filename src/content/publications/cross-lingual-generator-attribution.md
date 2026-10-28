@@ -33,7 +33,7 @@ figure:
   width: 1838
   height: 1442
   alt: 'MiCuNet full architecture and component diagrams showing modality-specific encoders, attention, mixed-curvature projection, expert fusion and classification.'
-  caption: 'The MiCuNet architecture.'
+  caption: 'MiCuNet architecture for synthetic speech attribution'
   label: 'Figure 1'
   page: 3
 ---

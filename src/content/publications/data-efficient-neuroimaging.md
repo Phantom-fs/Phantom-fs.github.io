@@ -33,7 +33,7 @@ figure:
   width: 1386
   height: 1711
   alt: 'Neuroimaging classification architecture comparing original, augmented and Wasserstein-autoencoder-augmented datasets across CNN, ensemble and hybrid models.'
-  caption: 'Basic methodological architecture employed in this research (Part 2).'
+  caption: 'Brain MRI augmentation and classification workflow'
   label: 'Figure 2'
   page: 9
 ---

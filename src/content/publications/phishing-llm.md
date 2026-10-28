@@ -31,7 +31,7 @@ figure:
   width: 1274
   height: 203
   alt: 'Phishing-detection methodology showing dataset preparation, preprocessing, training, evaluation and external-dataset testing.'
-  caption: 'Overview of the methodology.'
+  caption: 'Phishing detection workflow with language models'
   label: 'Figure 1'
   page: 5
 ---

@@ -42,7 +42,7 @@ figure:
   width: 1001
   height: 1943
   alt: 'Thermal-conductivity methodology with dataset processing, training and test splits, augmentation, model training, optimization and evaluation.'
-  caption: 'Methodology overview for predicting nanofluid thermal conductivity.'
+  caption: 'Workflow for predicting nanofluid thermal conductivity'
   label: 'Figure 1'
   page: 3
 ---

@@ -30,7 +30,7 @@ figure:
   width: 1091
   height: 536
   alt: 'Feature-importance chart ranking URL attributes used in the phishing-classification pipeline.'
-  caption: 'Important Features Map for Classification.'
+  caption: 'URL feature importance for phishing detection'
   label: 'Figure 1'
   page: 9
 ---

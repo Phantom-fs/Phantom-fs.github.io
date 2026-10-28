@@ -30,7 +30,7 @@ figure:
   width: 996
   height: 460
   alt: 'Mango-leaf dataset preparation workflow showing collection, image preprocessing and training, validation and test splits.'
-  caption: 'Sequential Steps in Data Preparation.'
+  caption: 'Mango leaf image preprocessing and dataset preparation'
   label: 'Figure 1'
   page: 4
 ---

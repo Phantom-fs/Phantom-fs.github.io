@@ -32,7 +32,7 @@ figure:
   width: 984
   height: 1482
   alt: 'Training and testing workflow linking vision-language model uncertainty estimation, high-uncertainty sample selection and targeted unlearning.'
-  caption: 'Workflow of the proposed Uc-PrUn framework.'
+  caption: 'Workflow of the Uc-PrUn framework'
   label: 'Figure 3'
   page: 12
 ---

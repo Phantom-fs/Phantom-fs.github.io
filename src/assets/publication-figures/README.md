@@ -44,3 +44,7 @@ full-resolution view. Figure/page provenance remains in the source metadata
 without appearing as additional labels in the viewer.
 Displayed captions omit trailing periods; the stored source captions remain
 unchanged. The Full size control uses the site's slate-blue primary styling.
+
+Publication frontmatter and manifest `caption` fields contain short, contextual
+display captions. The manifest retains the preceding figure wording separately
+as `sourceCaption`; display captions are editorial paraphrases, not quotations.

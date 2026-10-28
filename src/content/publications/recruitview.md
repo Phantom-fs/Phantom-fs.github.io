@@ -39,7 +39,7 @@ figure:
   width: 2027
   height: 745
   alt: 'CRMF architecture with video, audio and text encoders, cross-modal pre-fusion, hyperbolic, spherical and Euclidean experts and task-specific prediction heads.'
-  caption: 'Overview of the CRMF architecture.'
+  caption: 'CRMF architecture for multimodal interview assessment'
   label: 'Figure 4'
   page: 7
 ---

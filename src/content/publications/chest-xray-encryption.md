@@ -32,7 +32,7 @@ figure:
   width: 1305
   height: 378
   alt: 'Chest X-ray preprocessing and CNN training pipeline showing input radiographs, preprocessing steps, model training and prediction.'
-  caption: 'Processing and training demonstration.'
+  caption: 'Encrypted chest X-ray classification workflow'
   label: 'Figure 1'
   page: 4
 ---

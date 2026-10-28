@@ -37,7 +37,7 @@ figure:
   width: 1179
   height: 495
   alt: 'ORBIT architecture showing audio and text encoders, language-invariant representations, spherical and hyperbolic branches and consensus prediction.'
-  caption: 'Proposed ORBIT framework.'
+  caption: 'ORBIT architecture for cross-lingual Alzheimer detection'
   label: 'Figure 1'
   page: 3
 ---

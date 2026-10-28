@@ -34,7 +34,7 @@ figure:
   width: 1900
   height: 893
   alt: 'Two-phase soil-classification workflow showing data processing, augmentation and dataset splits followed by ensemble training, fuzzy logic and application.'
-  caption: 'Overview of the methodology employed in the study.'
+  caption: 'Soil classification and crop recommendation workflow'
   label: 'Figure 1'
   page: 5
 ---

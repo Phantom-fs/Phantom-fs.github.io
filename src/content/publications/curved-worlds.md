@@ -40,7 +40,7 @@ figure:
   width: 1786
   height: 687
   alt: 'RHYME speech-deepfake pipeline from waveform and frozen encoder to Euclidean, spherical and hyperbolic representations and real or fake classification.'
-  caption: 'Working flow of the proposed RHYME framework.'
+  caption: 'RHYME workflow for speech deepfake detection'
   label: 'Figure 1'
   page: 4
 ---

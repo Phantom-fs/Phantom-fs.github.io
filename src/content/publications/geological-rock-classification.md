@@ -32,7 +32,7 @@ figure:
   width: 1844
   height: 1064
   alt: 'Rock-classification workflow showing image collection, preprocessing and data splits leading to a deep-learning model and rock prediction.'
-  caption: 'Overview of complete methodology workflow.'
+  caption: 'Deep learning workflow for rock classification'
   label: 'Figure 1'
   page: 3
 ---

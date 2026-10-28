@@ -7,12 +7,13 @@
     "cropNormalized": [0.298, 0.124, 0.7, 0.592],
     "renderScale": 4,
     "label": "Figure 3",
-    "caption": "Workflow of the proposed Uc-PrUn framework.",
+    "caption": "Workflow of the Uc-PrUn framework",
     "alt": "Training and testing workflow linking vision-language model uncertainty estimation, high-uncertainty sample selection and targeted unlearning.",
     "width": 984,
     "height": 1482,
     "extractedSha256": "1dcf95fd3a0b680e631cb3a90b5fe3c8d7eb7e06303369a36fec1107f7fc0171",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Workflow of the proposed Uc-PrUn framework."
   },
   {
     "id": "herald",
@@ -22,12 +23,13 @@
     "cropNormalized": [0.091, 0.086, 0.909, 0.445],
     "renderScale": 4,
     "label": "Figure 4",
-    "caption": "Overview of the HERALD workflow.",
+    "caption": "HERALD workflow for clinical text redaction",
     "alt": "HERALD pipeline from medical datasets and sensitive-word identification to cryptographic transformation, language-model training and evaluation.",
     "width": 2002,
     "height": 1138,
     "extractedSha256": "ff568dd6a70d9367e3df99499c0c8ea18d9024063262f26468527671b5311257",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Overview of the HERALD workflow."
   },
   {
     "id": "signal-eacl-2026",
@@ -37,12 +39,13 @@
     "cropNormalized": [0.108, 0.075, 0.895, 0.28],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Proposed SIGNAL framework.",
+    "caption": "SIGNAL architecture for synthetic speech detection and attribution",
     "alt": "SIGNAL framework combining speech representations, graph attention and nearest-neighbor reasoning with an ensemble head and open-set routing.",
     "width": 1875,
     "height": 690,
     "extractedSha256": "e165abc5eee713bdf23b0674c87e933d6b119070dfe17f57da5d3db2eebfb324",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Proposed SIGNAL framework."
   },
   {
     "id": "alzheimer-detection",
@@ -52,12 +55,13 @@
     "cropNormalized": [0.254, 0.083, 0.749, 0.23],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Proposed ORBIT framework.",
+    "caption": "ORBIT architecture for cross-lingual Alzheimer detection",
     "alt": "ORBIT architecture showing audio and text encoders, language-invariant representations, spherical and hyperbolic branches and consensus prediction.",
     "width": 1179,
     "height": 495,
     "extractedSha256": "50bed0ea5c41928b10c40965e5a860f8656b83b157297f5ade7a032def77e18b",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Proposed ORBIT framework."
   },
   {
     "id": "recruitview",
@@ -67,12 +71,13 @@
     "cropNormalized": [0.087, 0.08, 0.915, 0.315],
     "renderScale": 4,
     "label": "Figure 4",
-    "caption": "Overview of the CRMF architecture.",
+    "caption": "CRMF architecture for multimodal interview assessment",
     "alt": "CRMF architecture with video, audio and text encoders, cross-modal pre-fusion, hyperbolic, spherical and Euclidean experts and task-specific prediction heads.",
     "width": 2027,
     "height": 745,
     "extractedSha256": "d5388e3ece40e96e452464730aa2a5ee77e42e9a2b0b97c96dfd9d5c55559ee5",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Overview of the CRMF architecture."
   },
   {
     "id": "curved-worlds",
@@ -82,12 +87,13 @@
     "cropNormalized": [0.125, 0.079, 0.875, 0.283],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Working flow of the proposed RHYME framework.",
+    "caption": "RHYME workflow for speech deepfake detection",
     "alt": "RHYME speech-deepfake pipeline from waveform and frozen encoder to Euclidean, spherical and hyperbolic representations and real or fake classification.",
     "width": 1786,
     "height": 687,
     "extractedSha256": "2489d493813d2f3cdc74dc658824e7389245435d0b83ba696467af1fe57d6e27",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Working flow of the proposed RHYME framework."
   },
   {
     "id": "cross-lingual-generator-attribution",
@@ -97,12 +103,13 @@
     "cropNormalized": [0.114, 0.079, 0.886, 0.507],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "The MiCuNet architecture.",
+    "caption": "MiCuNet architecture for synthetic speech attribution",
     "alt": "MiCuNet full architecture and component diagrams showing modality-specific encoders, attention, mixed-curvature projection, expert fusion and classification.",
     "width": 1838,
     "height": 1442,
     "extractedSha256": "fd0ab2e489af7b4106dd4e0deec129a9c6ede14741c804ffb07e82762daf68b9",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "The MiCuNet architecture."
   },
   {
     "id": "soil-classification",
@@ -112,12 +119,13 @@
     "cropNormalized": [0.101, 0.065, 0.899, 0.346],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Overview of the methodology employed in the study.",
+    "caption": "Soil classification and crop recommendation workflow",
     "alt": "Two-phase soil-classification workflow showing data processing, augmentation and dataset splits followed by ensemble training, fuzzy logic and application.",
     "width": 1900,
     "height": 893,
     "extractedSha256": "b972bf57be5c32cf189195d7fc0dcd83cd56dd5dfaed22be42423de1916e59b5",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Overview of the methodology employed in the study."
   },
   {
     "id": "learning-heat",
@@ -127,12 +135,13 @@
     "cropNormalized": [0.064, 0.065, 0.484, 0.677],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Methodology overview for predicting nanofluid thermal conductivity.",
+    "caption": "Workflow for predicting nanofluid thermal conductivity",
     "alt": "Thermal-conductivity methodology with dataset processing, training and test splits, augmentation, model training, optimization and evaluation.",
     "width": 1001,
     "height": 1943,
     "extractedSha256": "801dbcd966cc2da88392f0f44b50ac7f49ba3764e80adfcc84ead4a8ff88491d",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Methodology overview for predicting nanofluid thermal conductivity."
   },
   {
     "id": "geological-rock-classification",
@@ -142,12 +151,13 @@
     "cropNormalized": [0.113, 0.065, 0.887, 0.4],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Overview of complete methodology workflow.",
+    "caption": "Deep learning workflow for rock classification",
     "alt": "Rock-classification workflow showing image collection, preprocessing and data splits leading to a deep-learning model and rock prediction.",
     "width": 1844,
     "height": 1064,
     "extractedSha256": "427313696bfe93ca0b64753e600d0a04c62e259ce119b67b08a7719e40c23dd9",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Overview of complete methodology workflow."
   },
   {
     "id": "nanofluid-density",
@@ -157,12 +167,13 @@
     "cropNormalized": [0.068, 0.079, 0.477, 0.899],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "General workflow of the methodology.",
+    "caption": "Workflow for predicting hybrid nanofluid density",
     "alt": "Nanofluid-density workflow combining dataset collection, preprocessing, augmentation, model training, optimization and evaluation.",
     "width": 942,
     "height": 2569,
     "extractedSha256": "c1f2d7cce5b2e83b665878d61a325848231f0187145ebcdbea625f36c59649ca",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "General workflow of the methodology."
   },
   {
     "id": "phishing-discrete-models",
@@ -172,12 +183,13 @@
     "cropNormalized": [0.265, 0.373, 0.806, 0.569],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Important Features Map for Classification.",
+    "caption": "URL feature importance for phishing detection",
     "alt": "Feature-importance chart ranking URL attributes used in the phishing-classification pipeline.",
     "width": 1091,
     "height": 536,
     "extractedSha256": "0ea486bda441bfb7e8e82514d6c11ed9dbc09d79ae59a159316fa016454136e8",
-    "selectionReason": "No architecture figure is present; Figure 1 visualizes the feature-selection basis of the classification method."
+    "selectionReason": "No architecture figure is present; Figure 1 visualizes the feature-selection basis of the classification method.",
+    "sourceCaption": "Important Features Map for Classification."
   },
   {
     "id": "chest-xray-encryption",
@@ -187,12 +199,13 @@
     "cropNormalized": [0.141, 0.42, 0.788, 0.558],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Processing and training demonstration.",
+    "caption": "Encrypted chest X-ray classification workflow",
     "alt": "Chest X-ray preprocessing and CNN training pipeline showing input radiographs, preprocessing steps, model training and prediction.",
     "width": 1305,
     "height": 378,
     "extractedSha256": "b0a97f9721f4644e2dc6bcf223b67b162010f5c559ed4713dd141cc27219cd0b",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Processing and training demonstration."
   },
   {
     "id": "mango-leaf-disease",
@@ -202,12 +215,13 @@
     "cropNormalized": [0.217, 0.697, 0.711, 0.865],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Sequential Steps in Data Preparation.",
+    "caption": "Mango leaf image preprocessing and dataset preparation",
     "alt": "Mango-leaf dataset preparation workflow showing collection, image preprocessing and training, validation and test splits.",
     "width": 996,
     "height": 460,
     "extractedSha256": "f83e133eee7cff770789bbf5b32dc901a984afe0df5c0771382b9eb93c329b2c",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Sequential Steps in Data Preparation."
   },
   {
     "id": "phishing-llm",
@@ -217,12 +231,13 @@
     "cropNormalized": [0.222, 0.135, 0.854, 0.209],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Overview of the methodology.",
+    "caption": "Phishing detection workflow with language models",
     "alt": "Phishing-detection methodology showing dataset preparation, preprocessing, training, evaluation and external-dataset testing.",
     "width": 1274,
     "height": 203,
     "extractedSha256": "295013bb816652c197ed5984bff76802e6846e087595369428ae349dd4c6605a",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Overview of the methodology."
   },
   {
     "id": "data-efficient-neuroimaging",
@@ -232,12 +247,13 @@
     "cropNormalized": [0.209, 0.101, 0.791, 0.64],
     "renderScale": 4,
     "label": "Figure 2",
-    "caption": "Basic methodological architecture employed in this research (Part 2).",
+    "caption": "Brain MRI augmentation and classification workflow",
     "alt": "Neuroimaging classification architecture comparing original, augmented and Wasserstein-autoencoder-augmented datasets across CNN, ensemble and hybrid models.",
     "width": 1386,
     "height": 1711,
     "extractedSha256": "00974f576fc2534cee2badbbe9a13aa252da5c607198c9c542d4d754dd9199f6",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Basic methodological architecture employed in this research (Part 2)."
   },
   {
     "id": "herbify",
@@ -247,12 +263,13 @@
     "cropNormalized": [0.1, 0.623, 0.9, 0.837],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "The overall two-phase workflow adopted in the study methodology.",
+    "caption": "Herbify workflow for herb image classification",
     "alt": "Herbify workflow showing dataset preparation and leaf preprocessing, augmented data splits, model training, ensemble construction and application.",
     "width": 1906,
     "height": 677,
     "extractedSha256": "ca55284835e5b58ac1137f9e8c6ef29912d3ffab4c487004c99ac0d6079df1eb",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "The overall two-phase workflow adopted in the study methodology."
   },
   {
     "id": "nanofluid-specific-heat",
@@ -262,11 +279,12 @@
     "cropNormalized": [0.257, 0.06, 0.591, 0.502],
     "renderScale": 4,
     "label": "Figure 1",
-    "caption": "Workflow of the methodology implemented.",
+    "caption": "Workflow for predicting nanofluid specific heat capacity",
     "alt": "Specific-heat prediction workflow combining nanofluid data processing, augmented training data, model fitting, optimization and evaluation.",
     "width": 796,
     "height": 1383,
     "extractedSha256": "c4b96db14204c38f4fc70fe11d640e90f2f3b84f1365aa01cc9296394f9e4b55",
-    "selectionReason": "Methodology or architecture overview selected from the source paper."
+    "selectionReason": "Methodology or architecture overview selected from the source paper.",
+    "sourceCaption": "Workflow of the methodology implemented."
   }
 ]

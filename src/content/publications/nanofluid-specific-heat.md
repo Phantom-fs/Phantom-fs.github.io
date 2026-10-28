@@ -34,7 +34,7 @@ figure:
   width: 796
   height: 1383
   alt: 'Specific-heat prediction workflow combining nanofluid data processing, augmented training data, model fitting, optimization and evaluation.'
-  caption: 'Workflow of the methodology implemented.'
+  caption: 'Workflow for predicting nanofluid specific heat capacity'
   label: 'Figure 1'
   page: 4
 ---
