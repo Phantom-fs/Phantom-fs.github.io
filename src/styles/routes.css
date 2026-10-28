@@ -643,7 +643,7 @@
   content: '';
   position: absolute;
   inset: auto 1rem 0 0;
-  height: 2.5rem;
+  height: 4rem;
   pointer-events: none;
   background: linear-gradient(transparent, var(--color-background));
   -webkit-backdrop-filter: blur(2px);
@@ -1229,7 +1229,6 @@
 .publication-filter-dialog__actions > .filter-reset {
   justify-self: start;
   min-width: 5rem;
-  border-radius: 999px;
 }
 
 .publication-filter-dialog__actions > .action--primary {

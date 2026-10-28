@@ -27,8 +27,8 @@
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .site-header {
     background: color-mix(in srgb, var(--color-background) 82%, transparent);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
   }
 }
 
@@ -305,6 +305,8 @@
 }
 
 .site-dialog__actions .action {
+  justify-self: center;
+  width: min(100%, 12rem);
   border-radius: 999px;
   text-align: center;
 }
