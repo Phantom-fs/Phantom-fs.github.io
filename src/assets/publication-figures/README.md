@@ -46,6 +46,8 @@ Displayed captions omit trailing periods; the stored source captions remain
 unchanged. The enlarge icon matches the close control with a faint border,
 transparent background and legible graphite glyph. Hover/focus adds subtle
 feedback. Both have accessible labels and reserve space above the diagram.
+Both controls use 60% opacity at rest and 100% on hover, press or keyboard
+focus, with transitions following the site's motion settings.
 
 Publication frontmatter and manifest `caption` fields contain short, contextual
 display captions. The manifest retains the preceding figure wording separately
