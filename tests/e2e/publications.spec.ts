@@ -160,12 +160,24 @@ test.describe('Publications catalog and approved detail routes', () => {
     const restingBorder = await firstRecord.evaluate(
       (element) => getComputedStyle(element).borderTopColor
     );
+    const restingBackground = await firstRecord.evaluate(
+      (element) => getComputedStyle(element).backgroundColor
+    );
     await firstRecord.hover();
-    expect(
-      await firstRecord.evaluate(
-        (element) => getComputedStyle(element).borderTopColor
+    await expect(firstRecord).toHaveCSS('border-top-color', restingBorder);
+    await expect
+      .poll(() =>
+        firstRecord.evaluate(
+          (element) => getComputedStyle(element).backgroundColor
+        )
       )
-    ).not.toBe(restingBorder);
+      .not.toBe(restingBackground);
+    const figure = firstRecord.locator('[data-publication-figure]');
+    const figureBorder = await figure.evaluate(
+      (element) => getComputedStyle(element).borderTopColor
+    );
+    await figure.hover();
+    await expect(figure).toHaveCSS('border-top-color', figureBorder);
     expect(
       await firstRecord
         .locator('.publication-record__taxonomy')

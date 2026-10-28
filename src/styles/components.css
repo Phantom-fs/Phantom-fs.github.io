@@ -577,7 +577,6 @@
 }
 
 .publication-figure:is(:hover, :focus-visible) {
-  border-color: var(--color-link-hover);
   color: var(--color-link-hover);
 }
 
@@ -730,7 +729,6 @@
 
 .publication-record:hover,
 .publication-record:focus-within {
-  border-color: var(--color-annotation);
   background: color-mix(
     in srgb,
     var(--color-surface) 98%,
