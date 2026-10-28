@@ -721,14 +721,20 @@
     grid-template-columns: 7rem minmax(0, 1fr);
     gap: var(--space-3);
   }
-
-  .publication-figure-dialog {
-    padding: var(--space-4);
-  }
 }
 
 @media (max-width: 47.99rem) {
+  .publication-figure-dialog {
+    padding: var(--space-2);
+  }
+
+  .publication-figure-dialog__image {
+    padding-top: 2.75rem;
+  }
+
   .publication-figure-dialog__close {
+    top: 0;
+    right: 0;
     width: 2rem;
     min-height: 2rem;
     height: 2rem;
