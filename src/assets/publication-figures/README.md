@@ -36,18 +36,24 @@ checked-in PNGs and do not require the source PDFs or a Python PDF renderer.
    the original aspect ratio and colors remain intact.
 
 The compact enlarged view shows a centered caption and supports X, Escape,
-backdrop dismissal and focus restoration. An enlarge icon in the image's
-top-left corner opens the original in a new tab. Thumbnail links also serve no-JavaScript use;
+backdrop dismissal and focus restoration. A borderless enlarge icon centered
+over the image opens the original in a new tab. Thumbnail links also serve no-JavaScript use;
 the zoom icon appears on hover/focus, with a subtle persistent cue for touch.
 Thumbnails load lazily; opening the dialog fetches only that paper's
 full-resolution view. Figure/page provenance remains in the source metadata
 without appearing as additional labels in the viewer.
 Displayed captions omit trailing periods; the stored source captions remain
-unchanged. The enlarge icon matches the close control with a faint border,
-transparent background and legible graphite glyph. Hover/focus adds subtle
-feedback. Both have accessible labels and reserve space above the diagram.
-Both controls use 60% opacity at rest and 100% on hover, press or keyboard
-focus, with transitions following the site's motion settings.
+unchanged. The enlarge glyph scales from 24px on small screens to 32px on
+desktop. Its translucent white circular backing scales from 44px to 64px, without an
+outline. The plain glyph uses 65% opacity with no white keyline; the neutral
+backing becomes slightly more opaque on interaction. It stays hidden until the pointer is near
+the image center, or the control receives keyboard focus or a press. Its
+expanded invisible hit area supports this proximity behavior.
+
+Close controls across figures, navigation, impact charts and filters share
+60% idle opacity and 100% opacity on hover, press or keyboard focus. Their
+transitions follow the site's motion settings. All controls retain accessible
+labels; the close icon stays above the diagram at upper-right.
 
 Publication frontmatter and manifest `caption` fields contain short, contextual
 display captions. The manifest retains the preceding figure wording separately

@@ -67,12 +67,17 @@ test('image-only thumbnails show a hover zoom affordance and a compact viewer to
     'href',
     await trigger.evaluate((node: HTMLAnchorElement) => node.href)
   );
-  const imageBox = (await dialog
-    .locator('.publication-figure-dialog__image')
-    .boundingBox())!;
-  expect((await fullSize.boundingBox())!.y).toBeGreaterThan(imageBox.y);
-  expect((await fullSize.boundingBox())!.y).toBeLessThan(imageBox.y + 20);
-  expect((await fullSize.boundingBox())!.x).toBeLessThan(imageBox.x + 20);
+  const imageBox = (await dialog.locator('img').boundingBox())!;
+  const enlargeBox = (await fullSize.boundingBox())!;
+  expect(enlargeBox.x + enlargeBox.width / 2).toBeCloseTo(
+    imageBox.x + imageBox.width / 2,
+    0
+  );
+  expect(enlargeBox.y + enlargeBox.height / 2).toBeCloseTo(
+    imageBox.y + imageBox.height / 2,
+    0
+  );
+  await expect(fullSize).toHaveCSS('border-top-width', '0px');
   const [original] = await Promise.all([
     page.waitForEvent('popup'),
     fullSize.click()

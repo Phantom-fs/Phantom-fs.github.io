@@ -301,7 +301,7 @@ export default function PublicationExplorer({
           <div class="publication-filter-dialog__heading">
             <h2 id="publication-filter-title">Filter publications</h2>
             <button
-              class="control icon-control"
+              class="control icon-control dismiss-control"
               aria-label="Close filters"
               onClick={() => closeFilters(false)}
               type="button"

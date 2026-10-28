@@ -26,7 +26,9 @@ const { heading, id, triggerLabel } = Astro.props;
   <div class="site-dialog__inner">
     <div class="site-dialog__heading">
       <h2 class="type-heading-md" id={`${id}-title`}>{heading}</h2>
-      <button class="control" type="button" data-overlay-close>Close</button>
+      <button class="control dismiss-control" type="button" data-overlay-close
+        >Close</button
+      >
     </div>
     <slot />
   </div>
