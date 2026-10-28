@@ -726,6 +726,28 @@
   }
 }
 
+@media (max-width: 47.99rem) {
+  .publication-record__overview--illustrated {
+    row-gap: var(--space-2);
+  }
+
+  .publication-record__overview--illustrated .publication-record__summary,
+  .publication-record__overview--illustrated .publication-identity {
+    display: contents;
+  }
+
+  .publication-record__overview--illustrated .publication-identity__title {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .publication-record__overview--illustrated .publication-identity__authors,
+  .publication-record__overview--illustrated [data-publication-metadata],
+  .publication-record__overview--illustrated .publication-record__disclosures {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 22.49rem) {
   .publication-record__overview--illustrated {
     grid-template-columns: minmax(0, 1fr);
@@ -733,6 +755,11 @@
 
   .publication-figure {
     width: min(100%, 14rem);
+  }
+
+  .publication-record__overview--illustrated .publication-identity__title {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
 

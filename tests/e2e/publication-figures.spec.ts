@@ -1,6 +1,63 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test('mobile paper metadata spans the card below the figure and title', async ({
+  page
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/publications/');
+  for (const width of [320, 390, 640, 767, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    const layouts = await page
+      .locator('[data-publication-record]')
+      .evaluateAll((records) =>
+        records.map((record) => {
+          const box = (selector: string) =>
+            record.querySelector(selector)!.getBoundingClientRect();
+          const figure = box('[data-publication-figure]');
+          const title = box('.publication-identity__title');
+          const tags = box('.publication-record__taxonomy');
+          return {
+            figure: { right: figure.right, bottom: figure.bottom },
+            title: { left: title.left, top: title.top, bottom: title.bottom },
+            left: tags.left,
+            width: tags.width,
+            metadata: [
+              '.publication-identity__authors',
+              '[data-publication-metadata]',
+              '.publication-record__disclosures'
+            ].map((selector) => {
+              const rect = box(selector);
+              return { left: rect.left, top: rect.top, width: rect.width };
+            })
+          };
+        })
+      );
+    expect(layouts).toHaveLength(18);
+    for (const layout of layouts) {
+      if (width < 768) {
+        for (const row of layout.metadata) {
+          expect(row.left).toBeCloseTo(layout.left, 0);
+          expect(row.width).toBeCloseTo(layout.width, 0);
+          expect(row.top).toBeGreaterThanOrEqual(
+            Math.max(layout.figure.bottom, layout.title.bottom)
+          );
+        }
+      } else {
+        expect(layout.metadata[0].left).toBeGreaterThan(layout.figure.right);
+      }
+      if (width < 360)
+        expect(layout.title.top).toBeGreaterThanOrEqual(layout.figure.bottom);
+      else expect(layout.title.left).toBeGreaterThan(layout.figure.right);
+    }
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth
+      )
+    ).toBe(true);
+  }
+});
+
 test('every paper exposes its own complete figure, with keyboard close and focus restoration', async ({
   page
 }) => {
