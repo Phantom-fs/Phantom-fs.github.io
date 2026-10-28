@@ -42,70 +42,72 @@ const Heading = route === 'home' ? 'h3' : 'h2';
       {route === 'projects' ? 'Project index' : 'Research areas'}
     </Heading>
   </header>
-  <div
-    class:list={{ 'home-atlas__scroll content-scroll': route === 'home' }}
-    role={route === 'home' ? 'region' : undefined}
-    aria-label={route === 'home' ? 'Research areas list' : undefined}
-    tabindex={route === 'home' ? '0' : undefined}
-  >
-    <ol class="domain-relationship-index__domains">
-      {
-        domains.map((domain, index) => (
-          <li
-            aria-current={
-              route !== 'home' && domain.slug === currentDomain
-                ? 'true'
-                : undefined
-            }
-            data-domain-relationship={domain.slug}
-          >
-            <div class="domain-relationship-index__domain">
-              <span
-                aria-hidden="true"
-                class="domain-relationship-index__number"
-              >
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <div>
-                {route !== 'home' ? (
+  <div class:list={{ 'content-scroll-shell': route === 'home' }}>
+    <div
+      class:list={{ 'home-atlas__scroll content-scroll': route === 'home' }}
+      role={route === 'home' ? 'region' : undefined}
+      aria-label={route === 'home' ? 'Research areas list' : undefined}
+      tabindex={route === 'home' ? '0' : undefined}
+    >
+      <ol class="domain-relationship-index__domains">
+        {
+          domains.map((domain, index) => (
+            <li
+              aria-current={
+                route !== 'home' && domain.slug === currentDomain
+                  ? 'true'
+                  : undefined
+              }
+              data-domain-relationship={domain.slug}
+            >
+              <div class="domain-relationship-index__domain">
+                <span
+                  aria-hidden="true"
+                  class="domain-relationship-index__number"
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  {route !== 'home' ? (
+                    <a
+                      class="domain-relationship-index__selector"
+                      data-domain-selector={domain.slug}
+                      href={researchDestination(domain.slug)}
+                    >
+                      {domain.title}
+                    </a>
+                  ) : (
+                    <h3>{domain.title}</h3>
+                  )}
+                  <p>{domain.summary}</p>
+                </div>
+              </div>
+              {route === 'home' && (
+                <div
+                  aria-label={`Explore ${domain.title}`}
+                  class="domain-relationship-index__links"
+                  role="group"
+                >
                   <a
-                    class="domain-relationship-index__selector"
-                    data-domain-selector={domain.slug}
+                    class="link-underlined"
+                    data-domain-research-link
                     href={researchDestination(domain.slug)}
                   >
-                    {domain.title}
+                    Research questions
                   </a>
-                ) : (
-                  <h3>{domain.title}</h3>
-                )}
-                <p>{domain.summary}</p>
-              </div>
-            </div>
-            {route === 'home' && (
-              <div
-                aria-label={`Explore ${domain.title}`}
-                class="domain-relationship-index__links"
-                role="group"
-              >
-                <a
-                  class="link-underlined"
-                  data-domain-research-link
-                  href={researchDestination(domain.slug)}
-                >
-                  Research questions
-                </a>
-                <a
-                  class="link-underlined"
-                  data-domain-publications-link
-                  href={publicationDestination(domain.category)}
-                >
-                  Publications
-                </a>
-              </div>
-            )}
-          </li>
-        ))
-      }
-    </ol>
+                  <a
+                    class="link-underlined"
+                    data-domain-publications-link
+                    href={publicationDestination(domain.category)}
+                  >
+                    Publications
+                  </a>
+                </div>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
   </div>
 </nav>

@@ -83,9 +83,10 @@ test('borderless full-view icon stays hidden until the pointer nears the image c
   await page.mouse.move(0, 0);
   await expect(enlarge).toHaveCSS('opacity', '0');
   await expect(enlarge).toHaveCSS('border-top-width', '0px');
+  await expect(enlarge).toHaveCSS('transition-property', 'none');
   await expect(enlarge).toHaveCSS(
     'background-color',
-    'rgba(255, 255, 255, 0.18)'
+    'rgba(255, 255, 255, 0.6)'
   );
   await expect(enlarge.locator('svg')).toHaveCSS('opacity', '0.65');
   await expect(enlarge.locator('svg path')).toHaveCount(1);
@@ -94,6 +95,11 @@ test('borderless full-view icon stays hidden until the pointer nears the image c
   ).toBeGreaterThanOrEqual(30);
   expect((await enlarge.boundingBox())!.width).toBeGreaterThanOrEqual(60);
   const image = dialog.locator('img');
+  const tagFont = await page
+    .locator('.publication-hashtag')
+    .first()
+    .evaluate((node) => getComputedStyle(node).fontFamily);
+  await expect(dialog.locator('figcaption')).toHaveCSS('font-family', tagFont);
   await expect
     .poll(() =>
       image.evaluate(
@@ -105,12 +111,12 @@ test('borderless full-view icon stays hidden until the pointer nears the image c
   const icon = (await enlarge.boundingBox())!;
   expect(icon.x + icon.width / 2).toBeCloseTo(bounds.x + bounds.width / 2, 0);
   expect(icon.y + icon.height / 2).toBeCloseTo(bounds.y + bounds.height / 2, 0);
-  const near = { x: icon.x + icon.width + 10, y: icon.y + icon.height / 2 };
+  const near = { x: icon.x + icon.width + 40, y: icon.y + icon.height / 2 };
   await page.mouse.move(near.x, near.y);
   await expect(enlarge).toHaveCSS('opacity', '1');
   await expect(enlarge).toHaveCSS(
     'background-color',
-    'rgba(255, 255, 255, 0.28)'
+    'rgba(255, 255, 255, 0.72)'
   );
   const [original] = await Promise.all([
     page.waitForEvent('popup'),

@@ -105,7 +105,8 @@ test('impact cards show hover feedback, survive client navigation and retain no-
     border: getComputedStyle(element).borderColor
   }));
   await card.hover();
-  for (const key of ['color', 'background', 'border'] as const)
+  await expect(card).toHaveCSS('border-color', initial.border);
+  for (const key of ['color', 'background'] as const)
     await expect
       .poll(async () => {
         const hovered = await card.evaluate((element) => ({

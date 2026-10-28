@@ -1,4 +1,16 @@
 @media (prefers-reduced-motion: no-preference) {
+  html[data-theme-changing],
+  html[data-theme-changing] *,
+  html[data-theme-changing] *::before,
+  html[data-theme-changing] *::after {
+    transition:
+      color var(--motion-slow) ease,
+      background-color var(--motion-slow) ease,
+      border-color var(--motion-slow) ease,
+      fill var(--motion-slow) ease,
+      stroke var(--motion-slow) ease;
+  }
+
   ::view-transition-old(root) {
     animation: atlas-fade-out 180ms var(--motion-ease) both;
   }

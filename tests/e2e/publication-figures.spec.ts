@@ -53,6 +53,7 @@ test('image-only thumbnails show a hover zoom affordance and a compact viewer to
   const icon = trigger.locator('.publication-figure__zoom');
   await expect(icon).toHaveCSS('opacity', '0');
   await trigger.hover();
+  await expect(trigger).toHaveCSS('border-top-width', '0px');
   await expect(icon).toHaveCSS('opacity', '1');
   await trigger.click();
   const dialog = page.getByRole('dialog', { name: 'Publication figure' });

@@ -21,7 +21,15 @@
   z-index: var(--z-sticky);
   top: 0;
   border-bottom: 1px solid var(--color-rule);
-  background: color-mix(in srgb, var(--color-background) 96%, transparent);
+  background: var(--color-background);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .site-header {
+    background: color-mix(in srgb, var(--color-background) 82%, transparent);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
 }
 
 .site-header__row {
@@ -297,6 +305,7 @@
 }
 
 .site-dialog__actions .action {
+  border-radius: 999px;
   text-align: center;
 }
 
@@ -534,7 +543,6 @@
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border: 1px solid var(--color-rule);
   border-radius: var(--radius-sm);
   background: #fff;
   color: var(--color-annotation);
@@ -620,31 +628,27 @@
   right: var(--space-2);
 }
 
-/* Both controls sit on the figure's white canvas in either site theme. */
-.publication-figure-dialog__fullsize,
+/* Keep the close control in the same palette as the other dialogs. */
 .publication-figure-dialog__close {
-  border-color: rgb(48 50 52 / 18%);
-  background: rgb(255 255 255 / 10%);
-  color: #303234;
+  background: var(--color-surface);
 }
 
-.publication-figure-dialog__fullsize:is(:hover, :focus-visible, :active),
 .publication-figure-dialog__close:is(:hover, :focus-visible, :active) {
-  border-color: rgb(48 50 52 / 55%);
-  background: rgb(48 50 52 / 6%);
-  color: #303234;
+  border-color: var(--color-link-hover);
+  color: var(--color-link-hover);
 }
 
 .publication-figure-dialog__fullsize {
-  background: rgb(255 255 255 / 18%);
+  background: rgb(255 255 255 / 60%);
+  color: #303234;
 }
 
 .publication-figure-dialog__fullsize:is(:hover, :focus-visible, :active) {
-  background: rgb(255 255 255 / 28%);
+  background: rgb(255 255 255 / 72%);
+  color: #303234;
 }
 
-.dismiss-control,
-.publication-figure-dialog__fullsize {
+.dismiss-control {
   transition:
     opacity var(--motion-fast) var(--motion-ease),
     background-color var(--motion-fast) var(--motion-ease),
@@ -657,12 +661,13 @@
 
 .publication-figure-dialog__fullsize {
   opacity: 0;
+  transition: none;
 }
 
 .publication-figure-dialog__fullsize::before {
   content: '';
   position: absolute;
-  inset: -1.25rem;
+  inset: clamp(-3.5rem, -5vw, -2rem);
 }
 
 .dismiss-control:is(:hover, :focus-visible, :active),
@@ -702,7 +707,9 @@
 .publication-figure-dialog figcaption {
   margin-top: var(--space-3);
   color: var(--color-muted);
-  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
   text-align: center;
 }
 

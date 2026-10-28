@@ -16,7 +16,9 @@ test('mobile reading-mode actions are centered above CV with Home first', async 
     const mode = dialog.locator('[data-mobile-reading-mode]');
     await expect(mode).toHaveText(route === '/' ? 'Scholar view' : 'Full site');
     await expect(mode).toHaveCSS('text-align', 'center');
-    const cv = dialog.getByRole('link', { name: 'Download CV', exact: true });
+    const cv = dialog.getByRole('link', { name: 'CV', exact: true });
+    await expect(cv).toHaveCSS('border-radius', '999px');
+    await expect(mode).toHaveCSS('border-radius', '999px');
     expect(
       (await cv.boundingBox())!.y -
         (await mode.boundingBox())!.y -

@@ -6,7 +6,25 @@ const initializeScrollActivity = () => {
     document.querySelectorAll<HTMLElement>('.content-scroll')
   );
   const controller = new AbortController();
+  const observers: ResizeObserver[] = [];
+  const frames: number[] = [];
   regions.forEach((region) => {
+    const shell = region.closest<HTMLElement>('.content-scroll-shell');
+    const updateOverflow = () => {
+      const more =
+        region.scrollHeight - region.clientHeight - region.scrollTop > 2;
+      if (shell) shell.dataset.scrollMore = String(more);
+    };
+    updateOverflow();
+    frames.push(requestAnimationFrame(updateOverflow));
+    const observer = new ResizeObserver(updateOverflow);
+    observer.observe(region);
+    if (region.firstElementChild) observer.observe(region.firstElementChild);
+    observers.push(observer);
+    region.addEventListener('scroll', updateOverflow, {
+      passive: true,
+      signal: controller.signal
+    });
     const update = (event: PointerEvent) => {
       const bounds = region.getBoundingClientRect();
       const gutter = Math.max(8, region.offsetWidth - region.clientWidth);
@@ -48,7 +66,11 @@ const initializeScrollActivity = () => {
 
   cleanup = () => {
     controller.abort();
+    observers.forEach((observer) => observer.disconnect());
+    frames.forEach(cancelAnimationFrame);
     regions.forEach((region) => {
+      const shell = region.closest<HTMLElement>('.content-scroll-shell');
+      if (shell) delete shell.dataset.scrollMore;
       delete region.dataset.scrollbarHover;
       delete region.dataset.scrollbarPressed;
     });

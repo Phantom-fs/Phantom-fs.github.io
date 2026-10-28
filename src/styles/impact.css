@@ -9,7 +9,6 @@
 }
 
 .impact-metrics__list .impact-metric:is(:hover, :focus-within) {
-  border-color: var(--color-annotation);
   background: var(--color-subtle);
 }
 

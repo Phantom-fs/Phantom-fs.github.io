@@ -173,11 +173,9 @@ test.describe('Publications catalog and approved detail routes', () => {
       )
       .not.toBe(restingBackground);
     const figure = firstRecord.locator('[data-publication-figure]');
-    const figureBorder = await figure.evaluate(
-      (element) => getComputedStyle(element).borderTopColor
-    );
+    await expect(figure).toHaveCSS('border-top-width', '0px');
     await figure.hover();
-    await expect(figure).toHaveCSS('border-top-color', figureBorder);
+    await expect(figure).toHaveCSS('border-top-width', '0px');
     expect(
       await firstRecord
         .locator('.publication-record__taxonomy')
