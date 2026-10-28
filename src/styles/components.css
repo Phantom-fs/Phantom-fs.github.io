@@ -300,13 +300,14 @@
 }
 
 .site-dialog__actions {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-3);
 }
 
 .site-dialog__actions .action {
-  justify-self: center;
-  width: min(100%, 12rem);
+  min-width: 4rem;
   border-radius: 999px;
   text-align: center;
 }

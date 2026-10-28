@@ -2,29 +2,38 @@ import { expect, test } from '@playwright/test';
 
 test.use({ contextOptions: { reducedMotion: 'reduce' } });
 
-test('mobile reading-mode actions are centered above CV with Home first', async ({
+test('mobile reading-mode and CV actions share a centered row with Home first', async ({
   page
 }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  for (const route of ['/', '/overview/']) {
-    await page.goto(route);
-    await page.getByRole('button', { name: 'Menu', exact: true }).click();
-    const dialog = page.getByRole('dialog', { name: 'Navigation' });
-    await expect(
-      dialog.getByRole('navigation').getByRole('link').first()
-    ).toHaveText('Home');
-    const mode = dialog.locator('[data-mobile-reading-mode]');
-    await expect(mode).toHaveText(route === '/' ? 'Scholar view' : 'Full site');
-    await expect(mode).toHaveCSS('text-align', 'center');
-    const cv = dialog.getByRole('link', { name: 'CV', exact: true });
-    await expect(cv).toHaveCSS('border-radius', '999px');
-    await expect(mode).toHaveCSS('border-radius', '999px');
-    expect(
-      (await cv.boundingBox())!.y -
-        (await mode.boundingBox())!.y -
-        (await mode.boundingBox())!.height
-    ).toBeCloseTo(12, 0);
-    await dialog.getByRole('button', { name: 'Close menu' }).click();
+  for (const width of [320, 390, 768]) {
+    await page.setViewportSize({ width, height: 844 });
+    for (const route of ['/', '/overview/']) {
+      await page.goto(route);
+      await page.getByRole('button', { name: 'Menu', exact: true }).click();
+      const dialog = page.getByRole('dialog', { name: 'Navigation' });
+      await expect(
+        dialog.getByRole('navigation').getByRole('link').first()
+      ).toHaveText('Home');
+      const mode = dialog.locator('[data-mobile-reading-mode]');
+      await expect(mode).toHaveText(
+        route === '/' ? 'Scholar view' : 'Full site'
+      );
+      await expect(mode).toHaveCSS('text-align', 'center');
+      const cv = dialog.getByRole('link', { name: 'CV', exact: true });
+      await expect(cv).toHaveCSS('border-radius', '999px');
+      await expect(mode).toHaveCSS('border-radius', '999px');
+      const cvBox = (await cv.boundingBox())!;
+      const modeBox = (await mode.boundingBox())!;
+      const dialogBox = (await dialog.boundingBox())!;
+      expect(cvBox.y).toBeCloseTo(modeBox.y, 0);
+      expect(cvBox.x - modeBox.x - modeBox.width).toBeCloseTo(12, 0);
+      expect((modeBox.x + cvBox.x + cvBox.width) / 2).toBeCloseTo(
+        dialogBox.x + dialogBox.width / 2,
+        0
+      );
+      expect(Math.min(modeBox.height, cvBox.height)).toBeGreaterThanOrEqual(44);
+      await dialog.getByRole('button', { name: 'Close menu' }).click();
+    }
   }
 });
 
