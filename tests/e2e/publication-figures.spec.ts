@@ -26,13 +26,49 @@ test('every paper exposes its own complete figure, with keyboard close and focus
       'src',
       await trigger.evaluate((link: HTMLAnchorElement) => link.href)
     );
-    await expect(dialog.locator('[data-figure-paper]')).toHaveText(
-      await record.locator('[data-publication-title]').innerText()
+    await expect(
+      dialog.locator('h2, [data-figure-label], [data-figure-paper]')
+    ).toHaveCount(0);
+    await expect(dialog.locator('figcaption')).toHaveText(
+      (await trigger.getAttribute('data-figure-caption'))!
+        .trim()
+        .replace(/\.+$/, '')
     );
+    await expect(dialog.locator('figcaption')).not.toHaveText(/\.$/);
     await page.keyboard.press('Escape');
     await expect(dialog).not.toBeVisible();
     await expect(trigger).toBeFocused();
   }
+});
+
+test('image-only thumbnails show a hover zoom affordance and a compact viewer toolbar', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/publications/');
+  const trigger = page.locator('[data-publication-figure]').first();
+  await trigger.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
+  await expect(trigger).not.toContainText('View figure');
+  const icon = trigger.locator('.publication-figure__zoom');
+  await expect(icon).toHaveCSS('opacity', '0');
+  await trigger.hover();
+  await expect(icon).toHaveCSS('opacity', '1');
+  await trigger.click();
+  const dialog = page.getByRole('dialog', { name: 'Publication figure' });
+  await expect(dialog).toBeVisible();
+  expect((await dialog.boundingBox())!.width).toBeLessThanOrEqual(960);
+  const fullSize = dialog.getByRole('link', { name: /^Full size/ });
+  await expect(fullSize).toHaveAttribute(
+    'href',
+    await trigger.evaluate((node: HTMLAnchorElement) => node.href)
+  );
+  const imageBox = (await dialog
+    .locator('.publication-figure-dialog__image')
+    .boundingBox())!;
+  expect((await fullSize.boundingBox())!.y).toBeLessThan(imageBox.y);
+  expect((await fullSize.boundingBox())!.x).toBeLessThan(imageBox.x + 20);
+  await expect(dialog.locator('figcaption')).toHaveCSS('text-align', 'center');
 });
 
 test('figure dialog survives filtering and Astro navigation, and works at narrow widths in both themes @a11y', async ({

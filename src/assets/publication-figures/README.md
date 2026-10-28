@@ -35,6 +35,12 @@ checked-in PNGs and do not require the source PDFs or a Python PDF renderer.
    presentation. Keep figures white-backed and use `object-fit: contain` so
    the original aspect ratio and colors remain intact.
 
-The enlarged view supports X, Escape, backdrop dismissal and focus restoration.
-Its full-size image link also serves keyboard/no-JavaScript use. Thumbnails
-load lazily; opening the dialog fetches only that paper's full-resolution view.
+The compact enlarged view shows a centered caption and supports X, Escape,
+backdrop dismissal and focus restoration. Its top-left Full size control opens
+the original image in a new tab. Thumbnail links also serve no-JavaScript use;
+the zoom icon appears on hover/focus, with a subtle persistent cue for touch.
+Thumbnails load lazily; opening the dialog fetches only that paper's
+full-resolution view. Figure/page provenance remains in the source metadata
+without appearing as additional labels in the viewer.
+Displayed captions omit trailing periods; the stored source captions remain
+unchanged. The Full size control uses the site's slate-blue primary styling.

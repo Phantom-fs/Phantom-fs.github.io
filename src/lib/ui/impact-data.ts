@@ -21,13 +21,13 @@ export const buildImpactData = (
       (a, b) => b.citations - a.citations || a.title.localeCompare(b.title)
     );
   const years = [...new Set(papers.map((paper) => paper.year))].sort(
-    (a, b) => a - b
+    (a, b) => b - a
   );
   const byYear = years.map((year) => ({
     label: String(year),
     value: papers.filter((paper) => paper.year === year).length
   }));
-  const citationsByYear = [...years].reverse().map((year) => ({
+  const citationsByYear = years.map((year) => ({
     label: String(year),
     value: papers
       .filter((paper) => paper.year === year)

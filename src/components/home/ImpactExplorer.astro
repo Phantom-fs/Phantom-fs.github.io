@@ -52,7 +52,7 @@ const data = buildImpactData(publications, snapshot);
     </section>
     <section data-impact-panel="publications" hidden>
       <h2 class="type-heading-md" id="impact-publications-title">
-        Publications by year
+        Number of publications by year
       </h2>
       <ImpactBars rows={data.byYear} label="Catalogue year · paper counts" />
     </section>
@@ -72,7 +72,7 @@ const data = buildImpactData(publications, snapshot);
     />
     <h3>Papers by citation threshold</h3>
     <ImpactBars rows={data.thresholds} label="i10 threshold · paper counts" />
-    <h3>Publications by year</h3>
+    <h3>Number of publications by year</h3>
     <ImpactBars rows={data.byYear} label="Catalogue year · paper counts" />
   </section>
 </noscript>

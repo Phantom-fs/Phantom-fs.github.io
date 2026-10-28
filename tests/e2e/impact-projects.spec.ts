@@ -18,7 +18,7 @@ for (const width of [320, 390, 1440]) {
       ['citations', 'Citations by publication year'],
       ['h-index', 'h-index citation profile'],
       ['i10-index', 'Papers by citation threshold'],
-      ['publications', 'Publications by year']
+      ['publications', 'Number of publications by year']
     ];
     for (const [key, heading] of views) {
       const trigger = page.locator(`[data-impact-trigger="${key}"]`);
@@ -63,7 +63,12 @@ for (const width of [320, 390, 1440]) {
           dialog.locator(
             '[data-impact-panel="publications"] .impact-bars__label strong'
           )
-        ).toHaveText(['3', '9', '6']);
+        ).toHaveText(['6', '9', '3']);
+        await expect(
+          dialog.locator(
+            '[data-impact-panel="publications"] .impact-bars__label span'
+          )
+        ).toHaveText(['2026', '2025', '2024']);
       }
       if (key === 'h-index' && width === 390) {
         const report = await new AxeBuilder({ page }).analyze();

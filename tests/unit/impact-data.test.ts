@@ -27,9 +27,9 @@ describe('impact explorer data', () => {
       data.papers.length
     );
     expect(data.byYear.map(({ label }) => label)).toEqual([
-      '2024',
+      '2026',
       '2025',
-      '2026'
+      '2024'
     ]);
     expect(data.citationsByYear.map(({ label }) => label)).toEqual([
       '2026',

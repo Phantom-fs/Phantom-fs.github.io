@@ -38,10 +38,11 @@ const initialize = () => {
       )!;
       image.src = target.href;
       image.alt = target.querySelector('img')?.alt ?? '';
-      for (const key of ['paper', 'label', 'caption'] as const) {
-        dialog.querySelector(`[data-figure-${key}]`)!.textContent =
-          target.dataset[`figure${key[0].toUpperCase()}${key.slice(1)}`] ?? '';
-      }
+      dialog.querySelector('[data-figure-caption]')!.textContent = (
+        target.dataset.figureCaption ?? ''
+      )
+        .trim()
+        .replace(/\.+$/, '');
       dialog.querySelector<HTMLAnchorElement>('[data-figure-original]')!.href =
         target.href;
       dialog.showModal();

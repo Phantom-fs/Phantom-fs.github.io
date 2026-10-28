@@ -46,9 +46,7 @@ const searchText = [
           class="publication-figure"
           href={publication.figure.src}
           data-publication-figure
-          data-figure-paper={publication.title}
           data-figure-caption={publication.figure.caption}
-          data-figure-label={`${publication.figure.label} · page ${publication.figure.page}`}
           aria-label={`Enlarge ${publication.figure.label.toLowerCase()} for ${publication.title}`}
         >
           <img
@@ -61,8 +59,7 @@ const searchText = [
             loading="lazy"
             decoding="async"
           />
-          <span class="publication-figure__label">
-            View figure
+          <span class="publication-figure__zoom" aria-hidden="true">
             <svg
               width="14"
               height="14"

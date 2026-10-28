@@ -6,19 +6,17 @@ import CloseIcon from '../shared/CloseIcon.astro';
   class="publication-figure-dialog"
   id="publication-figure-dialog"
   aria-label="Publication figure"
-  aria-describedby="publication-figure-paper"
+  aria-describedby="publication-figure-caption"
   data-figure-dialog
 >
   <div class="publication-figure-dialog__heading">
-    <div>
-      <p class="type-metadata" data-figure-label></p>
-      <h2
-        class="type-heading-md"
-        id="publication-figure-paper"
-        data-figure-paper
-      >
-      </h2>
-    </div>
+    <a
+      class="control publication-figure-dialog__fullsize"
+      data-figure-original
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Full size (opens in a new tab)">Full size</a
+    >
     <button
       class="control icon-control"
       type="button"
@@ -30,9 +28,9 @@ import CloseIcon from '../shared/CloseIcon.astro';
     <div class="publication-figure-dialog__image">
       <img alt="" data-figure-image />
     </div>
-    <figcaption data-figure-caption></figcaption>
+    <figcaption id="publication-figure-caption" data-figure-caption>
+    </figcaption>
   </figure>
-  <a class="link-underlined" data-figure-original>Open full-size image</a>
 </dialog>
 <script>
   import '../../lib/ui/publication-figure-dialog';
