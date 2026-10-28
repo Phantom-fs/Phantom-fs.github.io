@@ -58,7 +58,11 @@ test('image-only thumbnails show a hover zoom affordance and a compact viewer to
   const dialog = page.getByRole('dialog', { name: 'Publication figure' });
   await expect(dialog).toBeVisible();
   expect((await dialog.boundingBox())!.width).toBeLessThanOrEqual(960);
-  const fullSize = dialog.getByRole('link', { name: /^Full size/ });
+  const fullSize = dialog.getByRole('link', {
+    name: 'Open full-size image in a new tab'
+  });
+  await expect(fullSize).toHaveText('');
+  await expect(fullSize.locator('svg')).toHaveCount(1);
   await expect(fullSize).toHaveAttribute(
     'href',
     await trigger.evaluate((node: HTMLAnchorElement) => node.href)
@@ -66,8 +70,17 @@ test('image-only thumbnails show a hover zoom affordance and a compact viewer to
   const imageBox = (await dialog
     .locator('.publication-figure-dialog__image')
     .boundingBox())!;
-  expect((await fullSize.boundingBox())!.y).toBeLessThan(imageBox.y);
+  expect((await fullSize.boundingBox())!.y).toBeGreaterThan(imageBox.y);
+  expect((await fullSize.boundingBox())!.y).toBeLessThan(imageBox.y + 20);
   expect((await fullSize.boundingBox())!.x).toBeLessThan(imageBox.x + 20);
+  const [original] = await Promise.all([
+    page.waitForEvent('popup'),
+    fullSize.click()
+  ]);
+  await original.waitForLoadState('domcontentloaded');
+  await expect(original).toHaveURL((await trigger.getAttribute('href'))!);
+  await original.close();
+  await expect(dialog).toBeVisible();
   await expect(dialog.locator('figcaption')).toHaveCSS('text-align', 'center');
 });
 

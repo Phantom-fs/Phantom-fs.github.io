@@ -36,14 +36,16 @@ checked-in PNGs and do not require the source PDFs or a Python PDF renderer.
    the original aspect ratio and colors remain intact.
 
 The compact enlarged view shows a centered caption and supports X, Escape,
-backdrop dismissal and focus restoration. Its top-left Full size control opens
-the original image in a new tab. Thumbnail links also serve no-JavaScript use;
+backdrop dismissal and focus restoration. An enlarge icon in the image's
+top-left corner opens the original in a new tab. Thumbnail links also serve no-JavaScript use;
 the zoom icon appears on hover/focus, with a subtle persistent cue for touch.
 Thumbnails load lazily; opening the dialog fetches only that paper's
 full-resolution view. Figure/page provenance remains in the source metadata
 without appearing as additional labels in the viewer.
 Displayed captions omit trailing periods; the stored source captions remain
-unchanged. The Full size control uses the site's slate-blue primary styling.
+unchanged. The enlarge icon matches the close control with a faint border,
+transparent background and legible graphite glyph. Hover/focus adds subtle
+feedback. Both have accessible labels and reserve space above the diagram.
 
 Publication frontmatter and manifest `caption` fields contain short, contextual
 display captions. The manifest retains the preceding figure wording separately
