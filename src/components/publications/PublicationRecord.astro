@@ -46,6 +46,7 @@ const searchText = [
           class="publication-figure"
           href={publication.figure.src}
           data-publication-figure
+          data-astro-prefetch="false"
           data-figure-caption={publication.figure.caption}
           aria-label={`Enlarge ${publication.figure.label.toLowerCase()} for ${publication.title}`}
         >

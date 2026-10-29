@@ -112,6 +112,13 @@ test('borderless full-view icon stays hidden until the pointer nears the image c
   expect(icon.x + icon.width / 2).toBeCloseTo(bounds.x + bounds.width / 2, 0);
   expect(icon.y + icon.height / 2).toBeCloseTo(bounds.y + bounds.height / 2, 0);
   const near = { x: icon.x + icon.width + 40, y: icon.y + icon.height / 2 };
+  // Check keyboard feedback before switching to a separate native-image window.
+  await page.keyboard.press('Tab');
+  await enlarge.focus();
+  await expect(enlarge).toBeFocused();
+  await expect(enlarge).toHaveCSS('opacity', '1');
+  await enlarge.blur();
+  await expect(enlarge).toHaveCSS('opacity', '0');
   await page.mouse.move(near.x, near.y);
   await expect(enlarge).toHaveCSS('opacity', '1');
   await expect(enlarge).toHaveCSS(
@@ -126,8 +133,4 @@ test('borderless full-view icon stays hidden until the pointer nears the image c
   await expect(original).toHaveURL((await trigger.getAttribute('href'))!);
   await original.close();
   await expect(dialog).toBeVisible();
-  await page.mouse.move(0, 0);
-  await page.keyboard.press('Tab');
-  await enlarge.focus();
-  await expect(enlarge).toHaveCSS('opacity', '1');
 });

@@ -68,6 +68,7 @@ test('every paper exposes its own complete figure, with keyboard close and focus
   for (const record of await records.all()) {
     const trigger = record.locator('[data-publication-figure]');
     await expect(trigger).toHaveCount(1);
+    await expect(trigger).toHaveAttribute('data-astro-prefetch', 'false');
     await expect(trigger.locator('img')).toHaveAttribute('alt', /.+/);
     await trigger.click();
     await expect(dialog).toBeVisible();
@@ -120,6 +121,7 @@ test('image-only thumbnails show a hover zoom affordance and a compact viewer to
     name: 'Open full-size image in a new tab'
   });
   await expect(fullSize).toHaveText('');
+  await expect(fullSize).toHaveAttribute('data-astro-prefetch', 'false');
   await expect(fullSize.locator('svg')).toHaveCount(1);
   await expect(fullSize).toHaveAttribute(
     'href',

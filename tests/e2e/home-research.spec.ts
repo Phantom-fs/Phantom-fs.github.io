@@ -901,11 +901,14 @@ test.describe('Home and Research routes', () => {
     const privacyCard = chapter.locator('[data-domain-relationship]').nth(1);
     await privacyCard.click({ position: { x: 4, y: 4 } });
     await expect(selected()).toHaveText('Privacy, Trust & Safety');
-    expect(
-      await privacyCard.evaluate(
-        (element) => getComputedStyle(element).backgroundColor
+    await expect(privacyCard).toHaveAttribute('data-selected', 'true');
+    await expect
+      .poll(() =>
+        privacyCard.evaluate(
+          (element) => getComputedStyle(element).backgroundColor
+        )
       )
-    ).not.toBe('rgba(0, 0, 0, 0)');
+      .not.toBe('rgba(0, 0, 0, 0)');
     expect(
       (await page.locator('#privacy-trust-safety').boundingBox())!.y
     ).toBeGreaterThanOrEqual(-1);
