@@ -130,12 +130,27 @@ test('both themes style browser surfaces and keep keyboard focus without decorat
 test('Research tabs retain valid accessibility structure in both themes', async ({
   page
 }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/research/');
   for (const theme of ['light', 'dark']) {
     if (theme === 'dark') await page.locator('[data-theme-toggle]').click();
     await expect(page.locator('html')).not.toHaveAttribute(
       'data-theme-changing'
     );
+    const ink = theme === 'dark' ? 'rgb(226, 225, 221)' : 'rgb(43, 43, 43)';
+    await expect(page.locator('body')).toHaveCSS('color', ink);
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          document
+            .getAnimations()
+            .some((animation) => animation.playState === 'running')
+        )
+      )
+      .toBe(false);
+    await expect(
+      page.getByRole('tabpanel').locator(':scope > .type-body-lg')
+    ).toHaveCSS('color', ink);
     const report = await new AxeBuilder({ page }).analyze();
     expect(
       report.violations.filter(
@@ -148,6 +163,7 @@ test('Research tabs retain valid accessibility structure in both themes', async 
 });
 
 test('search placeholder remains legible in both themes', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/publications/');
   for (const theme of ['light', 'dark']) {
     if (theme === 'dark') await page.locator('[data-theme-toggle]').click();

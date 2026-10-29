@@ -140,7 +140,7 @@ test('image-only thumbnails show a hover zoom affordance and a compact viewer to
     page.waitForEvent('popup'),
     fullSize.click()
   ]);
-  await original.waitForLoadState('domcontentloaded');
+  await original.waitForLoadState('load');
   await expect(original).toHaveURL((await trigger.getAttribute('href'))!);
   await original.close();
   await expect(dialog).toBeVisible();

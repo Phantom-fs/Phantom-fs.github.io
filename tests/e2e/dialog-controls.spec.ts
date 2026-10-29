@@ -122,7 +122,7 @@ test('borderless full-view icon stays hidden until the pointer nears the image c
     page.waitForEvent('popup'),
     page.mouse.click(near.x, near.y)
   ]);
-  await original.waitForLoadState('domcontentloaded');
+  await original.waitForLoadState('load');
   await expect(original).toHaveURL((await trigger.getAttribute('href'))!);
   await original.close();
   await expect(dialog).toBeVisible();
