@@ -133,6 +133,9 @@ test('Research tabs retain valid accessibility structure in both themes', async 
   await page.goto('/research/');
   for (const theme of ['light', 'dark']) {
     if (theme === 'dark') await page.locator('[data-theme-toggle]').click();
+    await expect(page.locator('html')).not.toHaveAttribute(
+      'data-theme-changing'
+    );
     const report = await new AxeBuilder({ page }).analyze();
     expect(
       report.violations.filter(
@@ -148,6 +151,9 @@ test('search placeholder remains legible in both themes', async ({ page }) => {
   await page.goto('/publications/');
   for (const theme of ['light', 'dark']) {
     if (theme === 'dark') await page.locator('[data-theme-toggle]').click();
+    await expect(page.locator('html')).not.toHaveAttribute(
+      'data-theme-changing'
+    );
     const contrast = await page
       .locator('input[type="search"]')
       .evaluate((input) => {
