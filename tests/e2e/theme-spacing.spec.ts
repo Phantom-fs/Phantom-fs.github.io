@@ -170,9 +170,12 @@ test('search placeholder remains legible in both themes', async ({ page }) => {
     await expect(page.locator('html')).not.toHaveAttribute(
       'data-theme-changing'
     );
-    const contrast = await page
-      .locator('input[type="search"]')
-      .evaluate((input) => {
+    await expect(page.locator('input[type="search"]')).toHaveCSS(
+      'background-color',
+      theme === 'dark' ? 'rgb(42, 46, 49)' : 'rgb(255, 255, 255)'
+    );
+    const contrast = () =>
+      page.locator('input[type="search"]').evaluate((input) => {
         const placeholder = getComputedStyle(input, '::placeholder');
         const background = getComputedStyle(input)
           .backgroundColor.match(/[\d.]+/g)!
@@ -199,6 +202,6 @@ test('search placeholder remains legible in both themes', async ({ page }) => {
         );
         return (values[0] + 0.05) / (values[1] + 0.05);
       });
-    expect(contrast).toBeGreaterThanOrEqual(4.5);
+    await expect.poll(contrast).toBeGreaterThanOrEqual(4.5);
   }
 });
